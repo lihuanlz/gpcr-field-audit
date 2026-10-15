@@ -1,0 +1,181 @@
+{
+  "case": "P5",
+  "dataset": "Keshelava2018_NatCommun9_876",
+  "seed": 20260815,
+  "n_boot": 2000,
+  "k": 3,
+  "n_cells": 208,
+  "n_excluded": 0,
+  "experiments_included": 11,
+  "timing_exclusions": [
+    {
+      "experiment": "experiment_02.dot",
+      "reason": "无有效锚/链"
+    },
+    {
+      "experiment": "experiment_03.dot",
+      "reason": "无有效锚/链"
+    },
+    {
+      "experiment": "experiment_06.dot",
+      "reason": "无有效锚/链"
+    },
+    {
+      "experiment": "experiment_07.dot",
+      "reason": "无有效锚/链"
+    },
+    {
+      "experiment": "experiment_13.dot",
+      "reason": "无有效锚/链"
+    },
+    {
+      "experiment": "experiment_14.dot",
+      "reason": "无有效锚/链"
+    },
+    {
+      "experiment": "experiment_16.dot",
+      "reason": "无有效锚/链"
+    },
+    {
+      "experiment": "experiment_17.dot",
+      "reason": "无有效锚/链"
+    },
+    {
+      "experiment": "experiment_18.dot",
+      "reason": "无有效锚/链"
+    },
+    {
+      "experiment": "experiment_20.dot",
+      "reason": "无有效锚/链"
+    },
+    {
+      "experiment": "experiment_21.dot",
+      "reason": "无有效锚/链"
+    },
+    {
+      "experiment": "experiment_23.dot",
+      "reason": "无有效锚/链"
+    },
+    {
+      "experiment": "experiment_24.dot",
+      "reason": "无有效锚/链"
+    },
+    {
+      "experiment": "experiment_26.dot",
+      "reason": "无有效锚/链"
+    },
+    {
+      "experiment": "experiment_27.dot",
+      "reason": "无有效锚/链"
+    },
+    {
+      "experiment": "experiment_28.dot",
+      "reason": "无有效锚/链"
+    }
+  ],
+  "power_note": "",
+  "units": [
+    {
+      "stat": "ta",
+      "pair": "D1↔D2",
+      "auc": 0.6754345414201184,
+      "lo": 0.6460090953217456,
+      "hi": 0.7073106393306213,
+      "n": 208
+    },
+    {
+      "stat": "ta",
+      "pair": "D2↔D3",
+      "auc": 0.5630547337278107,
+      "lo": 0.5383768837832841,
+      "hi": 0.5897189349112426,
+      "n": 208
+    },
+    {
+      "stat": "ta",
+      "pair": "D5↔D6",
+      "auc": 0.4995723927514793,
+      "lo": 0.48994545118343197,
+      "hi": 0.5092941013313609,
+      "n": 208
+    },
+    {
+      "stat": "ta",
+      "pair": "D6↔D7",
+      "auc": 0.5073502218934911,
+      "lo": 0.4980003582655325,
+      "hi": 0.5168971315643491,
+      "n": 208
+    },
+    {
+      "stat": "cnt",
+      "pair": "D1↔D2",
+      "auc": 0.7573039940828402,
+      "lo": 0.7232057830991124,
+      "hi": 0.7941201114090236,
+      "n": 208
+    },
+    {
+      "stat": "cnt",
+      "pair": "D2↔D3",
+      "auc": 0.5546643860946746,
+      "lo": 0.5358930057322485,
+      "hi": 0.5765425642566568,
+      "n": 208
+    },
+    {
+      "stat": "cnt",
+      "pair": "D5↔D6",
+      "auc": 0.5047961353550295,
+      "lo": 0.5,
+      "hi": 0.5120192307692307,
+      "n": 208
+    },
+    {
+      "stat": "cnt",
+      "pair": "D6↔D7",
+      "auc": 0.5000115569526628,
+      "lo": 0.5,
+      "hi": 0.5001040125739645,
+      "n": 208
+    },
+    {
+      "stat": "pk",
+      "pair": "D1↔D2",
+      "auc": 0.8182091346153846,
+      "lo": 0.7860455575073964,
+      "hi": 0.8514249722633136,
+      "n": 208
+    },
+    {
+      "stat": "pk",
+      "pair": "D2↔D3",
+      "auc": 0.7366517196745562,
+      "lo": 0.7105093149038461,
+      "hi": 0.7693960336538461,
+      "n": 208
+    },
+    {
+      "stat": "pk",
+      "pair": "D5↔D6",
+      "auc": 0.5706592085798816,
+      "lo": 0.5562705135909763,
+      "hi": 0.5901924810465976,
+      "n": 208
+    },
+    {
+      "stat": "pk",
+      "pair": "D6↔D7",
+      "auc": 0.5469327847633136,
+      "lo": 0.5379747018306213,
+      "hi": 0.5604784000554734,
+      "n": 208
+    }
+  ],
+  "verdicts": {
+    "P5-1": "中间态（3/4 单元在带内）",
+    "P5-2": "中间态（1/4 单元达线）",
+    "P5-3": "数据集级弱解码限定（仅 2/4 单元 peak-AUC≥0.60）",
+    "overall": "P5 中间态"
+  }
+}
