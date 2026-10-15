@@ -1,0 +1,6 @@
+\contentsline {section}{\numberline {1}Pipeline map: scripts and outputs}{2}{section.1}%
+\contentsline {section}{\numberline {2}P5 adjudication (Keshelava 2018)}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Erratum adjudication (code47b; 195 cells, 13 timing exclusions)}{2}{subsection.2.1}%
+\contentsline {section}{\numberline {3}Atlas meta-audit (code67/71)}{3}{section.3}%
+\contentsline {section}{\numberline {4}MOR extended-model residuals (code80)}{5}{section.4}%
+\contentsline {section}{\numberline {5}Third-party data provenance}{5}{section.5}%
