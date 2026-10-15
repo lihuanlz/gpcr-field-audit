@@ -10,70 +10,70 @@
   "timing_exclusions": [
     {
       "experiment": "experiment_02.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_03.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_06.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_07.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_13.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_14.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_16.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_17.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_18.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_20.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_21.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_23.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_24.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_26.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_27.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_28.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     }
   ],
-  "power_note": "功效缩减限定：有效细胞 195 ∈ [150,200)",
+  "power_note": "power-reduction limitation: 195 valid cells in [150,200)",
   "units": [
     {
       "stat": "ta",
@@ -173,9 +173,9 @@
     }
   ],
   "verdicts": {
-    "P5-1": "证伪（2/4 单元出 [0.40,0.60] 带）",
-    "P5-2": "中间态（2/4 单元达线）",
-    "P5-3": "数据集级弱解码限定（仅 2/4 单元 peak-AUC≥0.60）",
-    "overall": "P5 证伪（边界预测器在本形态上死亡，死亡侧见分款）"
+    "P5-1": "falsified (2/4 units outside the [0.40,0.60] band)",
+    "P5-2": "intermediate (2/4 units meet threshold)",
+    "P5-3": "dataset-level weak-decoding limitation (only 2/4 units peak-AUC>=0.60)",
+    "overall": "P5 falsified (boundary predictoris dead on this morphology; dying side detailed in the clauses) "
   }
 }

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-代码69_D2R功能态跨臂亲和力地图.py  v1.0.0
+code69_D2R_functional_state_cross_arm_map.py  v1.0.0
 ============================================================
 Cell line 4 · deepening round 2: locating Code 68's residual breakage (the absolute-difference component)
 
@@ -22,7 +22,7 @@ Results summary:
   - late-time CI-arm pKA nearly coincides with binding pKi / kinetic pKd (aripiprazole 9.29 vs
     pKi 9.43; cariprazine 9.45 vs Table 6 pKd 9.56); the bifeprunox residual converges to 0.9 dex;
   - the same ligand on the same cellular background: cAMP says "low-affinity strong partial agonism"
-    (bifeprunox Emax 88%), CI says "high-affinity weak partial agonism" (Emax 44%) — no single (KA,τ)
+    (bifeprunox Emax 88%), CI says "high-affinity weak partial agonism" (Emax 44%)  -  no single (KA,τ)
     can satisfy both arms; this is the purified cross-arm breakage (AT1R type, within one paper).
 
 Interpretation discipline: CI is xCELLigence whole-cell impedance (different instrument/plate format/possibly
@@ -34,7 +34,7 @@ import numpy as np
 
 LIGS7 = ["Ropinirole","Dopamine","Aripiprazole","Cariprazine","Bifeprunox","Pardoprunox","S-3PPP"]
 TIMES = [2,5,10,15,30,45,60,75,90]
-T7 = {  # Klein Herenbrink 2016 SI Table 7 (pEC50, Emax) — same transcription as Code 68
+T7 = {  # Klein Herenbrink 2016 SI Table 7 (pEC50, Emax)  -  same transcription as Code 68
 "cAMP":{
  "Ropinirole":([8.02,7.65,7.38,7.37,7.46,7.01,6.73,6.97,6.76],[100]*9),
  "Dopamine":([8.40,8.07,7.71,7.65,7.78,7.29,6.97,7.30,7.03],[98,98,98,99,102,101,105,98,102]),

@@ -18,7 +18,7 @@ fails its own algebraic identities}
 
 \noindent This Supporting Information documents the complete computational
 output of the accompanying repository (\texttt{gpcr-field-audit}, release
-v1.0.0): every analysis script, the adjudication tables, the per-source
+v1.0.1): every analysis script, the adjudication tables, the per-source
 meta-audit table, and the provenance of third-party data. Numbers are
 transcribed verbatim from \texttt{results/}; scripts are plain Python~3
 (numpy/scipy/matplotlib/pandas).
@@ -33,20 +33,20 @@ transcribed verbatim from \texttt{results/}; scripts are plain Python~3
 Script & Computes & Archived output \\
 \midrule
 \endhead
-\texttt{code47\_P5\_blind\_adjudication\_ boundary\_predictor} & P5 blind adjudication of the boundary predictor on Keshelava 2018 (208 cells, seed 20260815, 2000 bootstrap) & \texttt{Keshelava2018\_P5/} tables + verdict JSON \\
-\texttt{code47b\_P5\_erratum\_ readjudication} & erratum re-adjudication after timing exclusions (195 cells, 13 excluded) & \texttt{Keshelava2018\_P5\_47b\_erratum/} tables + verdict JSON; \texttt{P5\_verdict\_summary.csv} \\
-\texttt{code63\_GPCR\_functional\_affinity\_ fracture} & functional-affinity fracture across arms & console/tables \\
-\texttt{code64\_D2R\_upstream\_rate\_ordering} & D2R upstream rate ordering & console/tables \\
-\texttt{code65\_AT1R\_cross\_arm\_affinity\_ fracture} & AT1R cross-arm affinity fracture & console/tables \\
-\texttt{code66\_MOR\_Gillis\_internal\_ consistency} & MOR internal consistency on the Gillis ligand series & console/tables \\
-\texttt{code67\_BiasedSignalingAtlas\_ meta\_audit} & community-table meta-audit & \texttt{atlas\_per\_paper\_medians.csv}, \texttt{atlas\_pair\_violations.csv} \\
-\texttt{code68\_D2R\_kinetic\_mechanism\_test} & D2R kinetic mechanism test & console/tables \\
-\texttt{code69\_D2R\_functional\_state\_ cross\_arm\_map} & D2R functional-state cross-arm map & console/tables \\
-\texttt{code71\_Atlas\_full\_identity\_pipeline} & full algebraic-identity pipeline over the Atlas & \texttt{atlas\_pair\_violations.csv} (2.8 MB) \\
-\texttt{code72\_audit\_method\_false\_positive\_ selfcheck} & false-positive self-check of the audit method & console/tables \\
-\texttt{code73\_robustness\_triplet\_blind\_ jackknife} & robustness triplet, blind jackknife & console/tables \\
-\texttt{code77\_Atlas\_constraint\_projection\_ fracture\_probability} & constraint projection; fracture probability & console/tables \\
-\texttt{code80\_Gillis\_arm\_coordinate\_ extended\_model} & Gillis arm-coordinate extended model & \texttt{mor\_code80\_residuals.csv} \\
+\texttt{code47\_\allowbreak{}P5\_\allowbreak{}blind\_\allowbreak{}adjudication\_\allowbreak{} boundary\_\allowbreak{}predictor} & P5 blind adjudication of the boundary predictor on Keshelava 2018 (208 cells, seed 20260815, 2000 bootstrap) & \texttt{Keshelava2018\_\allowbreak{}P5/} tables + verdict JSON \\
+\texttt{code47b\_\allowbreak{}P5\_\allowbreak{}erratum\_\allowbreak{} readjudication} & erratum re-adjudication after timing exclusions (195 cells, 13 excluded) & \texttt{Keshelava2018\_\allowbreak{}P5\_\allowbreak{}47b\_\allowbreak{}erratum/} tables + verdict JSON; \texttt{P5\_\allowbreak{}verdict\_\allowbreak{}summary.csv} \\
+\texttt{code63\_\allowbreak{}GPCR\_\allowbreak{}functional\_\allowbreak{}affinity\_\allowbreak{} fracture} & functional-affinity fracture across arms & console/tables \\
+\texttt{code64\_\allowbreak{}D2R\_\allowbreak{}upstream\_\allowbreak{}rate\_\allowbreak{}ordering} & D2R upstream rate ordering & console/tables \\
+\texttt{code65\_\allowbreak{}AT1R\_\allowbreak{}cross\_\allowbreak{}arm\_\allowbreak{}affinity\_\allowbreak{} fracture} & AT1R cross-arm affinity fracture & console/tables \\
+\texttt{code66\_\allowbreak{}MOR\_\allowbreak{}Gillis\_\allowbreak{}internal\_\allowbreak{} consistency} & MOR internal consistency on the Gillis ligand series & console/tables \\
+\texttt{code67\_\allowbreak{}BiasedSignalingAtlas\_\allowbreak{} meta\_\allowbreak{}audit} & community-table meta-audit & \texttt{atlas\_\allowbreak{}per\_\allowbreak{}paper\_\allowbreak{}medians.csv}, \texttt{atlas\_\allowbreak{}pair\_\allowbreak{}violations.csv} \\
+\texttt{code68\_\allowbreak{}D2R\_\allowbreak{}kinetic\_\allowbreak{}mechanism\_\allowbreak{}test} & D2R kinetic mechanism test & console/tables \\
+\texttt{code69\_\allowbreak{}D2R\_\allowbreak{}functional\_\allowbreak{}state\_\allowbreak{} cross\_\allowbreak{}arm\_\allowbreak{}map} & D2R functional-state cross-arm map & console/tables \\
+\texttt{code71\_\allowbreak{}Atlas\_\allowbreak{}full\_\allowbreak{}identity\_\allowbreak{}pipeline} & full algebraic-identity pipeline over the Atlas & \texttt{atlas\_\allowbreak{}pair\_\allowbreak{}violations.csv} (2.8 MB) \\
+\texttt{code72\_\allowbreak{}audit\_\allowbreak{}method\_\allowbreak{}false\_\allowbreak{}positive\_\allowbreak{} selfcheck} & false-positive self-check of the audit method & console/tables \\
+\texttt{code73\_\allowbreak{}robustness\_\allowbreak{}triplet\_\allowbreak{}blind\_\allowbreak{} jackknife} & robustness triplet, blind jackknife & console/tables \\
+\texttt{code77\_\allowbreak{}Atlas\_\allowbreak{}constraint\_\allowbreak{}projection\_\allowbreak{} fracture\_\allowbreak{}probability} & constraint projection; fracture probability & console/tables \\
+\texttt{code80\_\allowbreak{}Gillis\_\allowbreak{}arm\_\allowbreak{}coordinate\_\allowbreak{} extended\_\allowbreak{}model} & Gillis arm-coordinate extended model & \texttt{mor\_\allowbreak{}code80\_\allowbreak{}residuals.csv} \\
 \bottomrule
 \end{longtable}
 
@@ -103,7 +103,7 @@ overall & & \textbf{P5 falsified} (boundary predictor dead in this form) \\
 \end{tabular}
 \end{table}
 
-Robustness arms (archived in the robustness-arm CSV (Chinese-named, \texttt{Keshelava2018\_P5\_47b\_erratum/})): verdicts are
+Robustness arms (archived as \texttt{code47b\_robust\_arm.csv} in \texttt{Keshelava2018\_P5\_47b\_erratum/}): verdicts are
 stable under $k=2$ and $k=4$ smoothing, under a desensitisation-corrected
 statistic, and within the single largest experiment
 (\texttt{experiment\_11.dot}, $n=29$). The original code47 adjudication
@@ -127,72 +127,72 @@ DOI & $n_{\rm grp}$ & $n_{\rm pairs}$ & median & max & receptors \\
 \endhead
 \bottomrule
 \endfoot
-10.1111/bph.13854 & 2 & 4 & 1.322 & 2.209 & OPRK\_HUMAN \\
-10.1124/jpet.116.232561 & 2 & 226 & 1.077 & 4.071 & CNR2\_MOUSE \\
-10.1124/mol.115.101980 & 4 & 50 & 0.982 & 4.990 & CNR1\_HUMAN \\
-10.1124/mol.113.088880 & 5 & 50 & 0.827 & 3.676 & ADRB2\_HUMAN \\
-10.1074/jbc.M116.757559 & 7 & 13 & 0.682 & 1.966 & CCR2/CCR5\_HUMAN \\
-10.1073/pnas.1312515110 & 3 & 3 & 0.676 & 1.357 & CXCR4\_HUMAN \\
-10.1073/pnas.1908662116 & 4 & 28 & 0.531 & 1.496 & OPRM\_MOUSE \\
-10.3389/fphar.2020.00188 & 1 & 1 & 0.529 & 0.529 & OPRK\_HUMAN \\
-10.1016/j.bcp.2018.04.021 & 8 & 48 & 0.526 & 1.843 & AGTR1\_HUMAN \\
-10.1073/pnas.2000712117 & 6 & 1240 & 0.452 & 4.569 & OPRD/OPRK/OPRM\_HUMAN \\
-10.1007/s00018-013-1461-7 & 2 & 16 & 0.429 & 0.722 & OPRD\_HUMAN \\
+10.1111/bph.13854 & 2 & 4 & 1.322 & 2.209 & OPRK\_\allowbreak{}HUMAN \\
+10.1124/jpet.116.232561 & 2 & 226 & 1.077 & 4.071 & CNR2\_\allowbreak{}MOUSE \\
+10.1124/mol.115.101980 & 4 & 50 & 0.982 & 4.990 & CNR1\_\allowbreak{}HUMAN \\
+10.1124/mol.113.088880 & 5 & 50 & 0.827 & 3.676 & ADRB2\_\allowbreak{}HUMAN \\
+10.1074/jbc.M116.757559 & 7 & 13 & 0.682 & 1.966 & CCR2/CCR5\_\allowbreak{}HUMAN \\
+10.1073/pnas.1312515110 & 3 & 3 & 0.676 & 1.357 & CXCR4\_\allowbreak{}HUMAN \\
+10.1073/pnas.1908662116 & 4 & 28 & 0.531 & 1.496 & OPRM\_\allowbreak{}MOUSE \\
+10.3389/fphar.2020.00188 & 1 & 1 & 0.529 & 0.529 & OPRK\_\allowbreak{}HUMAN \\
+10.1016/j.bcp.2018.04.021 & 8 & 48 & 0.526 & 1.843 & AGTR1\_\allowbreak{}HUMAN \\
+10.1073/pnas.2000712117 & 6 & 1240 & 0.452 & 4.569 & OPRD/OPRK/OPRM\_\allowbreak{}HUMAN \\
+10.1007/s00018-013-1461-7 & 2 & 16 & 0.429 & 0.722 & OPRD\_\allowbreak{}HUMAN \\
 10.1111/bph.14913 & 5 & 214 & 0.418 & 4.556 & OPRD/OPRK/OPRM (H+M) \\
-10.1124/mol.110.068106 & 2 & 57 & 0.400 & 1.796 & DRD2\_HUMAN \\
-10.1016/j.bmc.2017.08.037 & 2 & 91 & 0.355 & 1.654 & DRD2\_HUMAN \\
-10.1038/ncomms13958 & 8 & 288 & 0.326 & 4.054 & CNR2\_HUMAN/MOUSE \\
-10.1074/jbc.M115.704122 & 1 & 15 & 0.287 & 0.610 & NPSR1\_HUMAN \\
-10.1074/jbc.M112.408534 & 3 & 18 & 0.283 & 0.614 & ACM2\_HUMAN \\
-10.1038/s41598-017-15258-z & 2 & 13 & 0.270 & 0.664 & OPRM\_HUMAN \\
-10.1124/mol.115.099192 & 2 & 42 & 0.267 & 0.737 & CNR1\_HUMAN \\
-10.1016/j.phrs.2017.08.008 & 3 & 15 & 0.263 & 0.765 & CNR1\_HUMAN \\
-10.1016/j.phrs.2018.02.032 & 5 & 225 & 0.262 & 1.275 & APJ\_HUMAN \\
-10.1021/acs.jmedchem.8b00047 & 1 & 136 & 0.255 & 0.844 & AA1R\_HUMAN \\
-10.1038/nchembio.2527 & 2 & 13 & 0.220 & 0.342 & DRD2\_HUMAN \\
+10.1124/mol.110.068106 & 2 & 57 & 0.400 & 1.796 & DRD2\_\allowbreak{}HUMAN \\
+10.1016/j.bmc.2017.08.037 & 2 & 91 & 0.355 & 1.654 & DRD2\_\allowbreak{}HUMAN \\
+10.1038/ncomms13958 & 8 & 288 & 0.326 & 4.054 & CNR2\_\allowbreak{}HUMAN/MOUSE \\
+10.1074/jbc.M115.704122 & 1 & 15 & 0.287 & 0.610 & NPSR1\_\allowbreak{}HUMAN \\
+10.1074/jbc.M112.408534 & 3 & 18 & 0.283 & 0.614 & ACM2\_\allowbreak{}HUMAN \\
+10.1038/s41598-017-15258-z & 2 & 13 & 0.270 & 0.664 & OPRM\_\allowbreak{}HUMAN \\
+10.1124/mol.115.099192 & 2 & 42 & 0.267 & 0.737 & CNR1\_\allowbreak{}HUMAN \\
+10.1016/j.phrs.2017.08.008 & 3 & 15 & 0.263 & 0.765 & CNR1\_\allowbreak{}HUMAN \\
+10.1016/j.phrs.2018.02.032 & 5 & 225 & 0.262 & 1.275 & APJ\_\allowbreak{}HUMAN \\
+10.1021/acs.jmedchem.8b00047 & 1 & 136 & 0.255 & 0.844 & AA1R\_\allowbreak{}HUMAN \\
+10.1038/nchembio.2527 & 2 & 13 & 0.220 & 0.342 & DRD2\_\allowbreak{}HUMAN \\
 10.3390/molecules24244542 & 4 & 351 & 0.210 & 0.847 & OPRD/OPRM (H+M) \\
-10.1124/mol.115.099150 & 3 & 27 & 0.205 & 1.822 & OPRX\_HUMAN \\
-10.1002/pep2.24070 & 4 & 288 & 0.196 & 1.714 & OPRD\_MOUSE/OPRM\_HUMAN \\
-10.1038/s41467-018-03941-2 & 2 & 132 & 0.194 & 1.480 & GLP1R\_HUMAN \\
-10.3390/ijms20102417 & 5 & 46 & 0.183 & 0.560 & CCR1\_HUMAN \\
-10.1126/scisignal.aaz3140 & 5 & 157 & 0.178 & 1.452 & OPRM\_HUMAN/MOUSE \\
-10.1124/jpet.114.220293 & 2 & 110 & 0.178 & 0.652 & DRD2\_HUMAN \\
-10.1016/j.lfs.2016.02.069 & 1 & 6 & 0.167 & 0.328 & EDNRA\_HUMAN \\
-10.1016/j.bcp.2014.05.008 & 3 & 15 & 0.163 & 0.728 & AA2BR\_HUMAN/MOUSE \\
+10.1124/mol.115.099150 & 3 & 27 & 0.205 & 1.822 & OPRX\_\allowbreak{}HUMAN \\
+10.1002/pep2.24070 & 4 & 288 & 0.196 & 1.714 & OPRD\_\allowbreak{}MOUSE/OPRM\_\allowbreak{}HUMAN \\
+10.1038/s41467-018-03941-2 & 2 & 132 & 0.194 & 1.480 & GLP1R\_\allowbreak{}HUMAN \\
+10.3390/ijms20102417 & 5 & 46 & 0.183 & 0.560 & CCR1\_\allowbreak{}HUMAN \\
+10.1126/scisignal.aaz3140 & 5 & 157 & 0.178 & 1.452 & OPRM\_\allowbreak{}HUMAN/MOUSE \\
+10.1124/jpet.114.220293 & 2 & 110 & 0.178 & 0.652 & DRD2\_\allowbreak{}HUMAN \\
+10.1016/j.lfs.2016.02.069 & 1 & 6 & 0.167 & 0.328 & EDNRA\_\allowbreak{}HUMAN \\
+10.1016/j.bcp.2014.05.008 & 3 & 15 & 0.163 & 0.728 & AA2BR\_\allowbreak{}HUMAN/MOUSE \\
 10.1038/s41467-019-11875-6 & 30 & 5399 & 0.162 & 3.325 & ADRB2/OPRD/OPRM (H+RAT) \\
-10.1016/j.euroneuro.2018.12.013 & 3 & 13 & 0.160 & 0.329 & OPRD\_HUMAN \\
-10.1021/acschemneuro.9b00429 & 5 & 20 & 0.157 & 0.316 & CNR1\_HUMAN \\
-10.1038/s41598-017-01078-8 & 2 & 2 & 0.153 & 0.249 & LSHR\_HUMAN \\
-10.1038/s41598-020-65636-3 & 7 & 73 & 0.148 & 1.809 & ADRB1\_HUMAN \\
-10.1016/j.bcp.2015.11.013 & 2 & 30 & 0.147 & 1.300 & AA1R\_HUMAN \\
-10.1124/mol.115.098848 & 6 & 562 & 0.138 & 3.363 & OPRM\_HUMAN \\
-10.1124/mol.113.089649 & 2 & 930 & 0.137 & 0.739 & OPRK\_HUMAN \\
-10.1161/HYPERTENSIONAHA.114.05099 & 3 & 3 & 0.132 & 0.762 & APJ\_HUMAN \\
-10.1021/jm500457x & 2 & 49 & 0.120 & 0.417 & DRD2\_HUMAN \\
-10.1126/scisignal.aar4309 & 4 & 12 & 0.119 & 0.986 & OPRK\_HUMAN \\
-10.1007/s00210-014-1054-5 & 5 & 417 & 0.117 & 0.568 & ADRB2\_HUMAN \\
-10.1021/acs.jmedchem.8b01912 & 4 & 18 & 0.116 & 0.265 & FPR1/FPR2\_HUMAN \\
-10.1124/mol.116.103283 & 2 & 210 & 0.115 & 0.588 & AA3R\_HUMAN \\
-10.1124/mol.116.106153 & 4 & 40 & 0.112 & 0.688 & HRH3\_HUMAN \\
-10.1021/acs.jmedchem.7b00363 & 2 & 110 & 0.110 & 0.745 & DRD2\_HUMAN \\
-10.1126/science.1232808 & 4 & 4 & 0.109 & 0.331 & 5HT1B/5HT2B\_HUMAN \\
-10.1124/mol.110.067454 & 1 & 21 & 0.107 & 0.273 & ADA1A\_HUMAN \\
-10.1124/mol.110.065664 & 2 & 30 & 0.102 & 0.335 & GLP1R\_HUMAN \\
-10.1126/scisignal.aat1631 & 8 & 524 & 0.101 & 1.532 & AGTR1\_HUMAN \\
-10.1021/acsptsci.0c00022 & 3 & 217 & 0.100 & 0.693 & GLP1R\_HUMAN \\
-10.1074/jbc.M113.504381 & 2 & 49 & 0.096 & 0.250 & OPRK\_HUMAN \\
-10.3389/fphar.2018.01202 & 3 & 45 & 0.083 & 0.454 & CNR2\_HUMAN \\
-10.1021/acs.jmedchem.6b01857 & 2 & 141 & 0.081 & 0.340 & DRD2\_HUMAN \\
-10.1021/acs.jmedchem.6b01875 & 2 & 240 & 0.080 & 0.803 & DRD2\_HUMAN \\
-10.1038/s41401-018-0200-x & 2 & 342 & 0.078 & 0.316 & ADRB2\_HUMAN \\
-10.1074/jbc.M115.659250 & 8 & 17 & 0.074 & 0.823 & GHSR\_HUMAN \\
-10.1016/j.bcp.2017.03.014 & 4 & 12 & 0.067 & 0.190 & AA2BR\_HUMAN \\
-10.1016/j.bcp.2016.05.014 & 6 & 168 & 0.064 & 0.818 & OPRM\_HUMAN/MOUSE \\
-10.1016/j.neuropharm.2019.107718 & 4 & 36 & 0.063 & 0.177 & OPRM\_HUMAN \\
-10.1021/acsptsci.9b00083 & 2 & 342 & 0.050 & 0.327 & CALRL\_HUMAN \\
-10.1016/j.bcp.2017.03.018 & 4 & 147 & 0.042 & 0.304 & GLP1R\_HUMAN \\
-10.1021/jm401318w & 2 & 218 & 0.040 & 0.296 & DRD2\_HUMAN \\
-10.1101/2020.11.09.375162 & 18 & 3608 & 0.001 & 0.364 & CNR1/CNR2\_HUMAN \\
+10.1016/j.euroneuro.2018.12.013 & 3 & 13 & 0.160 & 0.329 & OPRD\_\allowbreak{}HUMAN \\
+10.1021/acschemneuro.9b00429 & 5 & 20 & 0.157 & 0.316 & CNR1\_\allowbreak{}HUMAN \\
+10.1038/s41598-017-01078-8 & 2 & 2 & 0.153 & 0.249 & LSHR\_\allowbreak{}HUMAN \\
+10.1038/s41598-020-65636-3 & 7 & 73 & 0.148 & 1.809 & ADRB1\_\allowbreak{}HUMAN \\
+10.1016/j.bcp.2015.11.013 & 2 & 30 & 0.147 & 1.300 & AA1R\_\allowbreak{}HUMAN \\
+10.1124/mol.115.098848 & 6 & 562 & 0.138 & 3.363 & OPRM\_\allowbreak{}HUMAN \\
+10.1124/mol.113.089649 & 2 & 930 & 0.137 & 0.739 & OPRK\_\allowbreak{}HUMAN \\
+10.1161/HYPERTENSIONAHA.114.05099 & 3 & 3 & 0.132 & 0.762 & APJ\_\allowbreak{}HUMAN \\
+10.1021/jm500457x & 2 & 49 & 0.120 & 0.417 & DRD2\_\allowbreak{}HUMAN \\
+10.1126/scisignal.aar4309 & 4 & 12 & 0.119 & 0.986 & OPRK\_\allowbreak{}HUMAN \\
+10.1007/s00210-014-1054-5 & 5 & 417 & 0.117 & 0.568 & ADRB2\_\allowbreak{}HUMAN \\
+10.1021/acs.jmedchem.8b01912 & 4 & 18 & 0.116 & 0.265 & FPR1/FPR2\_\allowbreak{}HUMAN \\
+10.1124/mol.116.103283 & 2 & 210 & 0.115 & 0.588 & AA3R\_\allowbreak{}HUMAN \\
+10.1124/mol.116.106153 & 4 & 40 & 0.112 & 0.688 & HRH3\_\allowbreak{}HUMAN \\
+10.1021/acs.jmedchem.7b00363 & 2 & 110 & 0.110 & 0.745 & DRD2\_\allowbreak{}HUMAN \\
+10.1126/science.1232808 & 4 & 4 & 0.109 & 0.331 & 5HT1B/5HT2B\_\allowbreak{}HUMAN \\
+10.1124/mol.110.067454 & 1 & 21 & 0.107 & 0.273 & ADA1A\_\allowbreak{}HUMAN \\
+10.1124/mol.110.065664 & 2 & 30 & 0.102 & 0.335 & GLP1R\_\allowbreak{}HUMAN \\
+10.1126/scisignal.aat1631 & 8 & 524 & 0.101 & 1.532 & AGTR1\_\allowbreak{}HUMAN \\
+10.1021/acsptsci.0c00022 & 3 & 217 & 0.100 & 0.693 & GLP1R\_\allowbreak{}HUMAN \\
+10.1074/jbc.M113.504381 & 2 & 49 & 0.096 & 0.250 & OPRK\_\allowbreak{}HUMAN \\
+10.3389/fphar.2018.01202 & 3 & 45 & 0.083 & 0.454 & CNR2\_\allowbreak{}HUMAN \\
+10.1021/acs.jmedchem.6b01857 & 2 & 141 & 0.081 & 0.340 & DRD2\_\allowbreak{}HUMAN \\
+10.1021/acs.jmedchem.6b01875 & 2 & 240 & 0.080 & 0.803 & DRD2\_\allowbreak{}HUMAN \\
+10.1038/s41401-018-0200-x & 2 & 342 & 0.078 & 0.316 & ADRB2\_\allowbreak{}HUMAN \\
+10.1074/jbc.M115.659250 & 8 & 17 & 0.074 & 0.823 & GHSR\_\allowbreak{}HUMAN \\
+10.1016/j.bcp.2017.03.014 & 4 & 12 & 0.067 & 0.190 & AA2BR\_\allowbreak{}HUMAN \\
+10.1016/j.bcp.2016.05.014 & 6 & 168 & 0.064 & 0.818 & OPRM\_\allowbreak{}HUMAN/MOUSE \\
+10.1016/j.neuropharm.2019.107718 & 4 & 36 & 0.063 & 0.177 & OPRM\_\allowbreak{}HUMAN \\
+10.1021/acsptsci.9b00083 & 2 & 342 & 0.050 & 0.327 & CALRL\_\allowbreak{}HUMAN \\
+10.1016/j.bcp.2017.03.018 & 4 & 147 & 0.042 & 0.304 & GLP1R\_\allowbreak{}HUMAN \\
+10.1021/jm401318w & 2 & 218 & 0.040 & 0.296 & DRD2\_\allowbreak{}HUMAN \\
+10.1101/2020.11.09.375162 & 18 & 3608 & 0.001 & 0.364 & CNR1/CNR2\_\allowbreak{}HUMAN \\
 \end{longtable}
 
 \section{MOR extended-model residuals (code80)}

@@ -29,16 +29,16 @@ Results (v1.0.0 actual run):
   Test B binding anchor: TRV023 pKi−pEC50 = +0.52 dex ⚠; S1I8 +0.73 dex ⚠
     (Gq-arm functional potency below binding affinity, violating pEC50 ≥ pKA)
   Interpretation: TRV026 is the literature-famous extreme arrestin-biased ligand; this test shows its
-    "bias" magnitude already exceeds what a single-affinity equilibrium model can accommodate — the self-consistent
+    "bias" magnitude already exceeds what a single-affinity equilibrium model can accommodate  -  the self-consistent
     KA values of the two arms differ by ~100-fold, while the binding-measured Ki falls exactly between them. I.e.: the operational
     model's KA here is not a physical affinity, but a hybrid parameter absorbing the structural differences of the two arms.
     Complementary to the D2R (code 63) conclusion: there the fracture lies between "binding state vs functional state";
     here it lies directly between "arm vs arm".
 
 Verdict: the AT1R data fracture as well, and the fracture position coincides exactly with the reported bias position.
-Two receptors, two experimental systems, two test designs — the fracture points the same way.
+Two receptors, two experimental systems, two test designs  -  the fracture points the same way.
 
-Run: python3 代码65_AT1R跨臂亲和力断裂检验.py
+Run: python3 code65_AT1R_cross_arm_affinity_fracture.py
 Dependency: numpy
 """
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.10.15)  16 OCT 2026 01:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.10.15)  16 OCT 2026 03:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -303,9 +303,6 @@ File: l3backend-pdftex.def 2026-09-09 L3 backend support: PDF output (pdfTeX)
 
 LaTeX Warning: Label `tab:atlas' multiply defined.
 
-
-LaTeX Warning: Label `tab:atlas' multiply defined.
-
 )
 \openout1 = `si.aux'.
 
@@ -400,8 +397,13 @@ Package hyperref Info: Link coloring ON on input line 16.
  [1
 
 {C:/Users/lihua/AppData/Local/MiKTeX/2.9/fonts/map/pdftex/pdftex.map}]
-Overfull \hbox (12.31917pt too wide) in paragraph at lines 36--36
-[]|\OT1/cmtt/m/n/10.95 code47[]P5[]blind[]adjudication[]
+Underfull \hbox (badness 10000) in paragraph at lines 36--36
+[]|\OT1/cmtt/m/n/10.95 code47[]P5[]blind[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--36
+\OT1/cmtt/m/n/10.95 adjudication[] boundary[]
  []
 
 
@@ -430,73 +432,78 @@ Underfull \hbox (badness 10000) in paragraph at lines 37--37
  []
 
 
-Overfull \hbox (65.14386pt too wide) in paragraph at lines 37--38
-[]|\OT1/cmtt/m/n/10.95 Keshelava2018[]P5[]47b[]erratum/
+Underfull \hbox (badness 10000) in paragraph at lines 37--38
+[]|\OT1/cmtt/m/n/10.95 Keshelava2018[]
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 37--38
-\OT1/cmr/m/n/10.95 tables +
+\OT1/cmtt/m/n/10.95 P5[]47b[]erratum/
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 37--38
-\OT1/cmr/m/n/10.95 verdict JSON;
+\OT1/cmr/m/n/10.95 tables + verdict
  []
 
 
-Overfull \hbox (26.51268pt too wide) in paragraph at lines 37--38
-\OT1/cmtt/m/n/10.95 P5[]verdict[]summary.csv| 
+Underfull \hbox (badness 10000) in paragraph at lines 38--38
+[]|\OT1/cmtt/m/n/10.95 code63[]GPCR[]functional[]
  []
 
 
-Overfull \hbox (29.56523pt too wide) in paragraph at lines 38--38
-[]|\OT1/cmtt/m/n/10.95 code63[]GPCR[]functional[]affinity[]
+Underfull \hbox (badness 10000) in paragraph at lines 39--39
+[]|\OT1/cmtt/m/n/10.95 code64[]D2R[]upstream[]rate[]
  []
 
 
-Overfull \hbox (35.31392pt too wide) in paragraph at lines 39--39
-[]|\OT1/cmtt/m/n/10.95 code64[]D2R[]upstream[]rate[]ordering| 
+Underfull \hbox (badness 10000) in paragraph at lines 40--40
+[]|\OT1/cmtt/m/n/10.95 code65[]AT1R[]cross[]arm[]
  []
 
 
-Overfull \hbox (22.20691pt too wide) in paragraph at lines 40--40
-[]|\OT1/cmtt/m/n/10.95 code65[]AT1R[]cross[]arm[]affinity[]
+Underfull \hbox (badness 10000) in paragraph at lines 41--41
+[]|\OT1/cmtt/m/n/10.95 code66[]MOR[]Gillis[]
  []
 
 
-Overfull \hbox (0.8218pt too wide) in paragraph at lines 41--41
-[]|\OT1/cmtt/m/n/10.95 code66[]MOR[]Gillis[]internal[]
+Underfull \hbox (badness 10000) in paragraph at lines 42--42
+[]|\OT1/cmtt/m/n/10.95 code67[]
  []
 
 
-Overfull \hbox (9.78975pt too wide) in paragraph at lines 42--42
-[]|\OT1/cmtt/m/n/10.95 code67[]BiasedSignalingAtlas[]
+Underfull \hbox (badness 10000) in paragraph at lines 42--42
+\OT1/cmtt/m/n/10.95 BiasedSignalingAtlas[]
  []
 
 
-Overfull \hbox (56.68816pt too wide) in paragraph at lines 42--43
-[]|\OT1/cmtt/m/n/10.95 atlas[]per[]paper[]medians.csv\OT1/cmr/m/n/10.95 ,
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
+[]|\OT1/cmtt/m/n/10.95 atlas[]per[]paper[]
  []
 
 
-Overfull \hbox (43.75874pt too wide) in paragraph at lines 42--43
-\OT1/cmtt/m/n/10.95 atlas[]pair[]violations.csv| 
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
+\OT1/cmtt/m/n/10.95 medians.csv\OT1/cmr/m/n/10.95 ,
  []
 
 
-Overfull \hbox (35.31392pt too wide) in paragraph at lines 43--43
-[]|\OT1/cmtt/m/n/10.95 code68[]D2R[]kinetic[]mechanism[]test| 
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
+\OT1/cmtt/m/n/10.95 atlas[]pair[]
  []
 
 
-Overfull \hbox (6.57048pt too wide) in paragraph at lines 44--44
-[]|\OT1/cmtt/m/n/10.95 code69[]D2R[]functional[]state[]
+Underfull \hbox (badness 10000) in paragraph at lines 43--43
+[]|\OT1/cmtt/m/n/10.95 code68[]D2R[]kinetic[]
  []
 
 
-Overfull \hbox (46.8113pt too wide) in paragraph at lines 45--45
-[]|\OT1/cmtt/m/n/10.95 code71[]Atlas[]full[]identity[]pipeline| 
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+[]|\OT1/cmtt/m/n/10.95 code69[]D2R[]functional[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--45
+[]|\OT1/cmtt/m/n/10.95 code71[]Atlas[]full[]
  []
 
 
@@ -505,33 +512,48 @@ Underfull \hbox (badness 1831) in paragraph at lines 45--45
  []
 
 
-Overfull \hbox (43.75874pt too wide) in paragraph at lines 45--46
-[]|\OT1/cmtt/m/n/10.95 atlas[]pair[]violations.csv
+Underfull \hbox (badness 10000) in paragraph at lines 45--46
+[]|\OT1/cmtt/m/n/10.95 atlas[]pair[]
  []
 
 
-Overfull \hbox (45.20166pt too wide) in paragraph at lines 46--46
-[]|\OT1/cmtt/m/n/10.95 code72[]audit[]method[]false[]positive[]
+Underfull \hbox (badness 10000) in paragraph at lines 45--46
+\OT1/cmtt/m/n/10.95 violations.csv
  []
 
 
-Overfull \hbox (29.56523pt too wide) in paragraph at lines 47--47
-[]|\OT1/cmtt/m/n/10.95 code73[]robustness[]triplet[]blind[]
+Underfull \hbox (badness 10000) in paragraph at lines 46--46
+[]|\OT1/cmtt/m/n/10.95 code72[]audit[]method[]false[]
  []
 
 
-Overfull \hbox (46.8113pt too wide) in paragraph at lines 48--48
-[]|\OT1/cmtt/m/n/10.95 code77[]Atlas[]constraint[]projection[]
+Underfull \hbox (badness 10000) in paragraph at lines 47--47
+[]|\OT1/cmtt/m/n/10.95 code73[]robustness[]triplet[]
  []
 
 
-Overfull \hbox (12.31917pt too wide) in paragraph at lines 49--49
-[]|\OT1/cmtt/m/n/10.95 code80[]Gillis[]arm[]coordinate[]
+Underfull \hbox (badness 10000) in paragraph at lines 48--48
+[]|\OT1/cmtt/m/n/10.95 code77[]Atlas[]constraint[]
  []
 
 
-Overfull \hbox (38.01006pt too wide) in paragraph at lines 49--50
-[]|\OT1/cmtt/m/n/10.95 mor[]code80[]residuals.csv| 
+Underfull \hbox (badness 10000) in paragraph at lines 48--48
+\OT1/cmtt/m/n/10.95 projection[] fracture[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+[]|\OT1/cmtt/m/n/10.95 code80[]Gillis[]arm[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+\OT1/cmtt/m/n/10.95 coordinate[] extended[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
+[]|\OT1/cmtt/m/n/10.95 mor[]code80[]
  []
 
 
@@ -542,27 +564,14 @@ n/10.95 7 ACh doses $\OMS/cmsy/m/n/10.95 ^^B$ \OT1/cmr/m/n/10.95 5 repetitions
 (Supplementary
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
+[2]
 Underfull \hbox (badness 1867) in paragraph at lines 99--100
 []|\OT1/cmr/m/n/10 dataset-level weak-decoding limitation
  []
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Overfull \hbox (24.18294pt too wide) in paragraph at lines 106--112
-\OT1/cmr/m/n/10.95 Robustness arms (archived in the robustness-arm CSV (Chinese
--named, \OT1/cmtt/m/n/10.95 Keshelava2018[]P5[]47b[]erratum/\OT1/cmr/m/n/10.95 
-)):
- []
-
-[2]
-Overfull \hbox (31.59406pt too wide) in paragraph at lines 139--140
-[]|\OT1/cmr/m/n/10.95 OPRD/OPRK/OPRM[]HUMAN| 
+Underfull \hbox (badness 10000) in paragraph at lines 139--140
+[]|\OT1/cmr/m/n/10.95 OPRD/OPRK/OPRM[]
  []
 
 
@@ -571,18 +580,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 141--142
  []
 
 
-Overfull \hbox (37.8173pt too wide) in paragraph at lines 155--156
-[]|\OT1/cmr/m/n/10.95 OPRD[]MOUSE/OPRM[]HUMAN| 
+Underfull \hbox (badness 10000) in paragraph at lines 155--156
+[]|\OT1/cmr/m/n/10.95 OPRD[]MOUSE/OPRM[]
  []
 
 
-Overfull \hbox (1.4815pt too wide) in paragraph at lines 158--159
-[]|\OT1/cmr/m/n/10.95 OPRM[]HUMAN/MOUSE| 
+Underfull \hbox (badness 10000) in paragraph at lines 158--159
+[]|\OT1/cmr/m/n/10.95 OPRM[]
  []
 
 
-Overfull \hbox (5.1315pt too wide) in paragraph at lines 161--162
-[]|\OT1/cmr/m/n/10.95 AA2BR[]HUMAN/MOUSE| 
+Underfull \hbox (badness 10000) in paragraph at lines 161--162
+[]|\OT1/cmr/m/n/10.95 AA2BR[]
  []
 
 
@@ -596,8 +605,8 @@ Overfull \hbox (45.36877pt too wide) in paragraph at lines 170--170
  []
 
 
-Overfull \hbox (1.4815pt too wide) in paragraph at lines 190--191
-[]|\OT1/cmr/m/n/10.95 OPRM[]HUMAN/MOUSE| 
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
+[]|\OT1/cmr/m/n/10.95 OPRM[]
  []
 
 
@@ -620,11 +629,11 @@ Package rerunfilecheck Info: File `si.out' has not changed.
 Here is how much of TeX's memory you used:
  9651 strings out of 469327
  149784 string characters out of 5456969
- 625787 words of memory out of 5000000
+ 627787 words of memory out of 5000000
  38658 multiletter control sequences out of 15000+600000
  635302 words of font info for 64 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
- 74i,10n,79p,443b,581s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 74i,10n,79p,443b,577s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/lihua/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/amsfonts/cm/cmb
 x10.pfb><C:/Users/lihua/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/amsfonts/
 cm/cmbx12.pfb><C:/Users/lihua/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/ams
@@ -635,7 +644,7 @@ type1/public/amsfonts/cm/cmr8.pfb><C:/Users/lihua/AppData/Roaming/MiKTeX/2.9/fo
 nts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/lihua/AppData/Roaming/MiKTeX/
 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/lihua/AppData/Roaming/M
 iKTeX/2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on si.pdf (6 pages, 143827 bytes).
+Output written on si.pdf (6 pages, 143685 bytes).
 PDF statistics:
  118 PDF objects out of 1000 (max. 8388607)
  91 compressed objects within 1 object stream

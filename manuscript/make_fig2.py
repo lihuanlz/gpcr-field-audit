@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-paper_GPCR Fig. 2 (fig2_fracture_maps.png) — per-study fracture maps.
+paper_GPCR Fig. 2 (fig2_fracture_maps.png)  -  per-study fracture maps.
 Adapted from 04_code/ed_scripts/edfig11.py (cell-communication-audit repo):
 suptitle removed for the standalone paper; panel-a title corrected to describe
 the plotted quantity (cross-arm spread) instead of the CI-cAMP gap.
@@ -10,14 +10,14 @@ Run: python make_fig2.py   (writes fig2_fracture_maps.png next to this script)
 import sys, os
 import numpy as np
 import pandas as pd
-EDSCRIPTS = r"D:\Kimi_Agent_细胞仿真工具包扩展以及具身智能20260911\05_主线纲领与设计\论文_细胞通讯审计_2026-09-23\figures_svg\ED\scripts"
+EDSCRIPTS = r"D:\Kimi_Agent_cell_sim_toolkit_workspace\05_main_program\paper_cell_communication_audit_2026-09-23\figures_svg\ED\scripts"
 sys.path.insert(0, EDSCRIPTS)
 from edstyle import setup, panel_label, OI
 import matplotlib.pyplot as plt
 
 setup()
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = r"D:\Kimi_Agent_细胞仿真工具包扩展以及具身智能20260911"
+ROOT = r"D:\Kimi_Agent_cell_sim_toolkit_workspace"
 
 fig, axs = plt.subplots(2, 3, figsize=(7.2, 4.8))
 axs = axs.ravel()
@@ -141,7 +141,7 @@ ax.set_title("muOR identity 1: GIRK 5/5 fractured (3.9-8.4 sigma)")
 
 # ---- f: code 80 arm-coordinate repair ----
 ax = axs[5]
-d80 = pd.read_csv(os.path.join(ROOT, r"04_细胞线4\_归档\结果\code80_arm_coordinate_posterior.csv"))
+d80 = pd.read_csv(os.path.join(ROOT, r"04_cell_line_4\_archive\results\code80_arm_coordinate_posterior.csv"))
 d80 = d80.sort_values("delta").reset_index(drop=True)
 yy = np.arange(len(d80))
 cols = [OI["verm"] if a == "GIRK" else (OI["blue"] if a == "cAMP" else "0.5") for a in d80["arm"]]

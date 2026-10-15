@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-代码73_稳健性三联升级_盲测聚合Jackknife.py
+code73_robustness_triplet_blind_jackknife.py
 Version v1.0.0 · 2026-08-16 · seed 20260816
 
 Lands three robustness upgrades in the post-review priority order (critically adopted from DeepSeek's suggestions):
@@ -18,8 +18,8 @@ Lands three robustness upgrades in the post-review priority order (critically ad
   Module C (Strategy 3): Jackknife leave-one-out consistency (Atlas group level + Gillis column-level note)
   Module D: break-confidence matrix (0–100 continuous score + three-tier labels)
 
-Input: 04_细胞线4/结果/atlas_audit/atlas_audit_entries.csv (代码71 product, reused without re-downloading)
-Output: 04_细胞线4/结果/atlas_audit/atlas_confidence_matrix.csv
+Input: 04_cell_line_4/results/atlas_audit/atlas_audit_entries.csv (code71 product, reused without re-downloading)
+Output: 04_cell_line_4/results/atlas_audit/atlas_confidence_matrix.csv
 """
 import numpy as np, pandas as pd
 
@@ -45,8 +45,8 @@ litfl_anchor_sat = np.array([97., 92., 89., 75., 50.])
 
 # Same-condition (standard human blood pH7.4/37°C) p50 from multiple sources: Severinghaus curve interpolation, LITFL anchors,
 # Morgan(acutecaretesting) 26.7, medmastery 26.6, PMC7547706 26.9 (literature value 26.9±)
-p50_sources = {"Severinghaus曲线": None, "LITFL锚点": 27.0,
-               "Morgan综述": 26.7, "medmastery": 26.6, "PMC7547706": 26.9}
+p50_sources = {"Severinghaus curve": None, "LITFL anchor": 27.0,
+               "Morgan review": 26.7, "medmastery": 26.6, "PMC7547706": 26.9}
 
 def hill_invert(sat, p50, nH):
     """Invert pO2 from saturation (Hill equation)."""
@@ -80,7 +80,7 @@ print(f"     LITFL independent anchor horizontal deviation: {np.round(dev_anchor
 
 # --- A.2 Test 2: cross-source p50 consistency --------------------------------
 p50_sev = float(np.interp(50.0, sat_curve, po2_grid))
-p50_sources["Severinghaus曲线"] = round(p50_sev, 2)
+p50_sources["Severinghaus curve"] = round(p50_sev, 2)
 vals = np.array(list(p50_sources.values()))
 spread_dex = np.log10(vals.max() / vals.min())
 print(f"[A2] p50 from five sources: {p50_sources}")
@@ -100,16 +100,16 @@ print("=" * 70)
 print("Module B | Atlas group-level aggregation test + correlation calibration (Strategy 1, revised)")
 print("=" * 70)
 
-E = pd.read_csv('/mnt/agents/output/04_细胞线4/结果/atlas_audit/atlas_audit_entries.csv')
+E = pd.read_csv('/mnt/agents/output/04_cell_line_4/results/atlas_audit/atlas_audit_entries.csv')
 E = E.dropna(subset=['dev_entry'])
-# Rebuild the group key with the same definition as 代码71: doi|receptor|process|level|cell|effector
+# Rebuild the group key with the same definition as code71: doi|receptor|process|level|cell|effector
 E['grp'] = (E['doi'].astype(str) + '|' + E['receptor'].astype(str) + '|' +
             E['Measured process'].astype(str) + '|' + E['Pathway level'].astype(str) + '|' +
             E['Cell line'].astype(str) + '|' + E['Primary effector subtype'].astype(str))
 groups = {k: v['dev_entry'].to_numpy() for k, v in E.groupby('grp') if len(v) >= 3}
 print(f"Number of groups (n≥3): {len(groups)}")
 
-# Legitimate spread scale: primary 0.05 dex (代码72 M2: the median across legitimate mechanisms such as nH is only 0.004 dex);
+# Legitimate spread scale: primary 0.05 dex (code72 M2: the median across legitimate mechanisms such as nH is only 0.004 dex);
 # sensitivity analysis adds 0.10 dex (≈ the reported SEM scale of Gillis-type data) as a second scale
 SIG_LEGIT = 0.05
 SIGMAS = [0.05, 0.10]
@@ -147,9 +147,9 @@ for gname, d in groups.items():
     rows.append(rec)
 
 B = pd.DataFrame(rows)
-B['高置信断裂'] = (B['p_rho0'] < 0.001) & (B['p_rho5'] < 0.001)
-B['候选断裂'] = (~B['高置信断裂']) & (B['p_rho0'] < 0.01)
-n_hc, n_cand = int(B['高置信断裂'].sum()), int(B['候选断裂'].sum())
+B['high_confidence_fracture'] = (B['p_rho0'] < 0.001) & (B['p_rho5'] < 0.001)
+B['candidate_fracture'] = (~B['high_confidence_fracture']) & (B['p_rho0'] < 0.01)
+n_hc, n_cand = int(B['high_confidence_fracture'].sum()), int(B['candidate_fracture'].sum())
 print(f"High-confidence breaks (p<0.001 under both rho=0 and 0.5): {n_hc}/{len(B)} groups ({n_hc/len(B):.1%})")
 print(f"Candidate breaks (p<0.01 only under rho=0): {n_cand} groups")
 print(f"Not detected: {len(B)-n_hc-n_cand} groups ({1-(n_hc+n_cand)/len(B):.1%})")
@@ -176,7 +176,7 @@ for gname, d in groups.items():
     p = min((np.abs(meds) >= abs(med)).mean(), (fracs >= frac).mean())
     hc01 += p < 0.001
 print(f"Sensitivity analysis (SIG=0.10 dex, rho=0.5 most conservative scale): high-confidence breaks {hc01}/{len(groups)}"
-      f" ({hc01/len(groups):.1%}) — the criterion for whether the main conclusion is robust to the legitimate-spread-scale assumption")
+      f" ({hc01/len(groups):.1%})  -  the criterion for whether the main conclusion is robust to the legitimate-spread-scale assumption")
 
 print()
 print("=" * 70)
@@ -204,7 +204,7 @@ print(f"Jackknife score distribution: 1.0 → {int((B['jackknife']==1).sum())} g
       f"<0.5 → {int((B['jackknife']<0.5).sum())} groups")
 
 # Gillis column-level note (n=5, weak discriminative power, reference only)
-gillis_girk_dev = np.array([-0.68, -0.79, -0.83, -0.90, -0.97])  # 代码66 identity 1
+gillis_girk_dev = np.array([-0.68, -0.79, -0.83, -0.90, -0.97])  # code66 identity 1
 def column_verdict(d):  return (np.abs(d) > 0.3).all()
 keep = sum(column_verdict(np.delete(gillis_girk_dev, i)) for i in range(5))
 print(f"Gillis GIRK column (n=5, note): after leave-one-out still 4/4 all exceed 0.3 dex → jackknife = {keep/5:.1f}"
@@ -224,21 +224,21 @@ def confidence(row):
     s_jk = row['jackknife'] * 30
     return round(s_amp + s_sig + s_jk, 1)
 
-B['置信度'] = B.apply(confidence, axis=1)
+B['confidence'] = B.apply(confidence, axis=1)
 def tier(r):
-    if r['高置信断裂']: return '高置信断裂'
-    if r['候选断裂']:   return '候选断裂'
-    return '未检出'
-B['标签'] = B.apply(tier, axis=1)
-B = B.sort_values('置信度', ascending=False)
+    if r['high_confidence_fracture']: return 'high_confidence_fracture'
+    if r['candidate_fracture']:   return 'candidate_fracture'
+    return 'not detected'
+B['label'] = B.apply(tier, axis=1)
+B = B.sort_values('confidence', ascending=False)
 
-out = '/mnt/agents/output/04_细胞线4/结果/atlas_audit/atlas_confidence_matrix.csv'
+out = '/mnt/agents/output/04_cell_line_4/results/atlas_audit/atlas_confidence_matrix.csv'
 B.to_csv(out, index=False)
 print(f"Written: {out}")
-print(f"Label distribution: {B['标签'].value_counts().to_dict()}")
+print(f"Label distribution: {B['label'].value_counts().to_dict()}")
 print("\nTop 10 groups by confidence:")
 print(B.head(10)[['grp', 'n', 'dev_max', 'frac_gt03', 'p_rho5', 'jackknife',
-                  '置信度', '标签']].to_string(index=False))
+                  'confidence', 'label']].to_string(index=False))
 
 print()
 print("=" * 70)
@@ -247,6 +247,6 @@ print("=" * 70)
 print(f"A blind test: Hb system identity max|Δ| = {np.abs(dev_hb).max():.3f} dex → silent; "
       f"positive control max|Δ| = {np.abs(dev_bad).max():.3f} dex → alarm. Both specificity and sensitivity pass.")
 print(f"B aggregation: Atlas group-level high-confidence breaks {n_hc}/{len(B)} ({n_hc/len(B):.1%}, "
-      f"definition = group contains ≥1 unrepairable entry, broader than 代码71's 26% definition); "
+      f"definition = group contains ≥1 unrepairable entry, broader than code71's 26% definition); "
       f"SIG=0.10 most conservative scale {hc01}/{len(groups)} ({hc01/len(groups):.1%}).")
 print(f"C Jackknife: leave-one-out stability of above-threshold groups {frac_robust:.1%}; Gillis GIRK not driven by a single point.")

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Code 77 — Atlas constraint projection and fracture probability — BpC
+Code 77  -  Atlas constraint projection and fracture probability  -  BpC
 Version v1.0.0 · 2026-08-16
 
 First step "from auditor to architect" (plan revised to match data reality):
@@ -24,9 +24,9 @@ Input: atlas_audit_entries.csv (product of code 71)
 Output: atlas_repair_projection.csv (group level), atlas_fracture_probability.csv (entry level)
 
 Rulings (run of 2026-08-16):
-  B′: 24.2% of 269 groups need >0.3 dex-level repair — converging with code 71 (26%) and code 73 (28.2% conservative convention);
+  B′: 24.2% of 269 groups need >0.3 dex-level repair  -  converging with code 71 (26%) and code 73 (28.2% conservative convention);
       three methods agree.
-  C: EM converged healthy fraction 74.5% (σ_h=0.089 dex, σ_b=0.68 dex) — threshold-free independent confirmation
+  C: EM converged healthy fraction 74.5% (σ_h=0.089 dex, σ_b=0.68 dex)  -  threshold-free independent confirmation
       of the "about 3/4 healthy" conclusion; P>0.9 entries 15.0% ≈ the 14.5% with |dev|>0.3.
       σ_h=0.089 dex measured the reporting-noise scale of healthy literature (larger than the legitimate mechanism spread
       0.004–0.05 of code 72 M2; the difference is reporting/digitization noise).
@@ -34,8 +34,8 @@ Rulings (run of 2026-08-16):
 """
 import numpy as np, pandas as pd
 
-ENT = '/mnt/agents/output/04_细胞线4/结果/atlas_audit/atlas_audit_entries.csv'
-OUT = '/mnt/agents/output/04_细胞线4/结果/atlas_audit'
+ENT = '/mnt/agents/output/04_cell_line_4/results/atlas_audit/atlas_audit_entries.csv'
+OUT = '/mnt/agents/output/04_cell_line_4/results/atlas_audit'
 
 def main():
     E = pd.read_csv(ENT).dropna(subset=['dev_entry'])

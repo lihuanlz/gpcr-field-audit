@@ -10,67 +10,67 @@
   "timing_exclusions": [
     {
       "experiment": "experiment_02.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_03.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_06.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_07.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_13.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_14.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_16.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_17.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_18.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_20.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_21.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_23.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_24.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_26.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_27.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     },
     {
       "experiment": "experiment_28.dot",
-      "reason": "无有效锚/链"
+      "reason": "no valid anchor/chain"
     }
   ],
   "power_note": "",
@@ -173,9 +173,9 @@
     }
   ],
   "verdicts": {
-    "P5-1": "中间态（3/4 单元在带内）",
-    "P5-2": "中间态（1/4 单元达线）",
-    "P5-3": "数据集级弱解码限定（仅 2/4 单元 peak-AUC≥0.60）",
-    "overall": "P5 中间态"
+    "P5-1": "intermediate (3/4 units within the band)",
+    "P5-2": "intermediate (1/4 units meet threshold)",
+    "P5-3": "dataset-level weak-decoding limitation (only 2/4 units peak-AUC>=0.60)",
+    "overall": "P5 intermediate"
   }
 }

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-代码66_MOR_Gillis内部一致性审计.py  v1.0.0
+code66_MOR_Gillis_internal_consistency.py  v1.0.0
 ============================================================
 Cell line 4 · GPCR bias-break audit · third subject: μOR (Gillis et al. 2020, Sci Signal)
 
@@ -16,11 +16,11 @@ The Black–Leff operational model gives two independent identities within each 
   Identity 2  log(τ/KA) = log τ + pEC50 − log10(1+τ)
 If the four tables are self-consistent, both identities must hold in every cell.
 Also Test 3: cross-assay spread of pKA = pEC50 − log10(1+τ) (functional affinity should be assay-arm
-independent — D2R/Code 63 verified this quantity is conserved across arms in healthy data).
+independent  -  D2R/Code 63 verified this quantity is conserved across arms in healthy data).
 
 Data: all extracted via pdftotext -layout from main-text PDF / SI PDF provided manually by the user,
 value-by-value checked (main.txt lines 1219–1297; SI.txt lines 414–439). Oxycodone GIRK is ND.
-Note: in SI Table S1 the GPA column and the cAMP column have identical values and SEMs — the original
+Note: in SI Table S1 the GPA column and the cAMP column have identical values and SEMs  -  the original
 PDF was checked and the original is indeed so (not an extraction error); itself a suspicious point, recorded as-is.
 
 Stance discipline: no prejudgment of "who is right" here. Against the background of the Gillis–Stahl

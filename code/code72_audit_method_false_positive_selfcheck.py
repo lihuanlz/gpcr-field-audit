@@ -2,7 +2,7 @@
 """
 code72_audit_method_false_positive_selfcheck.py  v1.0.0
 ============================================================
-cell line 4 · C1: the audit tool audits the audit tool — false-positive rate and power
+cell line 4 · C1: the audit tool audits the audit tool  -  false-positive rate and power
 
 codes 63-71 pronounced four "ruptures" on others, but the false-positive rate of the criteria themselves was never measured.
 This code uses null-hypothesis simulation (a fully self-consistent true model + noise at the original papers' magnitude) to answer four questions:
@@ -82,7 +82,7 @@ devs = np.array(devs)
 print(f"|delta log(tau/KA) - delta log(RA)| for nH in [0.8,1.25]: median {np.median(devs):.3f} dex, "
       f">0.3 at {np.mean(devs > 0.3):.4f}, >1.0 at {np.mean(devs > 1):.5f}")
 print("observed Atlas for comparison: >0.3 at 21.5%, >1.0 at 4.2%")
-print("(boundary note: the literature side is back-computed under nH=1; if the original papers fitted nH freely, the spurious deviation would be larger —")
+print("(boundary note: the literature side is back-computed under nH=1; if the original papers fitted nH freely, the spurious deviation would be larger  - ")
 print(" but even relaxing M2 several-fold still falls short of 21.5%; nH dispersion is not the main cause of the Atlas inconsistency)")
 
 print()
@@ -114,14 +114,14 @@ for delta in [0.2, 0.3, 0.5, 0.8, 1.0, 1.5, 2.0]:
         sd = np.sqrt(0.04 + 0.04 + s_l1 ** 2)
         if abs(lr - pred) > max(0.3, 2 * np.sqrt(sd ** 2 + 0.15 ** 2)): hit += 1
     print(f"  delta={delta:3.1f} dex -> per-cell detection rate {hit / T:.2f}")
-print("(implication: our criterion is conservative — small ruptures of 0.3-0.5 dex are likely missed;")
+print("(implication: our criterion is conservative  -  small ruptures of 0.3-0.5 dex are likely missed;")
 print(" what is detected are hard failures of >=0.8 dex magnitude, or same-direction joint evidence across multiple cells in one column)")
 
 print()
 print("=" * 90)
 print("M5  threshold robustness (Atlas observed distribution)")
 print("=" * 90)
-od = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "结果", "atlas_audit")
+od = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "results", "atlas_audit")
 grpd = pd.read_csv(os.path.join(od, "atlas_audit_groups.csv"))
 papd = pd.read_csv(os.path.join(od, "atlas_audit_papers.csv"))
 for t in [0.2, 0.3, 0.5, 0.8, 1.0]:

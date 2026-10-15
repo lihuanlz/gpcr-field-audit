@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-paper_GPCR Fig. 1 (fig1_anchor_cases.png) — anchor cases and Atlas-wide summary.
+paper_GPCR Fig. 1 (fig1_anchor_cases.png)  -  anchor cases and Atlas-wide summary.
 Adapted from 04_code/make_fig6.py (cell-communication-audit repo), with two
 corrected annotations:
   (1) cross-arm pKA conservation now states the pardoprunox exception
@@ -34,8 +34,8 @@ BLUE, VERM, GREEN, ORANGE, GREY, SKY = ("#0072B2", "#D55E00", "#009E73",
                                         "#E69F00", "#7F7F7F", "#56B4E9")
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = r"D:\Kimi_Agent_细胞仿真工具包扩展以及具身智能20260911"
-RES = ROOT + r"\04_细胞线4\_归档\结果"
+ROOT = r"D:\Kimi_Agent_cell_sim_toolkit_workspace"
+RES = ROOT + r"\04_cell_line_4\_archive\results"
 
 # --- load archived data ---
 ent = pd.read_csv(RES + r"\atlas_audit\atlas_audit_entries.csv")

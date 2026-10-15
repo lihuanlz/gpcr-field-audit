@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Code 64 D2R upstream rate-ordering test (deep dig into raw time courses) v1.0.0 — data quality insufficient, negative recorded as-is
+Code 64 D2R upstream rate-ordering test (deep dig into raw time courses) v1.0.0  -  data quality insufficient, negative recorded as-is
 ================================================
 Task: test "whether pathway kinetics are ligand-independent". Single-active-state + equilibrium cascade
 predicts: within one pathway all ligands' normalized response waveforms should coincide (rate ordering
@@ -12,14 +12,14 @@ for 6 pathways, n=3–4 repeats/ligand).
 
 Results (v1.0.0 actual run):
   Direct t50 extraction gives huge ligand-to-ligand differences (e.g. Gαi1: dopamine 0.9 min vs
-  bifeprunox 17.9 min) — an apparent "ligand fingerprint".
+  bifeprunox 17.9 min)  -  an apparent "ligand fingerprint".
   ⚠️ But quality control exposes three fatal problems:
   1. Monotonicity generally 0.3–0.7 (trajectory drift / high noise, not a clean monophasic rise);
   2. Plateau-normalized amplitudes take physically unreasonable values (pERK bifeprunox = 572% of dopamine,
-     Gαi1 aripiprazole = 804%), contradicting the Emax ordering of SI Table 7 —
+     Gαi1 aripiprazole = 804%), contradicting the Emax ordering of SI Table 7  - 
      meaning baseline/plateau estimates are contaminated by drift;
   3. The pERK time-course window starts only at 30 min (capturing the decay tail); its t50 is undefined.
-Verdict: **this batch of raw time courses is insufficient to support a kinetic-ordering test** — the apparent
+Verdict: **this batch of raw time courses is insufficient to support a kinetic-ordering test**  -  the apparent
 ligand differences in t50 are not credible, usable neither as breakage evidence nor as no-breakage evidence. Negative recorded as-is.
 The usable evidence for kinetic breakage remains Code 63 Test 3 (the SI T7 pEC50 time course,
 which is a full concentration–response fit at each time point, a completely different statistical scale).
@@ -27,14 +27,14 @@ which is a full concentration–response fit at each time point, a completely di
 Lesson (double-recorded): single-concentration time courses + low replication + baseline drift cannot support
 waveform-normalization comparisons; such tests need per-time-point concentration–response surfaces (time × dose matrix).
 
-Run: python3 代码64_D2R上游速率排序检验.py
+Run: python3 code64_D2R_upstream_rate_ordering.py
 Dependencies: numpy, pandas, openpyxl
 """
 
 import numpy as np
 import pandas as pd
 
-XLSX = "/mnt/agents/output/04_细胞线4/公开数据/D2R_KleinHerenbrink2016/SupplementaryData1.xlsx"
+XLSX = "/mnt/agents/output/04_cell_line_4/public_data/D2R_KleinHerenbrink2016/SupplementaryData1.xlsx"
 
 def parse_sheet(sh):
     df = pd.read_excel(XLSX, sheet_name=sh, header=None)

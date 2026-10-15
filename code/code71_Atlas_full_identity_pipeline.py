@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-代码71_Atlas全库恒等式流水线.py  v1.0.0
+code71_Atlas_full_identity_pipeline.py  v1.0.0
 ============================================================
 Cell line 4 · A1: Biased Signaling Atlas full-database audit pipeline (full-scale version of Code 67)
 
@@ -16,15 +16,15 @@ sample counts, QC flag counts. Outputs:
   atlas_audit_summary.json  full-database summary + extreme-group list
 Interpretation discipline (as in Code 67): legitimate nH≠1 fits and paper-reported τ/KA both produce deviations;
 this pipeline produces an "inconsistency map", not an "error list".
-Run: python3 代码71_Atlas全库恒等式流水线.py
+Run: python3 code71_Atlas_full_identity_pipeline.py
 ============================================================
 """
 import numpy as np, pandas as pd, itertools, os, json
 
 BASE = os.path.dirname(os.path.abspath(__file__))
-PATH = os.path.join(BASE, "..", "公开数据", "BiasedSignalingAtlas",
+PATH = os.path.join(BASE, "..", "public_data", "BiasedSignalingAtlas",
                     "Biased_ligand_single_pathway_data.xlsx")
-OUTDIR = os.path.join(BASE, "..", "结果", "atlas_audit")
+OUTDIR = os.path.join(BASE, "..", "results", "atlas_audit")
 os.makedirs(OUTDIR, exist_ok=True)
 
 df = pd.read_excel(PATH, sheet_name="Data")

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-代码68_D2R动力学机制检验.py  v1.0.0
+code68_D2R_kinetic_mechanism_test.py  v1.0.0
 ============================================================
 Cell line 4 · deepening round: kinetic-mechanism adjudication of the D2R breakage
 
@@ -23,7 +23,7 @@ Data (Klein Herenbrink 2016, Nat Commun 7:10842, SI):
   Table 5: [3H]spiperone tracer competition binding kinetics (measurable only for 3 slow ligands)
   Table 6: PPHT-red fluorescent tracer Tag-lite binding kinetics (7 ligands)
   Table 7: pEC50/Emax for cAMP/Gαo/CI × 2–90 min × 7 ligands
-  — note: Table 5 vs Table 6 differ 82-fold in kon for cariprazine (pKd 7.50 vs 9.56);
+   -  note: Table 5 vs Table 6 differ 82-fold in kon for cariprazine (pKd 7.50 vs 9.56);
     the paper's own binding data are internally inconsistent; recorded as-is with a two-tracer sensitivity analysis.
 ============================================================
 """

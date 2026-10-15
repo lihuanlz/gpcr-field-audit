@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-code47b_P5erratum重裁_GPCRcalciumtransient.py
-version v1.0.0（2026-08-14）
+code47b_P5_erratum_readjudication.py
+version v1.0.0 (2026-08-14) 
 
 [origin of the erratum] a post-ruling audit triggered by the user's recheck request: using the authors' SD3 peak table as an independent ground-truth cross-check, a feature-implementation defect of
 code 47 v0.2.0 was confirmed - the window peak referenced the pre-experiment mu_0, counting the paper-documented full-trace background drift
@@ -24,7 +24,7 @@ Criteria / units / features / clauses / directions remain untouched.
 [case] P5: first blind test of the boundary predictor - Keshelava 2018 (Nat Commun 9:876) M3R-GPCR -> Ca2+
 transient spikes, 7 ascending ACh doses x 5 pulses each, within-cell design, 27 experiments / 433 cells (paper convention).
 
-[frozen basis] 预注册_P5_边界预测器首测_GPCR钙瞬态_v01.md (entry 89, frozen 2026-08-14).
+[frozen basis] prereg_P5_boundary_predictor_first_test_GPCR_Ca_transient_v01.md (entry 89, frozen 2026-08-14).
 All criteria, unit definitions, feature definitions and guardrails of this script correspond verbatim to that pre-registration; any revision can only happen within
 a zero-statistic window (guardrail abort = empty run) with full trace left (code-46 three-empty-run precedent).
 
@@ -51,7 +51,7 @@ D8 statistics: seed 20260815; per-cell paired percentile bootstrap x2000; N_MIN=
 
 [cell validity (independent of the authors' config, frozen)] sigma_0 > 0; baseline frames >= 30; all values finite; covering all 35 pulse windows.
 [robust arms] k=2 / k=4; desensitization correction (subtracting the global median drift by pulse position within block); largest-experiment purity arm.
-[output (main products before the descriptive arm)] 单元table.csv / robust臂.csv / ruling.json / 判定日志.txt / 描述臂.csv
+[output (main products before the descriptive arm)] unit_table.csv / robust_arm.csv / ruling.json / judgment_log.txt / descriptive_arm.csv
 """
 
 import os
@@ -59,10 +59,10 @@ import sys
 import json
 import numpy as np
 
-ROOT = "/mnt/agents/output/01_细胞线/公开数据/Keshelava2018/SD1/source_data_1"
-OUTDIR = "/mnt/agents/output/01_细胞线/结果/Keshelava2018_P5_47berratum重裁"
+ROOT = "/mnt/agents/output/01_cell_line_1/public_data/Keshelava2018/SD1/source_data_1"
+OUTDIR = "/mnt/agents/output/01_cell_line_1/results/Keshelava2018_P5_47b_erratum"
 os.makedirs(OUTDIR, exist_ok=True)
-LOG_PATH = os.path.join(OUTDIR, "代码47b_判定日志.txt")
+LOG_PATH = os.path.join(OUTDIR, "code47b_judgment_log.txt")
 _log = open(LOG_PATH, "w", encoding="utf-8")
 
 
@@ -138,7 +138,7 @@ def engine_selftest():
     # by hand: P(a>b)=4/16 (a3,a4 > b1,b2), tie a1? pair by pair: (1,.5)W (1,1.5)L (1,3)L (1,inf)L
     # (2,.5)W (2,1.5)W (2,3)L (2,inf)L (inf,.5)W (inf,1.5)W (inf,3)W (inf,inf)T ×2
     # W=5? recount: a3=inf > b1,b2,b3 = 3W +T; a4=inf same 3W+T -> W=1+2+3+3=9? a1: 1>.5=1W, other 3L; a2: 2>.5,1.5=2W, 2<3, 2<inf
-    # → W=1+2+3+3=9，T=2，AUC=(9+1)/16=0.625
+    # → W=1+2+3+3=9, T=2, AUC=(9+1)/16=0.625
     if abs(auc_mw(a, b) - 0.625) > 1e-12:
         fail(f"AUC engine inf-censoring direction error (got {auc_mw(a, b)})")
     if abs(auc_mw([np.inf, np.inf], [np.inf, np.inf]) - 0.5) > 1e-12:
@@ -187,7 +187,7 @@ def pulse_timeline(name, arr):
         pk, _ = find_peaks(tr, prominence=4 * sd, distance=90)
         allp.extend(pk.tolist())
     if not allp:
-        return None, "none可用峰"
+        return None, "no usable peak"
     # B. population clustering (5 s bins -> strong bins -> merge clusters <=10 s -> split clusters <60 s merged count-weighted)
     allp = np.sort(allp)
     edges = np.arange(0, nrows + 5, 5)
@@ -210,7 +210,7 @@ def pulse_timeline(name, arr):
         else:
             merged.append((pos, cnt))
     if len(merged) < 20:
-        return None, f"簇{len(merged)}<20"
+        return None, f"cluster count {len(merged)}<20"
     cs = np.array([p for p, _ in merged])
     cnt = np.array([c for _, c in merged])
     med = np.median(arr, axis=1)
@@ -228,10 +228,10 @@ def pulse_timeline(name, arr):
     d2 = np.diff(cs)
     reg = d2[(d2 >= 100) & (d2 <= 130)]
     if len(reg) < 5:
-        return None, "规则间隔<5"
+        return None, "regular intervals <5"
     That = float(np.median(reg))
     if not (115.0 <= That <= 125.0):
-        return None, f"T̂={That:.1f}越界"
+        return None, f"T_hat={That:.1f} out of range"
 
     # E. walk-back (strict layer [85,170] -> midpoint vacancy check -> relaxed layer (170,250])
     def walkback(ai):
@@ -293,7 +293,7 @@ def pulse_timeline(name, arr):
         onsets = [int(pi) - PEAK_LAG for pi in p]
         info = {"That": That, "holes": nh, "p1": p[0], "p35": p[34]}
         return onsets, info
-    return None, "noneyes效anchor/链"
+    return None, "no valid anchor/chain"
 
 
 # ============ featurization (v0.4 section 11 erratum version: local reference + artifact floor + reference-channel interception) ============
@@ -411,7 +411,7 @@ def main():
         onsets, info = pulse_timeline(name, arr)
         if onsets is None:
             timing_excl.append({"experiment": name, "reason": info})
-            say(f"timingexcluded：{name} —— {info}")
+            say(f"timingexcluded: {name}  -  {info}")
             continue
         timelines[name] = onsets
         say(f"timing admitted: {name} (T_hat={info['That']:.1f} holes {info['holes']} p1={info['p1']} p35={info['p35']})")
@@ -458,33 +458,33 @@ def main():
     n_in = sum(1 for a in ta_aucs if BAND_LO <= a < BAND_HI)
     n_out = 4 - n_in
     if n_in == 4:
-        v51 = "hit（死区确认：4/4 单元 τ-AUC∈[0.40,0.60)）"
+        v51 = "hit (dead-zone confirmed: 4/4 units tau-AUC in [0.40,0.60))"
     elif n_out >= 2:
-        v51 = f"证伪（{n_out}/4 单元出 [0.40,0.60] 带）"
+        v51 = f"falsified ({n_out}/4 units outside the [0.40,0.60] band)"
     else:
-        v51 = f"中间态（{n_in}/4 单元在带内）"
+        v51 = f"intermediate ({n_in}/4 units within the band)"
 
     n_pass = sum(1 for a in cnt_aucs if a >= M_AUC)
     if n_pass == 4:
-        v52 = "hit（活区确认：4/4 单元 count-AUC≥0.60）"
+        v52 = "hit (live-zone confirmed: 4/4 units count-AUC>=0.60)"
     elif n_pass == 0:
-        v52 = "证伪（4/4 单元 count-AUC<0.60）"
+        v52 = "falsified (4/4 units count-AUC<0.60)"
     else:
-        v52 = f"中间态（{n_pass}/4 单元达线）"
+        v52 = f"intermediate ({n_pass}/4 units meet threshold)"
 
     n_cal = sum(1 for a in pk_aucs if a >= M_AUC)
-    v53 = f"校准pass（{n_cal}/4 单元 peak-AUC≥0.60）" if n_cal >= 3 else f"数据集级弱decoding限定（仅 {n_cal}/4 单元 peak-AUC≥0.60）"
+    v53 = f"calibration pass ({n_cal}/4 units peak-AUC>=0.60)" if n_cal >= 3 else f"dataset-level weak-decoding limitation (only {n_cal}/4 units peak-AUC>=0.60)"
 
     hit51 = n_in == 4
     fal51 = n_out >= 2
     hit52 = n_pass == 4
     fal52 = n_pass == 0
     if hit51 and hit52:
-        overall = "P5 获support（boundaryprediction器：死区recheckhit ∧ 活区首测hit）"
+        overall = "P5 supported (boundary predictor: dead-zone recheck hit AND live-zone first-test hit) "
     elif fal51 or fal52:
-        overall = "P5 证伪（boundaryprediction器在this形态上死亡，死亡侧见分款）"
+        overall = "P5 falsified (the boundary predictor is dead on this morphology; dying side detailed in the clauses) "
     else:
-        overall = "P5 中间态"
+        overall = "P5 intermediate"
 
     say("\n===== verdicts (frozen table D7 executed verbatim) =====")
     say(f"P5-1 (R1 dead-zone recheck, tau): {v51}  unit values {['%.4f' % a for a in ta_aucs]}")
@@ -494,7 +494,7 @@ def main():
 
     # ---- main products saved (before descriptive/robust-arm conclusive content) ----
     import csv
-    with open(os.path.join(OUTDIR, "代码47b_单元table.csv"), "w", newline="", encoding="utf-8-sig") as f:
+    with open(os.path.join(OUTDIR, "code47b_unit_table.csv"), "w", newline="", encoding="utf-8-sig") as f:
         w = csv.DictWriter(f, fieldnames=["stat", "pair", "auc", "lo", "hi", "n"])
         w.writeheader()
         w.writerows(rows)
@@ -507,10 +507,10 @@ def main():
         "units": rows,
         "verdicts": {"P5-1": v51, "P5-2": v52, "P5-3": v53, "overall": overall},
     }
-    with open(os.path.join(OUTDIR, "代码47b_ruling.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(OUTDIR, "code47b_ruling.json"), "w", encoding="utf-8") as f:
         json.dump(verdict, f, ensure_ascii=False, indent=2,
                   default=lambda o: int(o) if isinstance(o, np.integer) else float(o) if isinstance(o, np.floating) else str(o))
-    say("main products saved: 单元table.csv / ruling.json / 判定日志.txt")
+    say("main products saved: unit_table.csv / ruling.json / judgment_log.txt")
 
     # ---- robust arms ----
     say("\n===== robust arms =====")
@@ -591,20 +591,20 @@ def main():
     res_dc = run_units(cells_dc, UNITS, rng, boot=False)
     for stat in ("ta", "cnt"):
         for r in res_dc[stat]:
-            rob_rows.append({"arm": "脱敏校正", "stat": stat, "pair": r["pair"], "auc": r["auc"], "n": r["n"]})
+            rob_rows.append({"arm": "desens-corr", "stat": stat, "pair": r["pair"], "auc": r["auc"], "n": r["n"]})
             say(f"desensitization-corrected {stat} {r['pair']} AUC={r['auc']:.4f}")
     # largest-experiment purity arm
     big = max(per_exp_cells, key=lambda x: len(x[1]))
     res_big = run_units(big[1], UNITS, rng, boot=False)
     for stat in ("ta", "cnt"):
         for r in res_big[stat]:
-            rob_rows.append({"arm": f"单实验({big[0]},n={len(big[1])})", "stat": stat, "pair": r["pair"], "auc": r["auc"], "n": r["n"]})
+            rob_rows.append({"arm": f"single-experiment({big[0]},n={len(big[1])})", "stat": stat, "pair": r["pair"], "auc": r["auc"], "n": r["n"]})
             say(f"single-experiment purity arm {stat} {r['pair']} AUC={r['auc']:.4f}")
-    with open(os.path.join(OUTDIR, "代码47b_robust臂.csv"), "w", newline="", encoding="utf-8-sig") as f:
+    with open(os.path.join(OUTDIR, "code47b_robust_arm.csv"), "w", newline="", encoding="utf-8-sig") as f:
         w = csv.DictWriter(f, fieldnames=["arm", "stat", "pair", "auc", "n"])
         w.writeheader()
         w.writerows(rob_rows)
-    say("robust arms saved: robust臂.csv")
+    say("robust arms saved: robust_arm.csv")
 
     # ---- descriptive arm (not adjudicated) ----
     say("\n===== descriptive arm (not adjudicated) =====")
@@ -612,26 +612,26 @@ def main():
     mid_res = run_units(all_cells, MID_UNITS, rng, boot=True)
     for stat in ("ta", "cnt", "pk"):
         for r in mid_res[stat]:
-            desc_rows.append({"section": "中区对", "stat": stat, "key": r["pair"],
+            desc_rows.append({"section": "mid-zone pair", "stat": stat, "key": r["pair"],
                               "auc": r["auc"], "lo": r["lo"], "hi": r["hi"], "n": r["n"]})
             say(f"mid-zone pair {stat} {r['pair']} AUC={r['auc']:.4f} [{r['lo']:.4f},{r['hi']:.4f}]")
     # per-dose response rate (fraction of cells with count>=1) and mean count
     for d in range(N_DOSE):
         rr = np.mean([1.0 if c["cnt"][d] >= 1 else 0.0 for c in all_cells])
         mc = np.mean([c["cnt"][d] for c in all_cells])
-        desc_rows.append({"section": "响应率", "stat": "cnt", "key": f"D{d+1}({DOSES_NM[d]}nM)",
+        desc_rows.append({"section": "response rate", "stat": "cnt", "key": f"D{d+1}({DOSES_NM[d]}nM)",
                           "auc": rr, "lo": mc, "hi": np.nan, "n": len(all_cells)})
         say(f"D{d+1}({DOSES_NM[d]:.0f}nM) response rate={rr:.3f} mean count={mc:.2f}")
-    with open(os.path.join(OUTDIR, "代码47b_描述臂.csv"), "w", newline="", encoding="utf-8-sig") as f:
+    with open(os.path.join(OUTDIR, "code47b_descriptive_arm.csv"), "w", newline="", encoding="utf-8-sig") as f:
         w = csv.DictWriter(f, fieldnames=["section", "stat", "key", "auc", "lo", "hi", "n"])
         w.writeheader()
         w.writerows(desc_rows)
-    say("descriptive arm saved: 描述臂.csv")
+    say("descriptive arm saved: descriptive_arm.csv")
 
     say("\n===== final verdict restatement (frozen table verbatim) =====")
-    say(f"P5-1：{v51}")
-    say(f"P5-2：{v52}")
-    say(f"P5-3：{v53}")
+    say(f"P5-1: {v51}")
+    say(f"P5-2: {v52}")
+    say(f"P5-3: {v53}")
     say(f"[overall ruling] {overall}")
     say("(recorded either way: this log and ruling.json enter the ledger in sync; the frozen ruling is never moved afterwards)")
     _log.close()

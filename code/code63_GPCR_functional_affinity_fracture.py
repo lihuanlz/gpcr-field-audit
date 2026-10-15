@@ -15,29 +15,29 @@ Audit design (internal constraints of the operational model; breaking any one is
     consistency with pKi, SEM fully propagated.
   Test 3 (time invariance): SI T7 all-ligand pEC50 time course (2–90 min);
     the equilibrium model requires ΔlogR not to drift.
-  Self-audit ①: zero-model criterion pKi−pEC50>0 (under BL, pEC50=pKA+log(1+τ)≥pKA,
-    under the single-KA assumption it must not lie significantly below pKi) — no fitting assumptions.
-  Self-audit ②: second tracer (PPHT kinetics pKd) independently replicates the binding anchor.
-  Self-audit ③: sensitivity to ±10% perturbation of system maximum E_sys.
-  Self-audit ④: full error propagation (σ_Δ includes logR/pKi/Emax).
+  Self-audit (1): zero-model criterion pKi−pEC50>0 (under BL, pEC50=pKA+log(1+τ)≥pKA,
+    under the single-KA assumption it must not lie significantly below pKi)  -  no fitting assumptions.
+  Self-audit (2): second tracer (PPHT kinetics pKd) independently replicates the binding anchor.
+  Self-audit (3): sensitivity to ±10% perturbation of system maximum E_sys.
+  Self-audit (4): full error propagation (σ_Δ includes logR/pKi/Emax).
 
 Results (v1.1.0 actual run):
   Test 2: Δ=pKA_func−pKi: bifeprunox −3.5 (21–23σ), aripiprazole
     −2.6/−2.9 (18–26σ), cariprazine −1.2/−1.4 (9–11σ); conventional agonists
     |Δ|≤1.3 (dopamine +1.2/1.3 in the direction expected for two-state shift). pKA_func conserved
     across pathways (between-arm difference 0.08–0.31 dex).
-  Self-audit ①: zero-model reproduction: pKi−pEC50 = +1.96/+0.52/+2.45 dex (the three high-affinity
+  Self-audit (1): zero-model reproduction: pKi−pEC50 = +1.96/+0.52/+2.45 dex (the three high-affinity
     partial agonists), negative for the other ligands (spare-receptor direction, allowed under single KA).
-  Self-audit ②: PPHT replication: same three ligands pKd−pEC50 = +2.19/+1.15/+2.39 dex;
-    the two tracers differ by only 0.06–0.63 dex — the anchor itself is solid.
-  Self-audit ③: with E_sys 100→110, Δ shifts only 0.1–0.35 dex; classification unchanged.
+  Self-audit (2): PPHT replication: same three ligands pKd−pEC50 = +2.19/+1.15/+2.39 dex;
+    the two tracers differ by only 0.06–0.63 dex  -  the anchor itself is solid.
+  Self-audit (3): with E_sys 100→110, Δ shifts only 0.1–0.35 dex; classification unchanged.
   Test 3: all full-agonist potencies shift down −1.15…−1.37 dex by 90 min (desensitization); the three partial
     agonists stable or shifted up (bifeprunox +1.09); bifeprunox vs ropinirole
     bias factor −0.42 at 2' → +1.93 dex at 90', a 2.35 dex swing with sign reversal
     (SEM 0.02–0.03) → equilibrium bias quantification gives opposite answers depending on readout time.
 
 Verdict: the single-affinity equilibrium operational model fractures on the D2R data, localized to the high-affinity
-partial agonists — exactly the class to which all significant-bias reports belong (SI T3 asterisks cluster here).
+partial agonists  -  exactly the class to which all significant-bias reports belong (SI T3 asterisks cluster here).
 All four method self-audits pass; the fracture is robust.
 
 ⚠️ dual-record: PTH1R (Sachdev 2024, Source Data archived) lacks a binding anchor;
@@ -45,7 +45,7 @@ on normalized curves Black–Leff τ/KA is unidentifiable when nH≠1 (boundary-
 +5.77/+9.58 dex, no conclusion drawn). Lesson: without an independent affinity anchor, marginal
 operational statistics do not constitute a falsifiable test.
 
-run: python3 代码63_GPCR功能亲和力_断裂检验.py
+run: python3 code63_GPCR_functional_affinity_fracture.py
 dependencies: numpy
 """
 
@@ -100,17 +100,17 @@ def main():
             sd = np.sqrt(lre**2 + pke**2 + s_logtau**2)
             print(f"{lig:13s} {path:5s} {pka:8.2f} {pk:6.2f} {pka-pk:+8.2f} {sd:6.2f} {abs(pka-pk)/sd:5.1f}σ")
 
-    print("\n== Self-audit ①: zero-model criterion pKi−pEC50 (>0.3 = fracture, no fitting assumptions) ==")
+    print("\n== Self-audit (1): zero-model criterion pKi−pEC50 (>0.3 = fracture, no fitting assumptions) ==")
     for lig in LIGS:
         d = pKi[lig][0] - PEC50_5[lig]
         tag = "⚠fracture" if d > 0.3 else ("spare-receptor direction (expected for full agonism)" if d < -0.3 else "consistent")
         print(f"  {lig:13s} pKi={pKi[lig][0]:5.2f} pEC50={PEC50_5[lig]:5.2f} diff={d:+.2f}  {tag}")
 
-    print("\n== Self-audit ②: second tracer PPHT kinetics pKd replication ==")
+    print("\n== Self-audit (2): second tracer PPHT kinetics pKd replication ==")
     for lig in LIGS:
         print(f"  {lig:13s} pKd_ppht={pKd2[lig]:5.2f} two-tracer diff={pKd2[lig]-pKi[lig][0]:+.2f} pKd−pEC50={pKd2[lig]-PEC50_5[lig]:+.2f}")
 
-    print("\n== Self-audit ③: system-maximum perturbation (E_sys=100/105/110, cAMP arm Δ) ==")
+    print("\n== Self-audit (3): system-maximum perturbation (E_sys=100/105/110, cAMP arm Δ) ==")
     for esys in [100, 105, 110]:
         out = []
         for lig in LIGS:

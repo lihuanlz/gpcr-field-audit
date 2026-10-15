@@ -3,7 +3,7 @@
 code80_Gillis_arm_coordinate_extended_model.py
 version v1.0.0 · 2026-08-16
 
-Purpose: test the minimal viable embryo of a "next-generation model" — not inventing new equations from
+Purpose: test the minimal viable embryo of a "next-generation model"  -  not inventing new equations from
       scratch, but adding one constrained assay-arm coordinate delta_arm onto the old skeleton to see whether the Gillis muOR rupture is legitimately absorbed.
 
 Model:
@@ -30,16 +30,16 @@ Primary-analysis results (2026-08-16, confirmed by an independent re-run):
 - sensitivity (keeping duplicate cAMP logR): sigma_delta=0.320, delta logML=+123.844, delta_GIRK=-0.800 ± 0.049.
 
 Verdict:
-  the minimal embryo of the next-generation model holds, but its identity must be stated clearly — it is a
+  the minimal embryo of the next-generation model holds, but its identity must be stated clearly  -  it is a
   "measurement/coordinate-aware" extended model, not a new receptor-biophysics theory. It proves that the Gillis
   GIRK rupture can be systematically absorbed by an arm-level coordinate term of about -0.8 dex; whether that term
   corresponds to real coupling structure, data-processing shift, or a table-production accident, current data cannot adjudicate.
 
 Outputs:
-- /mnt/agents/output/04_细胞线4/结果/code80_arm_coordinate_residuals.csv
-- /mnt/agents/output/04_细胞线4/结果/code80_arm_coordinate_posterior.csv
-- /mnt/agents/output/04_细胞线4/结果/code80_model_comparison.csv
-- /mnt/agents/output/04_细胞线4/结果/code80_leave_one_out_girk.csv
+- /mnt/agents/output/04_cell_line_4/results/code80_arm_coordinate_residuals.csv
+- /mnt/agents/output/04_cell_line_4/results/code80_arm_coordinate_posterior.csv
+- /mnt/agents/output/04_cell_line_4/results/code80_model_comparison.csv
+- /mnt/agents/output/04_cell_line_4/results/code80_leave_one_out_girk.csv
 """
 
 import os
@@ -49,7 +49,7 @@ import pandas as pd
 from scipy.optimize import minimize_scalar
 from scipy.stats import norm
 
-OUTDIR = "/mnt/agents/output/04_细胞线4/结果"
+OUTDIR = "/mnt/agents/output/04_cell_line_4/results"
 LIG6 = ["Morphine", "Oxycodone", "Oliceridine", "PZM21", "SR-17018", "Buprenorphine"]
 LN10 = np.log(10)
 
@@ -121,7 +121,7 @@ def build_residuals(exclude_duplicate=True):
                         arm=arm, ligand=ligand, channel="logtau",
                         residual=lt_obs - lt_latent,
                         sd=np.sqrt(lt_se ** 2 + sd_lt ** 2),
-                    ))
+                ))
 
             if arm in LOGR:
                 # GPA/cAMP SI logR columns are exact duplicates in the original: primary analysis drops cAMP-logR
@@ -134,7 +134,7 @@ def build_residuals(exclude_duplicate=True):
                     rows.append(dict(
                         arm=arm, ligand=ligand, channel="logR",
                         residual=lr_obs - pred, sd=sd,
-                    ))
+                ))
 
     return pd.DataFrame(rows)
 
@@ -169,7 +169,7 @@ def posterior_by_arm(df, sigma_delta):
             delta_sd=sd,
             ci95_lo=mean - 1.96 * sd,
             ci95_hi=mean + 1.96 * sd,
-        ))
+    ))
     return pd.DataFrame(rows)
 
 
@@ -197,7 +197,7 @@ def fit_model(df, label):
     ll0 = loglik_m0(df)
     opt = minimize_scalar(
         lambda s: -loglik_m1(df, s), bounds=(0.01, 2.0), method="bounded"
-    )
+)
     sigma_hat = float(opt.x)
     ll1 = float(-opt.fun)
     posterior = posterior_by_arm(df, sigma_hat)
@@ -230,14 +230,14 @@ def main():
             sigma_delta=sigma,
             logml_m1=loglik_m1(primary, sigma),
             delta_logml_vs_m0=loglik_m1(primary, sigma) - ll0,
-        ))
+    ))
     fixed = pd.DataFrame(fixed_rows)
 
     res.to_csv(os.path.join(OUTDIR, "code80_arm_coordinate_residuals.csv"), index=False)
     post.to_csv(os.path.join(OUTDIR, "code80_arm_coordinate_posterior.csv"), index=False)
     pd.concat([comp, comp_s], ignore_index=True).to_csv(
         os.path.join(OUTDIR, "code80_model_comparison.csv"), index=False
-    )
+)
     fixed.to_csv(os.path.join(OUTDIR, "code80_sigma_delta_sensitivity.csv"), index=False)
     loo.to_csv(os.path.join(OUTDIR, "code80_leave_one_out_girk.csv"), index=False)
 

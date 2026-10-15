@@ -1,8 +1,8 @@
 clause,metric,value,CI_lo,CI_hi,frozen_line,verdict
-P5-1,clause_verdict,,,,"hit iff 4/4 tau-AUC in [0.40,0.60); falsified iff >=2 units outside [0.40,0.60]","证伪（2/4 单元出 [0.40,0.60] 带）"
-P5-2,clause_verdict,,,,hit iff 4/4 count-AUC >= 0.60; falsified iff 4/4 < 0.60,中间态（2/4 单元达线）
-P5-3,clause_verdict,,,,>=3/4 units peak-AUC >= 0.60 -> calibration pass,数据集级弱解码限定（仅 2/4 单元 peak-AUC≥0.60）
-overall,clause_verdict,,,,,P5 证伪（边界预测器在本形态上死亡，死亡侧见分款）
+P5-1,clause_verdict,,,,"hit iff 4/4 tau-AUC in [0.40,0.60); falsified iff >=2 units outside [0.40,0.60]","falsified (2/4 units outside the [0.40,0.60] band)"
+P5-2,clause_verdict,,,,hit iff 4/4 count-AUC >= 0.60; falsified iff 4/4 < 0.60,intermediate (2/4 units meet threshold)
+P5-3,clause_verdict,,,,>=3/4 units peak-AUC >= 0.60 -> calibration pass,dataset-level weak-decoding limitation (only 2/4 units peak-AUC>=0.60)
+overall,clause_verdict,,,,,P5 falsified (boundary predictoris dead on this morphology; dying side detailed in the clauses) 
 P5-1,ta D1↔D2,0.6290335305719921,0.5977495069033532,0.6623823142669296,"hit iff 4/4 tau-AUC in [0.40,0.60); falsified iff >=2 units outside [0.40,0.60]",
 P5-1,ta D2↔D3,0.6585667324128862,0.6254102564102564,0.6919720578566733,"hit iff 4/4 tau-AUC in [0.40,0.60); falsified iff >=2 units outside [0.40,0.60]",
 P5-1,ta D5↔D6,0.5677449046679816,0.5388902038132808,0.5993172255095333,"hit iff 4/4 tau-AUC in [0.40,0.60); falsified iff >=2 units outside [0.40,0.60]",
