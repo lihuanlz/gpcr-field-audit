@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.10.15)  15 OCT 2026 23:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.10.15)  16 OCT 2026 01:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -605,7 +605,7 @@ Overfull \hbox (7.10461pt too wide) in paragraph at lines 191--191
 []|\OT1/cmr/m/n/10.95 10.1016/j.neuropharm.2019.107718| 
  []
 
-[3] [4] [5] (si.aux)
+[3] [4] [5] [6] (si.aux)
  ***********
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-09-09>
@@ -618,8 +618,8 @@ Package rerunfilecheck Info: File `si.out' has not changed.
 (rerunfilecheck)             Checksum: CFCD5C34623B983568F711EF08E71543;1459.
  ) 
 Here is how much of TeX's memory you used:
- 9650 strings out of 469327
- 149778 string characters out of 5456969
+ 9651 strings out of 469327
+ 149784 string characters out of 5456969
  625787 words of memory out of 5000000
  38658 multiletter control sequences out of 15000+600000
  635302 words of font info for 64 fonts, out of 8000000 for 9000
@@ -635,10 +635,10 @@ type1/public/amsfonts/cm/cmr8.pfb><C:/Users/lihua/AppData/Roaming/MiKTeX/2.9/fo
 nts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/lihua/AppData/Roaming/MiKTeX/
 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/lihua/AppData/Roaming/M
 iKTeX/2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on si.pdf (5 pages, 143150 bytes).
+Output written on si.pdf (6 pages, 143827 bytes).
 PDF statistics:
- 114 PDF objects out of 1000 (max. 8388607)
- 88 compressed objects within 1 object stream
- 17 named destinations out of 1000 (max. 500000)
+ 118 PDF objects out of 1000 (max. 8388607)
+ 91 compressed objects within 1 object stream
+ 18 named destinations out of 1000 (max. 500000)
  49 words of extra memory for PDF output out of 10000 (max. 10000000)
 
