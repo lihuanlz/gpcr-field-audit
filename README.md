@@ -1,5 +1,7 @@
 # The quantitative currency of GPCR bias signalling fails its own algebraic identities
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23402860.svg)](https://doi.org/10.5281/zenodo.23402860)
+
 Companion code, results and manuscript source for the paper:
 
 > H. Li. *The quantitative currency of GPCR bias signalling fails its own algebraic identities.* Companion manuscript (2026), split from the umbrella project [cell-communication-audit](https://github.com/lihuanlz/cell-communication-audit) (archived at Zenodo, doi:10.5281/zenodo.23008824).
