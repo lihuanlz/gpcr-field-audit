@@ -1,5 +1,5 @@
 $ D:\Users\lihua\anaconda3\python.exe code/code71_Atlas_full_identity_pipeline.py
-# exit 0  23.7s  2026-10-19T05:45:56+00:00
+# exit 0  35.9s  2026-10-19T06:04:24+00:00
 
 Entry level: 3096 rows → atlas_audit_entries.csv
 Group level: 132 groups, pairs 10864 → atlas_audit_groups.csv

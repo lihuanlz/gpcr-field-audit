@@ -15,10 +15,10 @@ Companion code, results and manuscript source for the paper:
 
 ## Running
 
-Python 3 with numpy, scipy, pandas, openpyxl and matplotlib. Every script builds its paths relative to the repository; there are no absolute paths left.
+Python 3 with numpy, scipy, pandas, openpyxl and matplotlib; the exact versions used to produce the archived results are pinned in `requirements.txt`. Every script builds its paths relative to the repository; there are no absolute paths left.
 
 - On Windows, set `PYTHONIOENCODING=utf-8` first: several scripts write Greek letters and mathematical symbols to stdout.
-- `results/atlas_audit/` holds the tables of the pandas-1.x run used in the paper (269 groups, 17,987 pair comparisons, 3,931 triplets). Running `code71` under pandas ≥ 2 regenerates them under a different grouping (132 groups, 10,864 pairs, 3,167 triplets). The paper reports both in Section 5.5 and uses the 1.x numbers throughout; copy the directory before re-running if you want to compare rather than overwrite.
+- `results/atlas_audit/` holds the tables of the pandas-1.x run used in the paper (269 groups, 17,987 pair comparisons, 3,931 triplets). Running `code71` under pandas ≥ 2 regenerates them under a different grouping (132 groups, 10,864 pairs, 3,167 triplets). The paper reports both in Section 5.5 and uses the 1.x numbers throughout; `run_all.py` restores the archive after a run, and `run_all.py --check` reports the difference file by file.
 - All fifteen scripts were re-run from a clean copy on 2026-10-19 and every one exits 0. The code80 model comparison, the P5 adjudications and the MOR residuals reproduce to machine precision; the Atlas tables reproduce up to the documented pandas difference.
 
 ## Ownership

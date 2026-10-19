@@ -53,6 +53,18 @@ throughout. This is why `run_all.py` restores the archive by default.
 **Most numbers live in console output, not in files.** Only `code47/47b`, `code71`, `code77`
 and `code80` write tables. The rest print. That is why the logs are archived by `run_all.py`.
 
+**The P5 experiment admission is environment-sensitive.** `code47` admits experiments by a
+chain-validation step built on peak detection. The archived tables came from the 2026-08-16
+run, which admitted 11 experiments and 208 cells (195 after the erratum exclusions). Under the
+pinned versions in `requirements.txt` the same data and the same code admit 12 experiments and
+233 cells (218 after the erratum): three of the 27 borderline experiments cross the threshold.
+Unit AUCs move by at most 0.03 (robust arms 0.13 and 0.23) and every adjudication clause
+reproduces verbatim — P5-1/P5-2 intermediate before the erratum, P5-1 falsified after it. The
+count is not reproducible; the verdict is.
+
+`run_all.py --check` reports the Atlas and P5 files as *known environment differences* and
+fails only on an unexpected one, so "does it still reproduce?" is a command, not an opinion.
+
 **`code67 --write` is the only producer of `results/atlas_pair_violations.csv`.** The archived
 copy is the pandas-1.x run; the export reflects whichever environment you run it in and adds
 the signed deviation (`dev_signed`), which the archived copy does not carry.

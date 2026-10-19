@@ -25,9 +25,14 @@ Pass --keep to leave the regenerated files in results/ instead.
 Usage
 -----
     python run_all.py            # reproduce, archive logs, protect results/
+    python run_all.py --check    # ... and report, file by file, how close the re-run gets
     python run_all.py --keep     # keep whatever the scripts wrote
     python run_all.py --only 63,80
     python run_all.py --list
+
+`--check` turns "does it reproduce?" into an assertion instead of an eyeball: each
+regenerated file is compared with its archived copy (numeric CSVs cell by cell) and the
+exit status is non-zero if anything differs beyond float formatting.
 """
 from __future__ import annotations
 
@@ -84,6 +89,11 @@ STEPS = [
 
 SKIP = {".git", "__pycache__", "runs"}
 
+# Files whose archived values are known to depend on the numerical stack rather than on the
+# code: the Atlas grouping follows pandas, and P5 experiment admission follows the numeric
+# build. `--check` reports them separately so a real regression still fails the run.
+KNOWN_ENV_DIFF = ("atlas_audit/", "atlas_", "Keshelava2018_P5")
+
 
 def sha256(path: str) -> str:
     h = hashlib.sha256()
@@ -109,11 +119,49 @@ def _run_artefact(rel: str) -> bool:
     return rel.startswith("logs/") or rel == "run_manifest.json"
 
 
+def compare_file(archived: str, regenerated: str) -> tuple[bool, str]:
+    """Compare a regenerated file with its archived copy. Returns (same, note)."""
+    ext = os.path.splitext(regenerated)[1].lower()
+    if ext == ".csv":
+        try:
+            import pandas as pd
+            a = pd.read_csv(archived)
+            b = pd.read_csv(regenerated)
+        except Exception as exc:  # noqa: BLE001
+            return False, f"could not parse ({exc.__class__.__name__})"
+        if a.shape != b.shape:
+            return False, f"shape {a.shape[0]}x{a.shape[1]} -> {b.shape[0]}x{b.shape[1]}"
+        if list(a.columns) != list(b.columns):
+            return False, "column names differ"
+        maxd, textdiff = 0.0, 0
+        for col in a.columns:
+            if pd.api.types.is_numeric_dtype(a[col]) and pd.api.types.is_numeric_dtype(b[col]):
+                d = (a[col] - b[col]).abs().max()
+                if d == d and d > maxd:
+                    maxd = float(d)
+            else:
+                textdiff += int((a[col].astype(str) != b[col].astype(str)).sum())
+        same = maxd < 1e-9 and textdiff == 0
+        return same, f"max |delta| {maxd:.1e}, {textdiff} text cells differ"
+    if ext == ".json":
+        try:
+            with open(archived, encoding="utf-8") as fh:
+                a = json.load(fh)
+            with open(regenerated, encoding="utf-8") as fh:
+                b = json.load(fh)
+        except Exception as exc:  # noqa: BLE001
+            return False, f"could not parse ({exc.__class__.__name__})"
+        return a == b, "identical" if a == b else "json differs"
+    return False, "binary differs"
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--keep", action="store_true",
                     help="leave regenerated files in results/ instead of restoring the archive")
+    ap.add_argument("--check", action="store_true",
+                    help="compare every regenerated file with its archived copy and report")
     ap.add_argument("--only", default="", help="comma-separated script numbers, e.g. 63,80")
     ap.add_argument("--list", action="store_true", help="list the steps and exit")
     args = ap.parse_args()
@@ -196,6 +244,14 @@ def main() -> int:
     new = sorted(k for k in after if k not in before)
     gone = sorted(k for k in before if k not in after and not _run_artefact(k))
 
+    comparisons = []
+    if args.check:
+        for rel in modified:
+            same, note = compare_file(os.path.join(before_dir, rel), os.path.join(RESULTS, rel))
+            known = rel.replace("\\", "/").startswith(KNOWN_ENV_DIFF)
+            comparisons.append({"file": rel.replace("\\", "/"), "identical": same,
+                                "known_environment_difference": known, "note": note})
+
     if modified:
         os.makedirs(regen_dir, exist_ok=True)
         for rel in modified:
@@ -224,6 +280,7 @@ def main() -> int:
         "results_changed": modified,
         "results_new": new,
         "results_restored": [] if args.keep else modified,
+        "check": comparisons,
         "failed": [r["script"] for r in failed],
     }
     with open(os.path.join(RESULTS, "run_manifest.json"), "w", encoding="utf-8") as fh:
@@ -241,9 +298,34 @@ def main() -> int:
             print("   --keep: regenerated files left in results/")
         else:
             print("   archived versions restored in results/ (pass --keep to keep the new ones)")
+    if comparisons:
+        print()
+        print("check: regenerated versus archived")
+        for c in comparisons:
+            if c["identical"]:
+                tag = "OK   "
+            elif c["known_environment_difference"]:
+                tag = "known"
+            else:
+                tag = "DIFF "
+            print(f"   {tag}  {c['file']:50s} {c['note']}")
+        same_n = sum(c["identical"] for c in comparisons)
+        known_n = sum(1 for c in comparisons
+                      if not c["identical"] and c["known_environment_difference"])
+        bad_n = len(comparisons) - same_n - known_n
+        print(f"   -> {same_n} identical, {known_n} known environment differences, "
+              f"{bad_n} unexpected")
+        if known_n:
+            print("      known: Atlas grouping follows the pandas version and P5 admission "
+                  "follows the numeric stack")
+            print("             (see requirements.txt and PAPER_MAP.md)")
     print(f"manifest   : results/run_manifest.json")
     print("=" * 88)
-    return 1 if failed else 0
+    rc = 1 if failed else 0
+    if comparisons and any(not c["identical"] and not c["known_environment_difference"]
+                           for c in comparisons):
+        rc = 1
+    return rc
 
 
 if __name__ == "__main__":

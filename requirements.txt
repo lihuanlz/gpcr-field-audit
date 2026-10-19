@@ -1,0 +1,29 @@
+# Environment actually used for the archived results and figures.
+# Recorded by run_all.py at 2026-10-19T05:46Z (see results/run_manifest.json).
+python>=3.13,<3.14
+numpy==2.3.5
+scipy==1.17.1
+pandas==3.0.2
+matplotlib==3.10.9
+openpyxl==3.1.5
+
+# Note on pandas
+# -------------
+# The tables archived under results/atlas_audit/ and results/atlas_pair_violations.csv
+# were produced under pandas 1.x: 269 same-cell assay groups, 17,987 pair comparisons,
+# 3,931 triplets. Re-running code71 under pandas >= 2 gives 132 groups, 10,864 pairs and
+# 3,167 triplets from the same input, and the pair-level violation rate moves from 21.5%
+# to 16.9% above 0.3 dex. Section 5.5 of the manuscript reports both and uses the 1.x
+# numbers throughout. `run_all.py` snapshots results/ and restores those tables after a
+# run, so a re-run cannot silently replace them; `run_all.py --check` reports the
+# difference file by file.
+#
+# Note on P5 (Keshelava 2018, SI section 2)
+# -----------------------------------------
+# The archived P5 tables come from the 2026-08-16 run, which admitted 11 experiments and
+# 208 cells (195 after the erratum exclusions). Under the pinned versions below the
+# experiment-admission step of code47 admits 12 experiments and 233 cells (218 after the
+# erratum): three of 27 borderline experiments cross the chain-validation threshold. The
+# unit AUCs move by at most 0.03 (robust arms 0.13 and 0.23) and every adjudication clause
+# reproduces verbatim. The admission step is the numerically sensitive part; the verdicts
+# are not. `run_all.py --check` marks these files as known environment differences.

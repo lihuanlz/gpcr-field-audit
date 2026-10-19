@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-19T05:46:25+00:00",
+  "generated_utc": "2026-10-19T06:04:57+00:00",
   "python": "3.13.9",
   "platform": "Windows-11-10.0.26300-SP0",
   "packages": {
@@ -17,9 +17,9 @@
       "purpose": "D2R binding-versus-function fracture (Fig. 1a, Fig. 2b)",
       "status": "ok",
       "exit": 0,
-      "seconds": 0.14,
+      "seconds": 0.19,
       "log": "results/logs/code63_GPCR_functional_affinity_fracture.log",
-      "log_sha256": "7e11ee4981bfe3eacf49b8068db7cef998aa30bf22186e92405d5f1d8b0fdd18"
+      "log_sha256": "cd065e10d0be3301d03d5f106a63324419ad1f5ccdb98a48dc1b3dbb6f5cef9a"
     },
     {
       "order": 2,
@@ -28,9 +28,9 @@
       "purpose": "D2R upstream rate ordering",
       "status": "ok",
       "exit": 0,
-      "seconds": 0.89,
+      "seconds": 1.11,
       "log": "results/logs/code64_D2R_upstream_rate_ordering.log",
-      "log_sha256": "732c59a52d686f2e791c96129d0c9f6b4e5855b98535adc3df591b5aa760baab"
+      "log_sha256": "8f8219379459fa8e42a323e807590faaa524590dd38349211303fa344c99d27e"
     },
     {
       "order": 3,
@@ -39,9 +39,9 @@
       "purpose": "zero-parameter kinetic occupancy model (Fig. 2c)",
       "status": "ok",
       "exit": 0,
-      "seconds": 0.59,
+      "seconds": 0.79,
       "log": "results/logs/code68_D2R_kinetic_mechanism_test.log",
-      "log_sha256": "c250ea2b1179343b3670d7877fd4b141fc0f9b0fa677540bcd01ecc404688abe"
+      "log_sha256": "3042913a02361dbd7cbdead04483771f7551ccf20f557105bb8ec864d4c32049"
     },
     {
       "order": 4,
@@ -50,9 +50,9 @@
       "purpose": "cross-arm pKA spread versus readout time (Fig. 2a,c)",
       "status": "ok",
       "exit": 0,
-      "seconds": 0.13,
+      "seconds": 0.2,
       "log": "results/logs/code69_D2R_functional_state_cross_arm_map.log",
-      "log_sha256": "71606d9e8837eccca56be6e09c10df1234b5b350a7b663762ceccafd7ab296bd"
+      "log_sha256": "704018c0ac18d214b22992ec454a12ca69ae5fd89bc87814b49d6ef58e89f0c0"
     },
     {
       "order": 5,
@@ -61,9 +61,9 @@
       "purpose": "AT1R arm separation with binding in between (Fig. 1b, Fig. 2d)",
       "status": "ok",
       "exit": 0,
-      "seconds": 0.13,
+      "seconds": 0.18,
       "log": "results/logs/code65_AT1R_cross_arm_affinity_fracture.log",
-      "log_sha256": "c22de9534c78b081fb200c2d51ff57d9bea4b496d8939281a42635404d99c5d2"
+      "log_sha256": "9517bfefe4b5fba4645be936ae01456db169353939f082bb1c8de081f790b1dd"
     },
     {
       "order": 6,
@@ -72,9 +72,9 @@
       "purpose": "\u03bcOR cell-level identity violation map (Fig. 1c, Fig. 2e)",
       "status": "ok",
       "exit": 0,
-      "seconds": 0.14,
+      "seconds": 0.2,
       "log": "results/logs/code66_MOR_Gillis_internal_consistency.log",
-      "log_sha256": "9ec918b899ec88b0eaae7f355ae8244393140fc881dcadffd876dab7427e802d"
+      "log_sha256": "93c9e5c1072ff9a4a123d85bdbf047fe18c60ab6e55e1f185c51019a9253919c"
     },
     {
       "order": 7,
@@ -83,9 +83,9 @@
       "purpose": "\u03bcOR one-coordinate-per-arm extension, M1 versus M0 (Fig. 1c, Fig. 2f)",
       "status": "ok",
       "exit": 0,
-      "seconds": 1.24,
+      "seconds": 1.7,
       "log": "results/logs/code80_Gillis_arm_coordinate_extended_model.log",
-      "log_sha256": "e6fa1ebdd63d3cb730f46b16f10ec4c56d384d69879c16f80f98fd1be9fc3d4b"
+      "log_sha256": "f34033125468449324a341860ad7a29626a438979e113efaa8e4205d004ee0da"
     },
     {
       "order": 8,
@@ -94,9 +94,9 @@
       "purpose": "Atlas meta-audit, pair deviations and Emax census",
       "status": "ok",
       "exit": 0,
-      "seconds": 23.97,
+      "seconds": 32.2,
       "log": "results/logs/code67_BiasedSignalingAtlas_meta_audit.log",
-      "log_sha256": "64efab10aed5d1e324dbf2c0566a1fa96f16dad7549e014b23d3c72e76574d8e"
+      "log_sha256": "69db7f0e636d3899c0a124e88dd4ecb2875d884f3f1a3c6c79e30a214d738a99"
     },
     {
       "order": 9,
@@ -105,9 +105,9 @@
       "purpose": "Atlas identity pipeline, entry/group/paper tables (Table 1, Fig. 1d)",
       "status": "ok",
       "exit": 0,
-      "seconds": 23.7,
+      "seconds": 35.88,
       "log": "results/logs/code71_Atlas_full_identity_pipeline.log",
-      "log_sha256": "c3e04d52cf9c8c669f8d209db7136455189e475b46ef213ab401366a8f314b55"
+      "log_sha256": "5290d878755c03a849b02f4dfd594b5e6a5c9363238727259ea18feaba1c1f2b"
     },
     {
       "order": 10,
@@ -116,9 +116,9 @@
       "purpose": "common-mode error, conservative aggregation, column jackknife (Fig. 3f)",
       "status": "ok",
       "exit": 0,
-      "seconds": 2.31,
+      "seconds": 2.17,
       "log": "results/logs/code73_robustness_triplet_blind_jackknife.log",
-      "log_sha256": "92d0358e94d38eb138cef4763a4fcfa79da864904c0caf24b48b1bdfa30eb04f"
+      "log_sha256": "b0650e51b3294ce67f6ec1afb8251d674ce6e0be5704ae4ed7f010e3c28b1c3c"
     },
     {
       "order": 11,
@@ -127,9 +127,9 @@
       "purpose": "constraint projection and mixture-model fracture probability (Fig. 3c,d)",
       "status": "ok",
       "exit": 0,
-      "seconds": 1.49,
+      "seconds": 1.45,
       "log": "results/logs/code77_Atlas_constraint_projection_fracture_probability.log",
-      "log_sha256": "3298cf2fb08bf4bac5ecebc3ddcec7791eb873aadc4028675aab7ba8abce2a93"
+      "log_sha256": "91eae3ea8111faf067b26324ad2681b66f5468b993e0fa389be68dc0a482a064"
     },
     {
       "order": 12,
@@ -138,9 +138,9 @@
       "purpose": "false-positive rate, detection power, controls (Table 2)",
       "status": "ok",
       "exit": 0,
-      "seconds": 5.01,
+      "seconds": 6.9,
       "log": "results/logs/code72_audit_method_false_positive_selfcheck.log",
-      "log_sha256": "8f64579cdcca39fb3d058d43832e00832c584e243733f8f48e354bfc5b0bb50c"
+      "log_sha256": "d926dee947b714f8a7696262b567e01cdae63ad1251fd169d06a31740742af18"
     },
     {
       "order": 13,
@@ -151,7 +151,7 @@
       "exit": 0,
       "seconds": 0.84,
       "log": "results/logs/code72b_null_at_fixed_cut.log",
-      "log_sha256": "5f4ba985c70b47f901e0ed0acfb77a13dab56462259aa76f606cd26ff8948870"
+      "log_sha256": "0d3a9df9a4e3e3b0935c591ff506dd6d5baa781f360538fec773ed9b82c61c21"
     },
     {
       "order": 14,
@@ -160,9 +160,9 @@
       "purpose": "P5 blind adjudication, Keshelava 2018",
       "status": "ok",
       "exit": 0,
-      "seconds": 10.05,
+      "seconds": 10.96,
       "log": "results/logs/code47_P5_blind_adjudication_boundary_predictor.log",
-      "log_sha256": "00631227c7e4bc987d63b46280373ee0088d16adbce404407c9f05abbd1fe964"
+      "log_sha256": "f5aa2cda6e12cdd78a25ab3fc549485ccc93272d7fa9133fd113128d3b4dd273"
     },
     {
       "order": 15,
@@ -171,9 +171,9 @@
       "purpose": "P5 erratum re-adjudication after timing exclusions",
       "status": "ok",
       "exit": 0,
-      "seconds": 8.77,
+      "seconds": 10.42,
       "log": "results/logs/code47b_P5_erratum_readjudication.log",
-      "log_sha256": "c2fd0015cef7c1e4f775d19f31a2f766d107a08907eb784e531f1bd13879676b"
+      "log_sha256": "2e31ba03a06cc57f66a4ae03cbe8e8298a733e50cd8312d66dd9cdf99d3ddf7e"
     }
   ],
   "results_changed": [
@@ -224,6 +224,140 @@
     "code80_leave_one_out_girk.csv",
     "code80_model_comparison.csv",
     "code80_sigma_delta_sensitivity.csv"
+  ],
+  "check": [
+    {
+      "file": "Keshelava2018_P5/code47_descriptive_arm.csv",
+      "identical": false,
+      "known_environment_difference": true,
+      "note": "max |delta| 2.5e+01, 0 text cells differ"
+    },
+    {
+      "file": "Keshelava2018_P5/code47_judgment_log.txt",
+      "identical": false,
+      "known_environment_difference": true,
+      "note": "binary differs"
+    },
+    {
+      "file": "Keshelava2018_P5/code47_robust_arm.csv",
+      "identical": false,
+      "known_environment_difference": true,
+      "note": "max |delta| 2.5e+01, 8 text cells differ"
+    },
+    {
+      "file": "Keshelava2018_P5/code47_unit_table.csv",
+      "identical": false,
+      "known_environment_difference": true,
+      "note": "max |delta| 2.5e+01, 0 text cells differ"
+    },
+    {
+      "file": "Keshelava2018_P5/code47_verdict.json",
+      "identical": false,
+      "known_environment_difference": true,
+      "note": "json differs"
+    },
+    {
+      "file": "Keshelava2018_P5_47b_erratum/code47b_descriptive_arm.csv",
+      "identical": false,
+      "known_environment_difference": true,
+      "note": "max |delta| 2.3e+01, 0 text cells differ"
+    },
+    {
+      "file": "Keshelava2018_P5_47b_erratum/code47b_judgment_log.txt",
+      "identical": false,
+      "known_environment_difference": true,
+      "note": "binary differs"
+    },
+    {
+      "file": "Keshelava2018_P5_47b_erratum/code47b_robust_arm.csv",
+      "identical": false,
+      "known_environment_difference": true,
+      "note": "max |delta| 2.3e+01, 8 text cells differ"
+    },
+    {
+      "file": "Keshelava2018_P5_47b_erratum/code47b_unit_table.csv",
+      "identical": false,
+      "known_environment_difference": true,
+      "note": "max |delta| 2.3e+01, 0 text cells differ"
+    },
+    {
+      "file": "Keshelava2018_P5_47b_erratum/code47b_verdict.json",
+      "identical": false,
+      "known_environment_difference": true,
+      "note": "json differs"
+    },
+    {
+      "file": "atlas_audit/atlas_audit_entries.csv",
+      "identical": false,
+      "known_environment_difference": true,
+      "note": "max |delta| 0.0e+00, 1540 text cells differ"
+    },
+    {
+      "file": "atlas_audit/atlas_audit_groups.csv",
+      "identical": false,
+      "known_environment_difference": true,
+      "note": "shape 269x11 -> 132x11"
+    },
+    {
+      "file": "atlas_audit/atlas_audit_papers.csv",
+      "identical": false,
+      "known_environment_difference": true,
+      "note": "shape 66x6 -> 41x6"
+    },
+    {
+      "file": "atlas_audit/atlas_audit_summary.json",
+      "identical": false,
+      "known_environment_difference": true,
+      "note": "json differs"
+    },
+    {
+      "file": "atlas_audit/atlas_confidence_matrix.csv",
+      "identical": false,
+      "known_environment_difference": true,
+      "note": "shape 241x13 -> 119x13"
+    },
+    {
+      "file": "atlas_audit/atlas_fracture_probability.csv",
+      "identical": false,
+      "known_environment_difference": true,
+      "note": "shape 3096x17 -> 1568x17"
+    },
+    {
+      "file": "atlas_audit/atlas_repair_projection.csv",
+      "identical": false,
+      "known_environment_difference": true,
+      "note": "shape 269x6 -> 132x6"
+    },
+    {
+      "file": "code80_arm_coordinate_posterior.csv",
+      "identical": true,
+      "known_environment_difference": false,
+      "note": "max |delta| 7.8e-13, 0 text cells differ"
+    },
+    {
+      "file": "code80_arm_coordinate_residuals.csv",
+      "identical": true,
+      "known_environment_difference": false,
+      "note": "max |delta| 5.9e-13, 0 text cells differ"
+    },
+    {
+      "file": "code80_leave_one_out_girk.csv",
+      "identical": true,
+      "known_environment_difference": false,
+      "note": "max |delta| 1.3e-13, 0 text cells differ"
+    },
+    {
+      "file": "code80_model_comparison.csv",
+      "identical": true,
+      "known_environment_difference": false,
+      "note": "max |delta| 1.1e-12, 0 text cells differ"
+    },
+    {
+      "file": "code80_sigma_delta_sensitivity.csv",
+      "identical": true,
+      "known_environment_difference": false,
+      "note": "max |delta| 1.8e-14, 0 text cells differ"
+    }
   ],
   "failed": []
 }

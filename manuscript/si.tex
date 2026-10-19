@@ -65,6 +65,16 @@ al., \textit{Nat.\ Commun.} 9, 876 (2018)); 11 experiments passed the
 inclusion criteria. Frozen bootstrap seed 20260815, 2000 resamples,
 $AUC$ with 95\% CI.
 
+\noindent\textit{Environment note.} The tables below transcribe the archived run of
+2026-08-16. Re-running the same scripts on the same data under the pinned environment of
+\texttt{requirements.txt} admits one more experiment to the timing chain (11 $\rightarrow$ 12),
+which shifts the cell counts (208 $\rightarrow$ 233 before the erratum, 195 $\rightarrow$ 218
+after it) and moves the unit AUCs by at most 0.03 (robust arms: 0.13 and 0.23). Every
+adjudication clause reproduces verbatim: before the erratum P5-1 and P5-2 are intermediate and
+the overall verdict is intermediate; after the erratum P5-1 is falsified (2/4 units outside the
+[0.40, 0.60] band) and the overall verdict is falsified. The experiment-admission step is the
+numerically sensitive part; the verdicts are not.
+
 \subsection{Erratum adjudication (code47b; 195 cells, 13 timing exclusions)}
 
 \begin{table}[h]

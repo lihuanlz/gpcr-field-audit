@@ -1,5 +1,5 @@
 $ D:\Users\lihua\anaconda3\python.exe code/code67_BiasedSignalingAtlas_meta_audit.py
-# exit 0  24.0s  2026-10-19T05:45:33+00:00
+# exit 0  32.2s  2026-10-19T06:03:48+00:00
 
 total rows 9041; with log(τ/KA) 3293; with Δlog(τ/KA) 2293;with Emax 7682; valid pEC50/EC50 7617
 
