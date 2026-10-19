@@ -22,15 +22,16 @@ WT/AngII maximal response):
               TRV023 −6.42±0.01, TRV055 −6.3±0.1, Losartan −7.4±0.1 (antagonist, excluded from functional analysis)
   function in the table below (WT / L112A / Y292A / WT-5%DNA, four conditions).
 
-Results (v1.0.0 actual run):
+Results (v1.1.0, after the 2026-10-19 correction of the SI Table S5 transcription):
   Test A cross-arm ΔpKA:
-    TRV026: WT −2.05 dex (~4.5σ); L112A −1.53 (~4.9σ); Y292A −0.61 (~1.5σ, weak)
-    TRV055: WT lower bound ≥2.1 dex (Gq full agonism unresolvable; inequality bound is robust)
+    TRV026: WT −1.52 dex (3.8σ); L112A −1.19 (3.8σ); Y292A −0.48 (1.2σ, weak)
+    TRV055: WT lower bound |Δ| ≥ 0.8 dex (Gq full agonism unresolvable; inequality bound is robust)
+    AngII: saturates in both arms; pKA unresolvable on either side
   Test B binding anchor: TRV023 pKi−pEC50 = +0.52 dex ⚠; S1I8 +0.73 dex ⚠
     (Gq-arm functional potency below binding affinity, violating pEC50 ≥ pKA)
   Interpretation: TRV026 is the literature-famous extreme arrestin-biased ligand; this test shows its
     "bias" magnitude already exceeds what a single-affinity equilibrium model can accommodate  -  the self-consistent
-    KA values of the two arms differ by ~100-fold, while the binding-measured Ki falls exactly between them. I.e.: the operational
+    KA values of the two arms differ by ~33-fold, while the binding-measured Ki falls exactly between them. I.e.: the operational
     model's KA here is not a physical affinity, but a hybrid parameter absorbing the structural differences of the two arms.
     Complementary to the D2R (code 63) conclusion: there the fracture lies between "binding state vs functional state";
     here it lies directly between "arm vs arm".
