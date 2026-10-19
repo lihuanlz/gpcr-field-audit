@@ -1,5 +1,5 @@
 $ D:\Users\lihua\anaconda3\python.exe code/code63_GPCR_functional_affinity_fracture.py
-# exit 0  0.2s  2026-10-19T06:34:34+00:00
+# exit 0  0.2s  2026-10-19T06:43:56+00:00
 
 == Test 2: functional KA inversion, full error propagation ==
 ligand        path  pKA_func    pKi   Δ(dex)   σ(Δ) signif.
@@ -53,3 +53,5 @@ S-3PPP        GaoB      6.07   5.84    +0.23   0.14   1.7σ
   Aripiprazole  vs Ropi: 2'=-0.76 → 90'=+0.77  swing=1.53 dex
   Cariprazine   vs Ropi: 2'=+0.28 → 90'=+1.40  swing=1.21 dex
   S-3PPP        vs Ropi: 2'=-0.92 → 90'=-0.94  swing=0.15 dex
+
+[derived] -> results/derived/code63_d2r.json

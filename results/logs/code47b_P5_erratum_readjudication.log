@@ -1,5 +1,5 @@
 $ D:\Users\lihua\anaconda3\python.exe code/code47b_P5_erratum_readjudication.py
-# exit 0  12.9s  2026-10-19T06:36:44+00:00
+# exit 0  13.1s  2026-10-19T06:45:55+00:00
 
 code 47 v0.2.0 - P5 blind ruling (boundary predictor first test, Keshelava 2018 GPCR->Ca2+; pre-registration v0.3)
 frozen parameters: SEED=20260815 N_BOOT=2000 k=3 sufficiency line=0.6 dead band=[0.4,0.6)

@@ -47,10 +47,16 @@ ax.legend(fontsize=5.5)
 # ---- b: D2R binding-vs-function fracture (code 63) ----
 ax = axs[1]
 ligs = ["Dopamine", "Ropinirole", "Aripiprazole", "Cariprazine", "Bifeprunox", "Pardoprunox", "S-3PPP"]
-dc_amp = {"Dopamine": (1.32, 0.45), "Aripiprazole": (-2.57, 0.10), "Cariprazine": (-1.15, 0.11),
-          "Bifeprunox": (-3.54, 0.16), "Pardoprunox": (0.18, 0.10), "S-3PPP": (0.38, 0.10)}
-dc_gao = {"Dopamine": (1.19, 0.15), "Aripiprazole": (-2.88, 0.16), "Cariprazine": (-1.36, 0.15),
-          "Bifeprunox": (-3.46, 0.17), "Pardoprunox": (-0.51, 0.16), "S-3PPP": (0.23, 0.14)}
+import json as _json
+_D2 = _json.load(open(os.path.join(ROOT, "results", "derived", "code63_d2r.json"),
+                      encoding="utf-8"))["test2"]
+dc_amp, dc_gao = {}, {}
+for _l in ligs:
+    _c, _g = _D2[_l]["cAMP"], _D2[_l]["GaoB"]
+    if _c.get("status") == "ok":
+        dc_amp[_l] = (_c["delta"], _c["sd"])
+    if _g.get("status") == "ok":
+        dc_gao[_l] = (_g["delta"], _g["sd"])
 xx = np.arange(len(ligs))
 for i, lig in enumerate(ligs):
     if lig in dc_amp:
@@ -90,19 +96,25 @@ ax.text(88, 0.62, "bias factor bifeprunox vs ropinirole:\n-0.42 dex (2 min) -> +
         fontsize=5, color="0.35", ha="right", va="bottom")
 
 # ---- d: AT1R cross-arm fracture (code 65) ----
+import json as _json
+_A1 = _json.load(open(os.path.join(ROOT, "results", "derived", "code65_at1r.json"),
+                      encoding="utf-8"))["test_a"]
 ax = axs[3]
-rows = [("TRV026 WT", -1.52, 0.40, "3.8s"), ("TRV026 L112A", -1.19, 0.31, "3.8s"),
-        ("TRV026 Y292A", -0.48, 0.41, "1.2s")]
+rows = []
+for _lab, _cond in [("TRV026 WT", "WT"), ("TRV026 L112A", "L112A"), ("TRV026 Y292A", "Y292A")]:
+    _r = _A1[_cond]["TRV026"]
+    rows.append((_lab, _r["delta"], float(np.hypot(_r["sem_gq"], _r["sem_arr"])),
+                 f"{_r['sigma']:.1f}"))
 xx = np.arange(3)
 for i, (lab, v, sd, sig) in enumerate(rows):
     ax.errorbar(i, v, yerr=sd, fmt="o", ms=5, color=OI["verm"], elinewidth=0.8, capsize=2)
-    ax.text(i + 0.14, v, sig.replace("s", " sigma"), fontsize=5, color=OI["verm"],
+    ax.text(i + 0.14, v, sig + " sigma", fontsize=5, color=OI["verm"],
             va="center", ha="left")
 # lower bound: TRV055 Gq arm saturates, so only a bound is available
 # (AngII saturates in both arms and is omitted)
-for i, (lab, v) in enumerate([("TRV055 WT", -0.76)]):
-    ax.plot(3 + i, v, "v", ms=5, color=OI["orange"])
-    ax.text(3 + i, v - 0.32, f"bound >= {abs(v):.1f}", ha="center", fontsize=5, color=OI["orange"])
+_bound = abs(_A1["WT"]["TRV055"]["delta"])
+ax.plot(3, -_bound, "v", ms=5, color=OI["orange"])
+ax.text(3, -_bound - 0.32, f"bound >= {_bound:.1f}", ha="center", fontsize=5, color=OI["orange"])
 ax.axhline(0, color="0.5", lw=0.5)
 ax.axhline(-0.3, color="0.4", ls="--", lw=0.6)
 ax.set_xticks(list(range(4)), ["TRV026\nWT", "TRV026\nL112A", "TRV026\nY292A", "TRV055\nWT"], fontsize=5.5)

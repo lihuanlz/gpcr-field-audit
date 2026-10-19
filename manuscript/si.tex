@@ -21,7 +21,7 @@ fails its own algebraic identities}
 output of the accompanying repository (\texttt{gpcr-field-audit}): every analysis script,
 the adjudication tables, the per-source meta-audit table, and the provenance of third-party
 data. Numbers are transcribed verbatim from \texttt{results/}; scripts are plain Python~3
-(numpy/scipy/matplotlib/pandas). The fifteen scripts run in manuscript order under
+(numpy/scipy/matplotlib/pandas). The thirteen analysis scripts run in manuscript order under
 \texttt{run\_all.py}, which archives each console output to \texttt{results/logs/} and writes a
 manifest recording package versions, exit codes and file hashes; \texttt{PAPER\_MAP.md} maps every
 script to the panel or table it backs.
@@ -49,84 +49,17 @@ script to the panel or table it backs.
 \S3.6 & \texttt{code77} & constraint projection, fracture probability & \texttt{atlas\_\allowbreak{}repair\_\allowbreak{}projection.csv}, \texttt{atlas\_\allowbreak{}fracture\_\allowbreak{}probability.csv} \\
 \S4 & \texttt{code72} & false-positive rate, power, controls & \texttt{results/logs/} \\
 \S3.4 & \texttt{code72b} & fixed-cut independent-error null (entry and pair level) & \texttt{results/logs/} \\
-SI \S2 & \texttt{code47} & P5 blind adjudication (208 cells) & \texttt{Keshelava2018\_\allowbreak{}P5/} \\
-SI \S2 & \texttt{code47b} & P5 erratum re-adjudication (195 cells) & \texttt{Keshelava2018\_\allowbreak{}P5\_\allowbreak{}47b\_\allowbreak{}erratum/} \\
 \bottomrule
 \end{longtable}
 
 \noindent Rows are in manuscript order. Full script names, the reproduction command and the
 caveats (pandas grouping; which numbers are console-only) are in \texttt{PAPER\_MAP.md}.
 
-\section{P5 adjudication (Keshelava 2018)}
 
-Dataset: per-cell Fura-2 peaks, 27 experiments $\times$ 433 cells $\times$
-7 ACh doses $\times$ 5 repetitions (Supplementary Data 3 of Keshelava et
-al., \textit{Nat.\ Commun.} 9, 876 (2018)); 11 experiments passed the
-inclusion criteria. Frozen bootstrap seed 20260815, 2000 resamples,
-$AUC$ with 95\% CI.
-
-\noindent\textit{Environment note.} The tables below transcribe the archived run of
-2026-08-16. Re-running the same scripts on the same data under the pinned environment of
-\texttt{requirements.txt} admits one more experiment to the timing chain (11 $\rightarrow$ 12),
-which shifts the cell counts (208 $\rightarrow$ 233 before the erratum, 195 $\rightarrow$ 218
-after it) and moves the unit AUCs by at most 0.03 (robust arms: 0.13 and 0.23). Every
-adjudication clause reproduces verbatim: before the erratum P5-1 and P5-2 are intermediate and
-the overall verdict is intermediate; after the erratum P5-1 is falsified (2/4 units outside the
-[0.40, 0.60] band) and the overall verdict is falsified. The experiment-admission step is the
-numerically sensitive part; the verdicts are not.
-
-\subsection{Erratum adjudication (code47b; 195 cells, 13 timing exclusions)}
-
-\begin{table}[h]
-\centering\small
-\caption{Unit table (verbatim): discrimination AUCs between adjacent dose
-steps, per statistic ($\tau$ = time above threshold; cnt = threshold
-crossings; pk = peak).}
-\label{tab:p5units}
-\begin{tabular}{llccc}
-\toprule
-Statistic & pair & AUC & 95\% CI & $n$ \\
-\midrule
-$\tau$ & D1$\leftrightarrow$D2 & 0.629 & (0.598, 0.662) & 195 \\
-$\tau$ & D2$\leftrightarrow$D3 & 0.659 & (0.625, 0.692) & 195 \\
-$\tau$ & D5$\leftrightarrow$D6 & 0.568 & (0.539, 0.599) & 195 \\
-$\tau$ & D6$\leftrightarrow$D7 & 0.520 & (0.487, 0.554) & 195 \\
-cnt & D1$\leftrightarrow$D2 & 0.629 & (0.598, 0.662) & 195 \\
-cnt & D2$\leftrightarrow$D3 & 0.659 & (0.626, 0.691) & 195 \\
-cnt & D5$\leftrightarrow$D6 & 0.570 & (0.550, 0.593) & 195 \\
-cnt & D6$\leftrightarrow$D7 & 0.522 & (0.501, 0.543) & 195 \\
-pk & D1$\leftrightarrow$D2 & 0.731 & (0.692, 0.770) & 195 \\
-pk & D2$\leftrightarrow$D3 & 0.744 & (0.716, 0.776) & 195 \\
-pk & D5$\leftrightarrow$D6 & 0.551 & (0.531, 0.571) & 195 \\
-pk & D6$\leftrightarrow$D7 & 0.523 & (0.509, 0.538) & 195 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{table}[h]
-\centering\small
-\caption{Clause verdicts against the frozen decision lines.}
-\label{tab:p5verdict}
-\begin{tabular}{p{1.4cm} p{7.6cm} p{6.2cm}}
-\toprule
-Clause & Frozen line & Verdict \\
-\midrule
-P5-1 & hit iff 4/4 $\tau$-AUC in $[0.40,0.60)$; falsified iff $\geq$2 units outside & \textbf{falsified} (2/4 units outside the band) \\
-P5-2 & hit iff 4/4 count-AUC $\geq 0.60$; falsified iff 4/4 $< 0.60$ & intermediate (2/4 units at line) \\
-P5-3 & $\geq$3/4 units peak-AUC $\geq 0.60$ $\to$ calibration pass & dataset-level weak-decoding limitation (only 2/4 units $\geq 0.60$) \\
-\midrule
-overall & & \textbf{P5 falsified} (boundary predictor dead in this form) \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Robustness arms (archived as \texttt{code47b\_robust\_arm.csv} in \texttt{Keshelava2018\_P5\_47b\_erratum/}): verdicts are
-stable under $k=2$ and $k=4$ smoothing, under a desensitisation-corrected
-statistic, and within the single largest experiment
-(\texttt{experiment\_11.dot}, $n=29$). The original code47 adjudication
-(208 cells, pre-erratum) is archived in \texttt{Keshelava2018\_P5/} for
-traceability; its overall verdict was ``intermediate''.
-
+\noindent Two scripts in the repository, \texttt{code47} and \texttt{code47b}, implement a
+pilot adjudication of a boundary predictor on an unrelated calcium-transient dataset
+(Keshelava 2018). They are kept with their outputs under \texttt{results/} for traceability but
+are not part of this manuscript and are not summarised here.
 \section{Atlas meta-audit (code67/71)}
 
 Per-source median absolute deviation from the algebraic identities, in

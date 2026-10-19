@@ -1,0 +1,121 @@
+{
+ "source": "Klein Herenbrink 2016 SI Tables S2/S5/S6",
+ "test2": {
+  "Dopamine": {
+   "cAMP": {
+    "status": "ok",
+    "pka": 6.37,
+    "pki": 5.05,
+    "delta": 1.32,
+    "sd": 0.45,
+    "sigma": 2.9
+   },
+   "GaoB": {
+    "status": "ok",
+    "pka": 6.235,
+    "pki": 5.05,
+    "delta": 1.185,
+    "sd": 0.146,
+    "sigma": 8.1
+   }
+  },
+  "Ropinirole": {
+   "cAMP": {
+    "status": "unresolvable"
+   },
+   "GaoB": {
+    "status": "unresolvable"
+   }
+  },
+  "Aripiprazole": {
+   "cAMP": {
+    "status": "ok",
+    "pka": 6.859,
+    "pki": 9.43,
+    "delta": -2.571,
+    "sd": 0.097,
+    "sigma": 26.4
+   },
+   "GaoB": {
+    "status": "ok",
+    "pka": 6.551,
+    "pki": 9.43,
+    "delta": -2.879,
+    "sd": 0.164,
+    "sigma": 17.6
+   }
+  },
+  "Cariprazine": {
+   "cAMP": {
+    "status": "ok",
+    "pka": 7.745,
+    "pki": 8.9,
+    "delta": -1.155,
+    "sd": 0.109,
+    "sigma": 10.6
+   },
+   "GaoB": {
+    "status": "ok",
+    "pka": 7.542,
+    "pki": 8.9,
+    "delta": -1.358,
+    "sd": 0.151,
+    "sigma": 9.0
+   }
+  },
+  "Bifeprunox": {
+   "cAMP": {
+    "status": "ok",
+    "pka": 6.819,
+    "pki": 10.36,
+    "delta": -3.541,
+    "sd": 0.157,
+    "sigma": 22.6
+   },
+   "GaoB": {
+    "status": "ok",
+    "pka": 6.898,
+    "pki": 10.36,
+    "delta": -3.462,
+    "sd": 0.166,
+    "sigma": 20.8
+   }
+  },
+  "Pardoprunox": {
+   "cAMP": {
+    "status": "ok",
+    "pka": 7.814,
+    "pki": 7.63,
+    "delta": 0.184,
+    "sd": 0.097,
+    "sigma": 1.9
+   },
+   "GaoB": {
+    "status": "ok",
+    "pka": 7.125,
+    "pki": 7.63,
+    "delta": -0.505,
+    "sd": 0.162,
+    "sigma": 3.1
+   }
+  },
+  "S-3PPP": {
+   "cAMP": {
+    "status": "ok",
+    "pka": 6.218,
+    "pki": 5.84,
+    "delta": 0.378,
+    "sd": 0.096,
+    "sigma": 4.0
+   },
+   "GaoB": {
+    "status": "ok",
+    "pka": 6.073,
+    "pki": 5.84,
+    "delta": 0.233,
+    "sd": 0.139,
+    "sigma": 1.7
+   }
+  }
+ }
+}

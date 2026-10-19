@@ -1,5 +1,5 @@
 $ D:\Users\lihua\anaconda3\python.exe code/code65_AT1R_cross_arm_affinity_fracture.py
-# exit 0  0.2s  2026-10-19T06:34:36+00:00
+# exit 0  0.2s  2026-10-19T06:43:58+00:00
 
 == Test A: cross-arm functional affinity fracture (ΔpKA = pKA_Gq − pKA_arr) ==
   WT     AngII   : Emax 100% (Gq) and 100% (arr)  -  full agonism in both arms, pKA unresolvable on either side; skipped
@@ -29,3 +29,5 @@ $ D:\Users\lihua\anaconda3\python.exe code/code65_AT1R_cross_arm_affinity_fractu
   Y292A  TRV026   Gq  : pKi=7.50 pEC50=6.60 diff=+0.90 ⚠FRACTURE
   Y292A  TRV026   arr : pKi=7.50 pEC50=7.12 diff=+0.38 ⚠FRACTURE
   Y292A  TRV023   Gq  : pKi=6.42 pEC50=6.40 diff=+0.02 ok
+
+[derived] -> results/derived/code65_at1r.json

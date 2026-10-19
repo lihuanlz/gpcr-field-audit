@@ -85,6 +85,8 @@ PEC50_T = {
 }
 
 def main():
+    # results are also written to results/derived/code63_d2r.json, which Fig. 1a and Fig. 2b read
+    d2r_out = {}
     print("== Test 2: functional KA inversion, full error propagation ==")
     print(f"{'ligand':13s} {'path':5s} {'pKA_func':>8s} {'pKi':>6s} {'Δ(dex)':>8s} {'σ(Δ)':>6s} {'signif.':>6s}")
     for lig in LIGS:
@@ -92,6 +94,7 @@ def main():
             em, eme = EMAX5[path][lig]
             if em >= 99.5:
                 print(f"{lig:13s} {path:5s}   τ→∞ (full agonism, KA indistinguishable)")
+                d2r_out.setdefault(lig, {})[path] = {"status": "unresolvable"}
                 continue
             tau = em / (100 - em)
             lr, lre = logR[lig][path]; pk, pke = pKi[lig]
@@ -99,6 +102,10 @@ def main():
             s_logtau = (1 / np.log(10)) * 100 * eme / (em * (100 - em))
             sd = np.sqrt(lre**2 + pke**2 + s_logtau**2)
             print(f"{lig:13s} {path:5s} {pka:8.2f} {pk:6.2f} {pka-pk:+8.2f} {sd:6.2f} {abs(pka-pk)/sd:5.1f}σ")
+            d2r_out.setdefault(lig, {})[path] = {
+                "status": "ok", "pka": round(float(pka), 3), "pki": round(float(pk), 3),
+                "delta": round(float(pka - pk), 3), "sd": round(float(sd), 3),
+                "sigma": round(float(abs(pka - pk) / sd), 1)}
 
     print("\n== Self-audit (1): zero-model criterion pKi−pEC50 (>0.3 = fracture, no fitting assumptions) ==")
     for lig in LIGS:
@@ -126,6 +133,15 @@ def main():
     for lig in ["Bifeprunox", "Aripiprazole", "Cariprazine", "S-3PPP"]:
         d = [a - b for a, b in zip(PEC50_T[lig], PEC50_T["Ropinirole"])]
         print(f"  {lig:13s} vs Ropi: 2'={d[0]:+.2f} → 90'={d[-1]:+.2f}  swing={max(d)-min(d):.2f} dex")
+
+    import json, os
+    dest = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "results", "derived")
+    os.makedirs(dest, exist_ok=True)
+    with open(os.path.join(dest, "code63_d2r.json"), "w", encoding="utf-8") as fh:
+        json.dump({"source": "Klein Herenbrink 2016 SI Tables S2/S5/S6", "test2": d2r_out},
+                  fh, indent=1, ensure_ascii=False)
+    print("\n[derived] -> results/derived/code63_d2r.json")
+
 
 if __name__ == "__main__":
     main()

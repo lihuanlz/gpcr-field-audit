@@ -83,6 +83,9 @@ def sem_pka(em, semE, semP):
     return np.sqrt(semP**2 + dlog**2)
 
 def main():
+    # results are also written to results/derived/code65_at1r.json, which Fig. 1b and Fig. 2d read,
+    # so the figures cannot drift from this table again
+    out = {}
     print("== Test A: cross-arm functional affinity fracture (ΔpKA = pKA_Gq − pKA_arr) ==")
     for cond, ligs in FUNC.items():
         for lig, arms in ligs.items():
@@ -97,13 +100,19 @@ def main():
                     if emA >= 99:
                         print(f"  {cond:6s} {lig:8s}: Emax {emG:.0f}% (Gq) and {emA:.0f}% (arr)  -  "
                               f"full agonism in both arms, pKA unresolvable on either side; skipped")
+                        out.setdefault(cond, {})[lig] = {"status": "unresolvable"}
                         continue
                     d_lo = bound - pka_from(emA, peA)[0]
                     print(f"  {cond:6s} {lig:8s}: Gq full agonism unresolvable; pKA_Gq ≤ {bound:.2f} (Emax−2σ bound),"
                           f"pKA_arr={pka_from(emA,peA)[0]:.2f} → Δ ≤ {d_lo:+.2f} dex (lower-bound fracture ≥{abs(d_lo):.1f})")
+                    out.setdefault(cond, {})[lig] = {
+                        "status": "bound", "pka_gq_upper": round(float(bound), 3),
+                        "pka_arr": round(float(pka_from(emA, peA)[0]), 3),
+                        "delta": round(float(d_lo), 3)}
                     continue
                 if emA >= 99:
                     print(f"  {cond:6s} {lig:8s}: arr full agonism unresolvable; pKA_Gq={pka_from(emG,peG)[0]:.2f}; skipped")
+                    out.setdefault(cond, {})[lig] = {"status": "arr_saturates"}
                     continue
                 pG, tG = pka_from(emG, peG); pA, tA = pka_from(emA, peA)
                 sG = sem_pka(emG, seG, spG); sA = sem_pka(emA, seA, spA)
@@ -111,6 +120,12 @@ def main():
                 d = pG - pA
                 print(f"  {cond:6s} {lig:8s}: pKA_Gq={pG:.2f}±{sG:.2f}, pKA_arr={pA:.2f}±{sA:.2f}, "
                       f"Δ={d:+.2f} dex ({abs(d)/sd:.1f}σ)")
+                out.setdefault(cond, {})[lig] = {
+                    "status": "ok", "pka_gq": round(float(pG), 3), "sem_gq": round(float(sG), 3),
+                    "pka_arr": round(float(pA), 3), "sem_arr": round(float(sA), 3),
+                    "delta": round(float(d), 3), "sigma": round(float(abs(d) / sd), 1),
+                    "pki": pKi.get(lig, (None, None))[0],
+                    "pki_sem": pKi.get(lig, (None, None))[1]}
 
     print("\n== Test B: binding-anchor zero-model criterion (pKi − pEC50 > 0.3 means fracture) ==")
     for cond, ligs in FUNC.items():
@@ -121,6 +136,16 @@ def main():
                 d = pKi[lig][0] - v[2]
                 tag = "⚠FRACTURE" if d > 0.3 else "ok"
                 print(f"  {cond:6s} {lig:8s} {arm:4s}: pKi={pKi[lig][0]:.2f} pEC50={v[2]:.2f} diff={d:+.2f} {tag}")
+
+    # dump for the figures (Fig. 1b and Fig. 2d read this file, not hand-copied numbers)
+    import json, os
+    dest = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "results", "derived")
+    os.makedirs(dest, exist_ok=True)
+    path = os.path.join(dest, "code65_at1r.json")
+    with open(path, "w", encoding="utf-8") as fh:
+        json.dump({"source": "Wingler 2020 SI Tables S4/S5", "test_a": out}, fh, indent=1,
+                  ensure_ascii=False)
+    print(f"\n[derived] -> results/derived/code65_at1r.json")
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,64 @@
+{
+ "source": "Wingler 2020 SI Tables S4/S5",
+ "test_a": {
+  "WT": {
+   "AngII": {
+    "status": "unresolvable"
+   },
+   "TRV055": {
+    "status": "bound",
+    "pka_gq_upper": 5.919,
+    "pka_arr": 6.679,
+    "delta": -0.76
+   },
+   "TRV026": {
+    "status": "ok",
+    "pka_gq": 6.114,
+    "sem_gq": 0.4,
+    "pka_arr": 7.633,
+    "sem_arr": 0.061,
+    "delta": -1.519,
+    "sigma": 3.8,
+    "pki": 7.5,
+    "pki_sem": 0.02
+   }
+  },
+  "L112A": {
+   "TRV055": {
+    "status": "ok",
+    "pka_gq": 6.679,
+    "sem_gq": 1.002,
+    "pka_arr": 7.49,
+    "sem_arr": 0.102,
+    "delta": -0.811,
+    "sigma": 0.8,
+    "pki": 6.3,
+    "pki_sem": 0.1
+   },
+   "TRV026": {
+    "status": "ok",
+    "pka_gq": 6.614,
+    "sem_gq": 0.3,
+    "pka_arr": 7.801,
+    "sem_arr": 0.08,
+    "delta": -1.187,
+    "sigma": 3.8,
+    "pki": 7.5,
+    "pki_sem": 0.02
+   }
+  },
+  "Y292A": {
+   "TRV026": {
+    "status": "ok",
+    "pka_gq": 6.54,
+    "sem_gq": 0.4,
+    "pka_arr": 7.021,
+    "sem_arr": 0.09,
+    "delta": -0.482,
+    "sigma": 1.2,
+    "pki": 7.5,
+    "pki_sem": 0.02
+   }
+  }
+ }
+}

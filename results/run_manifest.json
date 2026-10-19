@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-19T06:36:45+00:00",
+  "generated_utc": "2026-10-19T06:45:55+00:00",
   "python": "3.13.9",
   "platform": "Windows-11-10.0.26300-SP0",
   "packages": {
@@ -17,9 +17,9 @@
       "purpose": "D2R binding-versus-function fracture (Fig. 1a, Fig. 2b)",
       "status": "ok",
       "exit": 0,
-      "seconds": 0.16,
+      "seconds": 0.2,
       "log": "results/logs/code63_GPCR_functional_affinity_fracture.log",
-      "log_sha256": "0a3857e00b225666820f864d0f762a9aa0bc9f6a47e079de2e83345f1754a40d"
+      "log_sha256": "648dc7bce3814b0c6f58ec1f6a084dd4645ade4675058436c70a6de13842b2ef"
     },
     {
       "order": 2,
@@ -28,9 +28,9 @@
       "purpose": "D2R upstream rate ordering",
       "status": "ok",
       "exit": 0,
-      "seconds": 0.84,
+      "seconds": 1.07,
       "log": "results/logs/code64_D2R_upstream_rate_ordering.log",
-      "log_sha256": "158edfbe9620323b2e7f42a9507f8010f63d2bd94fa93b81d2e750ced215a5e9"
+      "log_sha256": "9e6a0f9bd10891339be3cfe9c291a365c8566cf058d0b6804bd6d945b7a640fd"
     },
     {
       "order": 3,
@@ -39,9 +39,9 @@
       "purpose": "zero-parameter kinetic occupancy model (Fig. 2c)",
       "status": "ok",
       "exit": 0,
-      "seconds": 0.64,
+      "seconds": 0.71,
       "log": "results/logs/code68_D2R_kinetic_mechanism_test.log",
-      "log_sha256": "51405416ee5e3f9d7c4600e7dad5abf1d10c55132b007462aca0eda5681a96d4"
+      "log_sha256": "c8391d1992e9f8367c44da507930f74cbd8677a1561aa561f47cca71b79b3564"
     },
     {
       "order": 4,
@@ -52,7 +52,7 @@
       "exit": 0,
       "seconds": 0.17,
       "log": "results/logs/code69_D2R_functional_state_cross_arm_map.log",
-      "log_sha256": "4181d58ba530a0db32d652cafbb200e1da3bcc75a168afa09436861d9ddb8976"
+      "log_sha256": "0ec678741e681b753187ca9d0180c0caee5862a9f365427ff8c855022983ce5a"
     },
     {
       "order": 5,
@@ -61,9 +61,9 @@
       "purpose": "AT1R arm separation with binding in between (Fig. 1b, Fig. 2d)",
       "status": "ok",
       "exit": 0,
-      "seconds": 0.15,
+      "seconds": 0.18,
       "log": "results/logs/code65_AT1R_cross_arm_affinity_fracture.log",
-      "log_sha256": "e93dba109deea1d516a6035d52cf9904d1fb9cbc19b061cb138c5fa5180e580b"
+      "log_sha256": "7fdf108fc1e154ca85b57293be411ed307c493851cb9a3e2b7091c21cef8688f"
     },
     {
       "order": 6,
@@ -72,9 +72,9 @@
       "purpose": "\u03bcOR cell-level identity violation map (Fig. 1c, Fig. 2e)",
       "status": "ok",
       "exit": 0,
-      "seconds": 0.18,
+      "seconds": 0.19,
       "log": "results/logs/code66_MOR_Gillis_internal_consistency.log",
-      "log_sha256": "43e2fb53e6915aaceac6a2f6d43daf00bb61126d14a48d8fd5eae7f1b61bf6f7"
+      "log_sha256": "9ad05afed9861c9cc03117b8a3f7ff343c9418da25b77621d3a5bd7083f7ace6"
     },
     {
       "order": 7,
@@ -83,9 +83,9 @@
       "purpose": "\u03bcOR one-coordinate-per-arm extension, M1 versus M0 (Fig. 1c, Fig. 2f)",
       "status": "ok",
       "exit": 0,
-      "seconds": 1.55,
+      "seconds": 1.54,
       "log": "results/logs/code80_Gillis_arm_coordinate_extended_model.log",
-      "log_sha256": "5c8eab39ec5e67b45617f53c2f8cbf25757a8619cc81bb5473170c000ee4455c"
+      "log_sha256": "994e671ee1c5f222cb8b69b362946d8dbde05d27b11e827c3ed6bd2e62b38362"
     },
     {
       "order": 8,
@@ -94,9 +94,9 @@
       "purpose": "Atlas meta-audit, pair deviations and Emax census",
       "status": "ok",
       "exit": 0,
-      "seconds": 42.58,
+      "seconds": 27.2,
       "log": "results/logs/code67_BiasedSignalingAtlas_meta_audit.log",
-      "log_sha256": "47056785147bd979cac6eee1382239e60dc39276e8bb5ead66b48d37625fe22c"
+      "log_sha256": "efb990af1ab382494cbe4d4711f6c9c559d344a385703d9327d4c8ff17f6e29a"
     },
     {
       "order": 9,
@@ -105,9 +105,9 @@
       "purpose": "Atlas identity pipeline, entry/group/paper tables (Table 1, Fig. 1d)",
       "status": "ok",
       "exit": 0,
-      "seconds": 41.83,
+      "seconds": 46.26,
       "log": "results/logs/code71_Atlas_full_identity_pipeline.log",
-      "log_sha256": "7859ba4f2d6ed44c09fdf3964e98580d7e5b7e31e0ca3d5c74a2f901a3277456"
+      "log_sha256": "43955ec176eb3e6427aa1d564f628c4bd7a23fefe854ae6b47d40550c854cfe6"
     },
     {
       "order": 10,
@@ -116,9 +116,9 @@
       "purpose": "common-mode error, conservative aggregation, column jackknife (Fig. 3f)",
       "status": "ok",
       "exit": 0,
-      "seconds": 3.14,
+      "seconds": 3.65,
       "log": "results/logs/code73_robustness_triplet_blind_jackknife.log",
-      "log_sha256": "dc1465bdfad7afcb1fab73e4bfe16be873a2fa27608945af62f8d6dcc6e445b6"
+      "log_sha256": "fcd228992da88c0e594c7912d8a68e1f64f2e2ded5d3324c1264bbd9c7caf9c6"
     },
     {
       "order": 11,
@@ -127,9 +127,9 @@
       "purpose": "constraint projection and mixture-model fracture probability (Fig. 3c,d)",
       "status": "ok",
       "exit": 0,
-      "seconds": 1.39,
+      "seconds": 1.49,
       "log": "results/logs/code77_Atlas_constraint_projection_fracture_probability.log",
-      "log_sha256": "30e7d86e0f8f3e9681fd5b24b7277e6b9b608d272126453d8e7b7a936fc95274"
+      "log_sha256": "827db6000e39b70ac59e25c96cd91c24083429ab28c2a58751f81eb2427f8c55"
     },
     {
       "order": 12,
@@ -140,7 +140,7 @@
       "exit": 0,
       "seconds": 7.78,
       "log": "results/logs/code72_audit_method_false_positive_selfcheck.log",
-      "log_sha256": "19e125c31e6c9b7164218085bfe6024130ae36944e40dc0d0e9f8b9014cde1c0"
+      "log_sha256": "2bb0d4aefbd18b3b7353cd79cb597b82599a7d528f9f1c968afcb51d7a6df637"
     },
     {
       "order": 13,
@@ -149,31 +149,31 @@
       "purpose": "independent-error null at fixed cuts, entry and pair level (\u00a73.4 text)",
       "status": "ok",
       "exit": 0,
-      "seconds": 1.0,
+      "seconds": 0.86,
       "log": "results/logs/code72b_null_at_fixed_cut.log",
-      "log_sha256": "3061cd8f7202b172d2c2528e5d6a14c984c6e62409491d76ae908080a11d8341"
+      "log_sha256": "d5f00c903a049452c5660fc8d3d082fc3e541b5cddbed2ab7a2966b0ee0937a5"
     },
     {
       "order": 14,
-      "section": "SI \u00a72",
+      "section": "archive",
       "script": "code47_P5_blind_adjudication_boundary_predictor.py",
       "purpose": "P5 blind adjudication, Keshelava 2018",
       "status": "ok",
       "exit": 0,
-      "seconds": 15.32,
+      "seconds": 14.3,
       "log": "results/logs/code47_P5_blind_adjudication_boundary_predictor.log",
-      "log_sha256": "1d829f4d234df963721b27dba6caea37cc282822a9896b6cd0fdb4d6e3eaf5dc"
+      "log_sha256": "4f36e8fba5fc4cae8aaccf32cb717ce53a3e3a96dd7aaa4e9c8cb34e57478af4"
     },
     {
       "order": 15,
-      "section": "SI \u00a72",
+      "section": "archive",
       "script": "code47b_P5_erratum_readjudication.py",
       "purpose": "P5 erratum re-adjudication after timing exclusions",
       "status": "ok",
       "exit": 0,
-      "seconds": 12.89,
+      "seconds": 13.13,
       "log": "results/logs/code47b_P5_erratum_readjudication.log",
-      "log_sha256": "8eee98c20fd1445ecb8e8ff4bf04d04614dc41306663d5b8a9845a7a68b035e0"
+      "log_sha256": "f54f5949e8a8d7085b0916574c744d2fa9f8fc3aac88453e65d859246f641e0a"
     }
   ],
   "results_changed": [

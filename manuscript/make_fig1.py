@@ -65,20 +65,21 @@ def panel_label(ax, s, dx=-0.18, dy=1.06):
             va="top", ha="left")
 
 # ---------------------------------------------------------------- panel a
-# D2R fracture map (code 63 v1.1.0 run output)
+# D2R fracture map: read from code63's export, never hand-copied
 axa = fig.add_subplot(gs[0, 0])
 ligs = ["Dopamine", "Ropinirole", "Aripiprazole", "Cariprazine",
         "Bifeprunox", "Pardoprunox", "S-3PPP"]
-# (dCAMP, sdCAMP, dGaoB, sdGaoB); None = tau->inf, unresolvable
-d2r = {
-    "Dopamine":     (1.32, 0.45, 1.19, 0.15),
-    "Ropinirole":   (None, None, None, None),
-    "Aripiprazole": (-2.57, 0.10, -2.88, 0.16),
-    "Cariprazine":  (-1.15, 0.11, -1.36, 0.15),
-    "Bifeprunox":   (-3.54, 0.16, -3.46, 0.17),
-    "Pardoprunox":  (0.18, 0.10, -0.51, 0.16),
-    "S-3PPP":       (0.38, 0.10, 0.23, 0.14),
-}
+import json as _json
+_D2 = _json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..",
+                                   "results", "derived", "code63_d2r.json"),
+                      encoding="utf-8"))["test2"]
+d2r = {}
+for _l in ligs:
+    _c, _g = _D2[_l]["cAMP"], _D2[_l]["GaoB"]
+    if _c.get("status") != "ok" or _g.get("status") != "ok":
+        d2r[_l] = (None, None, None, None)
+    else:
+        d2r[_l] = (_c["delta"], _c["sd"], _g["delta"], _g["sd"])
 load_bearing = {"Aripiprazole", "Cariprazine", "Bifeprunox"}
 x = np.arange(len(ligs))
 for i, lig in enumerate(ligs):
@@ -120,18 +121,24 @@ axa.legend(fontsize=5.6, loc="lower left", frameon=False, ncol=2,
 panel_label(axa, "a")
 
 # ---------------------------------------------------------------- panel b
-# AT1R cross-arm fracture (code 65 run output)
+# AT1R cross-arm fracture: read from code65's export, never hand-copied
+import json as _json
+_D = _json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..",
+                                  "results", "derived", "code65_at1r.json"),
+                     encoding="utf-8"))["test_a"]
 axb = fig.add_subplot(gs[0, 1])
 conds = ["WT", "L112A"]
-data = {
-    "WT":    {"Gq": (6.11, 0.40), "bind": (7.50, 0.02), "arr": (7.63, 0.06),
-              "d": -1.52, "sig": "3.8"},
-    "L112A": {"Gq": (6.61, 0.30), "bind": (7.50, 0.02), "arr": (7.80, 0.08),
-              "d": -1.19, "sig": "3.8"},
-}
+data = {}
+for _c in conds:
+    _r = _D[_c]["TRV026"]
+    data[_c] = {"Gq": (_r["pka_gq"], _r["sem_gq"]),
+                "bind": (_r["pki"], _r["pki_sem"]),
+                "arr": (_r["pka_arr"], _r["sem_arr"]),
+                "d": _r["delta"], "sig": f"{_r['sigma']:.1f}"}
+_PKI = data["WT"]["bind"][0]
 offs = {"Gq": -0.22, "bind": 0.0, "arr": 0.22}
 style = {"Gq": ("o", BLUE, "Gq arm $pK_A$"),
-         "bind": ("D", "black", "binding $pK_i$ = 7.50"),
+         "bind": ("D", "black", f"binding $pK_i$ = {_PKI:.2f}"),
          "arr": ("s", VERM, "β-arrestin arm $pK_A$")}
 for j, cnd in enumerate(conds):
     for k in ["Gq", "bind", "arr"]:

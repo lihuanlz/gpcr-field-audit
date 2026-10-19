@@ -81,9 +81,9 @@ STEPS = [
      "false-positive rate, detection power, controls (Table 2)"),
     ("§4", "code72b_null_at_fixed_cut.py",
      "independent-error null at fixed cuts, entry and pair level (§3.4 text)"),
-    ("SI §2", "code47_P5_blind_adjudication_boundary_predictor.py",
+    ("archive", "code47_P5_blind_adjudication_boundary_predictor.py",
      "P5 blind adjudication, Keshelava 2018"),
-    ("SI §2", "code47b_P5_erratum_readjudication.py",
+    ("archive", "code47b_P5_erratum_readjudication.py",
      "P5 erratum re-adjudication after timing exclusions"),
 ]
 

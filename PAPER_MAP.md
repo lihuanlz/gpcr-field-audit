@@ -71,11 +71,22 @@ fails only on an unexpected one, so "does it still reproduce?" is a command, not
 copy is the pandas-1.x run; the export reflects whichever environment you run it in and adds
 the signed deviation (`dev_signed`), which the archived copy does not carry.
 
-**The P5 scripts are an appendix.** `code47`/`code47b` adjudicate a boundary predictor on the
-Keshelava 2018 calcium dataset. The manuscript body does not discuss P5; it appears only in
-SI §2. They are kept because the erratum record (208 → 195 cells) is part of the evidence
-trail, not because the paper depends on them.
+**The two P5 scripts are not part of the manuscript.** `code47`/`code47b` adjudicate a boundary
+predictor on the Keshelava 2018 calcium dataset — a different receptor system from the GPCR
+audit. They were removed from the Supporting Information in v1.0.8 and now sit under the
+`archive` label in `run_all.py`; their outputs stay under `results/` for the record. Nothing in
+the paper depends on them, and their cell counts follow the numeric build (208 vs 233), which is
+why `--check` treats them as the one known environment difference.
 
-**Verdict file names now match the archive.** `code47`/`code47b` write `code47_verdict.json` and
-`code47b_verdict.json`, the same names the archived copies carry. They were once called
-`*_ruling.json`; the scripts were renamed to match rather than the archive.
+**Verdict file names match the archive.** `code47`/`code47b` write `code47_verdict.json` and
+`code47b_verdict.json`, the same names the archived copies carry.
+
+**The anchor figures read their numbers from `results/derived/`.** `code63` writes
+`code63_d2r.json` (per ligand, per pathway: functional pK_A, pK_i, Δ and σ) and `code65` writes
+`code65_at1r.json` (per condition: both arm affinities, binding, Δ and σ). `make_fig1.py` and
+`make_fig2.py` load those files, so the panels cannot drift from the analysis again — which is
+exactly how the AT1R error survived: the figure had its own copy of the numbers. Re-run
+`code63`/`code65` before regenerating the figures. The remaining panels (the D2R time courses in
+Fig. 2a–c, the μOR heat map in Fig. 2e, and the calibration bars in Fig. 3e–f) still carry their
+values inline; those numbers have been checked against their sources and have not drifted, but
+they are not yet data-bound.
