@@ -13,11 +13,30 @@
 
 | Source | Used for | Access |
 |---|---|---|
-| Gillis et al., *Sci. Signal.* 13, eaaz3140 (2020), main Tables 1–3 and SI Table S1 | μOR ligand series for `code66` and `code80` | Publisher supplementary (~98 MB). The values used are transcribed inside the scripts and were checked value-by-value against the PDFs; no input file is read at run time. |
-| Wingler et al., *Science* 367, 888–892 (2020) | AT1R anchor case for `code65` | Publisher site. Values are transcribed inside the script. |
+| Gillis et al., *Sci. Signal.* 13, eaaz3140 (2020), main Tables 1–3 and SI Table S1 | μOR ligand series for `code66` and `code80` | Publisher supplementary. Values are transcribed inside the scripts; no input file is read at run time. Verified cell by cell on 2026-10-19 (see below). |
+| Wingler et al., *Science* 367, 888–892 (2020), main text and SI Tables S4/S5 | AT1R anchor case for `code65` | Publisher site. Values are transcribed inside the script. Verified cell by cell on 2026-10-19, after which eight cells were corrected (see below). |
+
+## Transcription audit (2026-10-19)
+
+Four source sets were checked cell by cell against the PDFs, rendering each table with `pdftoppm`
+and reading it at 2× rather than trusting a text extraction — text extraction reorders table
+columns, which is exactly how the AT1R error arose.
+
+| Source | Compared with | Result |
+|---|---|---|
+| Gillis 2020, main Tables 1–3 (Emax, pEC50, log τ) and SI Table S1 (log τ/K_A) | `code66` | 4 tables, all cells match. GIRK is the untreated column (DAMGO = 100), which is what identity 1 requires. |
+| Wingler 2020, SI Table S4 (binding log K_i) | `code65` | 5 ligands, all match. |
+| Wingler 2020, SI Table S5 (Emax / log EC50) | `code65` | **8 cells wrong**, corrected. The arrestin block is ordered *Wild-type (5% DNA) · L112A · Wild-type · Y292A*; the 5%-DNA column is an expression-matched control for L112A, not the wild-type response, and TRV026 had the Emax of one column blended with the pEC50 of another. Corrected Δ pK_A: WT −2.05 → −1.52 dex (5.0σ → 3.8σ), L112A −1.53 → −1.19 (3.8σ), Y292A −0.61 → −0.48 (1.2σ), TRV055 bound 1.6 → 0.8 dex. |
+| Klein Herenbrink 2016, SI Table S2 (Δlog τ/K_A), Table S5 (pK_i) and Table S6 (PPHT pK_a) | `code63` | pK_i 7/7 exact, PPHT pK_a 7/7 exact, 40 pathway differences match within 0.01 dex (rounding). |
+| BiasedSignalingAtlas export | `code67`, `code71` | Shipped file is byte-identical to the archived copy (SHA-256 `5d087379…`). |
+
+Archived copies used for the check (SHA-256 prefixes): Wingler SI `7cf0c273…`, Gillis SI
+`0150ba54…`, Gillis main text `b621f223…`, Klein Herenbrink SI `53be7387…`, and the two shipped
+spreadsheets `76988cc2…` (D2R) and `5d087379…` (Atlas), both of which match the archive byte for
+byte.
 
 ## Notes
 
 - All verdicts in `results/` are our own derived work product.
-- `results/atlas_audit/` holds the intermediate tables of the pandas-1.x run reported in the paper (269 groups, 17,987 pair comparisons, 3,931 triplets). Re-running `code71` under pandas ≥ 2 gives a different grouping (132 groups, 10,864 pairs, 3,167 triplets); the paper reports both in Section 5.5 and uses the 1.x numbers throughout.
+- The Atlas pipeline pins the pandas-1.x missing-value behaviour in the composite group key, so the archived tables (269 groups, 17,987 pairs, 3,931 triplets) re-derive exactly under the pinned environment. Without that pin, pandas 2+ collapses the same input to 132 groups and 10,864 pairs; the paper reports that collapse in Section 5.5 as what an unpinned re-run would produce.
 - `code72b_null_at_fixed_cut.py` needs no input file: it regenerates the null distribution from the same seed as `code72`.

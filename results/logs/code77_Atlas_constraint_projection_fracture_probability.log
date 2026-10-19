@@ -1,5 +1,5 @@
 $ D:\Users\lihua\anaconda3\python.exe code/code77_Atlas_constraint_projection_fracture_probability.py
-# exit 0  1.3s  2026-10-19T06:20:27+00:00
+# exit 0  1.4s  2026-10-19T06:36:07+00:00
 
 [B′] groups 269; median repair-cost RMS 0.072 dex; groups with cost RMS >0.15 dex 24.2%
 [C] EM converged @174 steps: pi_healthy=0.745, σ_h=0.0885, σ_b=0.683 dex; P>0.9 entries 15.0% (cf. |dev|>0.3: 14.5%)

@@ -1,25 +1,25 @@
 $ D:\Users\lihua\anaconda3\python.exe code/code65_AT1R_cross_arm_affinity_fracture.py
-# exit 0  0.2s  2026-10-19T06:19:33+00:00
+# exit 0  0.2s  2026-10-19T06:34:36+00:00
 
 == Test A: cross-arm functional affinity fracture (ΔpKA = pKA_Gq − pKA_arr) ==
-  WT     AngII   : Gq full agonism unresolvable; pKA_Gq ≤ 6.92 (Emax−2σ bound),pKA_arr=7.92 → Δ ≤ -1.00 dex (lower-bound fracture ≥1.0)
-  WT     TRV055  : Gq full agonism unresolvable; pKA_Gq ≤ 5.92 (Emax−2σ bound),pKA_arr=7.49 → Δ ≤ -1.57 dex (lower-bound fracture ≥1.6)
-  WT     TRV026  : pKA_Gq=6.11±0.40, pKA_arr=8.16±0.10, Δ=-2.05 dex (5.0σ)
-  L112A  TRV055  : pKA_Gq=6.68±1.00, pKA_arr=7.00±0.08, Δ=-0.32 dex (0.3σ)
-  L112A  TRV026  : pKA_Gq=6.16±0.30, pKA_arr=7.69±0.08, Δ=-1.53 dex (4.9σ)
-  Y292A  TRV026  : pKA_Gq=6.41±0.40, pKA_arr=7.02±0.09, Δ=-0.61 dex (1.5σ)
+  WT     AngII   : Emax 100% (Gq) and 100% (arr)  -  full agonism in both arms, pKA unresolvable on either side; skipped
+  WT     TRV055  : Gq full agonism unresolvable; pKA_Gq ≤ 5.92 (Emax−2σ bound),pKA_arr=6.68 → Δ ≤ -0.76 dex (lower-bound fracture ≥0.8)
+  WT     TRV026  : pKA_Gq=6.11±0.40, pKA_arr=7.63±0.06, Δ=-1.52 dex (3.8σ)
+  L112A  TRV055  : pKA_Gq=6.68±1.00, pKA_arr=7.49±0.10, Δ=-0.81 dex (0.8σ)
+  L112A  TRV026  : pKA_Gq=6.61±0.30, pKA_arr=7.80±0.08, Δ=-1.19 dex (3.8σ)
+  Y292A  TRV026  : pKA_Gq=6.54±0.40, pKA_arr=7.02±0.09, Δ=-0.48 dex (1.2σ)
 
 == Test B: binding-anchor zero-model criterion (pKi − pEC50 > 0.3 means fracture) ==
   WT     AngII    Gq  : pKi=7.41 pEC50=8.62 diff=-1.21 ok
-  WT     AngII    arr : pKi=7.41 pEC50=8.69 diff=-1.28 ok
+  WT     AngII    arr : pKi=7.41 pEC50=8.43 diff=-1.02 ok
   WT     TRV055   Gq  : pKi=6.30 pEC50=7.22 diff=-0.92 ok
-  WT     TRV055   arr : pKi=6.30 pEC50=7.80 diff=-1.50 ok
+  WT     TRV055   arr : pKi=6.30 pEC50=7.60 diff=-1.30 ok
   WT     S1I8     Gq  : pKi=8.73 pEC50=8.00 diff=+0.73 ⚠FRACTURE
   WT     TRV026   Gq  : pKi=7.50 pEC50=6.20 diff=+1.30 ⚠FRACTURE
-  WT     TRV026   arr : pKi=7.50 pEC50=8.30 diff=-0.80 ok
+  WT     TRV026   arr : pKi=7.50 pEC50=7.97 diff=-0.47 ok
   WT     TRV023   Gq  : pKi=6.42 pEC50=5.90 diff=+0.52 ⚠FRACTURE
   L112A  TRV055   Gq  : pKi=6.30 pEC50=7.40 diff=-1.10 ok
-  L112A  TRV055   arr : pKi=6.30 pEC50=7.54 diff=-1.24 ok
+  L112A  TRV055   arr : pKi=6.30 pEC50=7.80 diff=-1.50 ok
   L112A  S1I8     Gq  : pKi=8.73 pEC50=8.20 diff=+0.53 ⚠FRACTURE
   L112A  TRV026   Gq  : pKi=7.50 pEC50=6.70 diff=+0.80 ⚠FRACTURE
   L112A  TRV026   arr : pKi=7.50 pEC50=7.94 diff=-0.44 ok

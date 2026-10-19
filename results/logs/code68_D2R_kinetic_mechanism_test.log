@@ -1,5 +1,5 @@
 $ D:\Users\lihua\anaconda3\python.exe code/code68_D2R_kinetic_mechanism_test.py
-# exit 0  0.7s  2026-10-19T06:19:32+00:00
+# exit 0  0.6s  2026-10-19T06:34:36+00:00
 
 Table 5 vs Table 6 kinetic-affinity self-comparison: {'Aripiprazole': 'pKd5=8.97 / pKd6=9.68 / pKi=9.43', 'Cariprazine': 'pKd5=7.50 / pKd6=9.56 / pKi=8.9', 'Bifeprunox': 'pKd5=10.03 / pKd6=10.26 / pKi=10.36'}
 
