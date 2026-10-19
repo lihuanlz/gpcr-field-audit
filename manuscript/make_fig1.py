@@ -124,10 +124,10 @@ panel_label(axa, "a")
 axb = fig.add_subplot(gs[0, 1])
 conds = ["WT", "L112A"]
 data = {
-    "WT":    {"Gq": (6.11, 0.40), "bind": (7.50, 0.02), "arr": (8.16, 0.10),
-              "d": -2.05, "sig": "5.0"},
-    "L112A": {"Gq": (6.16, 0.30), "bind": (7.50, 0.02), "arr": (7.69, 0.08),
-              "d": -1.53, "sig": "4.9"},
+    "WT":    {"Gq": (6.11, 0.40), "bind": (7.50, 0.02), "arr": (7.63, 0.06),
+              "d": -1.52, "sig": "3.8"},
+    "L112A": {"Gq": (6.61, 0.30), "bind": (7.50, 0.02), "arr": (7.80, 0.08),
+              "d": -1.19, "sig": "3.8"},
 }
 offs = {"Gq": -0.22, "bind": 0.0, "arr": 0.22}
 style = {"Gq": ("o", BLUE, "Gq arm $pK_A$"),
@@ -150,7 +150,7 @@ for k, (m, c, lab) in style.items():
     axb.plot([], [], m, color=c, ms=5, mfc="white", mew=1.2, label=lab)
 axb.legend(fontsize=5.2, loc="upper right", frameon=False, handlelength=1.2,
            borderaxespad=0.2)
-axb.text(0.5, 5.60, "TRV055: |Δ| ≥ 1.6 dex (full-agonist lower bound, WT)",
+axb.text(0.5, 5.60, "TRV055: |Δ| ≥ 0.8 dex (G$_q$ arm saturates; lower bound, WT)",
          fontsize=5.6, color="0.25", ha="center")
 axb.text(-0.45, 8.68, "binding affinity sits between the two arm readings",
          fontsize=5.6, color="0.25", ha="left", va="top")

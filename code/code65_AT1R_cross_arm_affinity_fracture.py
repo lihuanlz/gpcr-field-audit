@@ -48,23 +48,27 @@ import numpy as np
 pKi = {"AngII": (7.41, .03), "S1I8": (8.73, .03), "TRV026": (7.50, .02),
        "TRV023": (6.42, .01), "TRV055": (6.30, .10)}
 # function: {condition: {ligand: {arm: (Emax%, semE, pEC50, semP)}}}
+# Transcribed from Wingler et al. 2020 SI Table S5 (rendered from SI.pdf p.17 and read cell by cell).
+# Column order in the arrestin block of that table is: Wild-type (5% DNA) | L112A | Wild-type | Y292A.
+# The undiluted Wild-type column is used for the WT condition; the 5%-DNA column is the
+# expression-matched control for L112A and is *not* the wild-type response.
 FUNC = {
 "WT": {
- "AngII":  {"Gq": (100,1,8.62,.05), "arr": (83,2,8.69,.09)},
- "TRV055": {"Gq": (99,2,7.22,.07),  "arr": (51,2,7.80,.10)},
+ "AngII":  {"Gq": (100,1,8.62,.05), "arr": (100,1,8.43,.05)},
+ "TRV055": {"Gq": (99,2,7.22,.07),  "arr": (88,3,7.60,.10)},
  "S1I8":   {"Gq": (25,2,8.00,.30),  "arr": None},
- "TRV026": {"Gq": (18,3,6.20,.40),  "arr": (27.4,.7,8.30,.10)},
+ "TRV026": {"Gq": (18,3,6.20,.40),  "arr": (54,1,7.97,.06)},
  "TRV023": {"Gq": (23,5,5.90,.40),  "arr": None}},
 "L112A": {
- "TRV055": {"Gq": (81,3,7.40,1.00), "arr": (71,2,7.54,.07)},
+ "TRV055": {"Gq": (81,3,7.40,1.00), "arr": (51,2,7.80,.10)},
  "S1I8":   {"Gq": (71,2,8.20,.10),  "arr": None},
- "TRV026": {"Gq": (71,2,6.70,.30),  "arr": (44,1,7.94,.08)},
- "TRV023": {"Gq": (18,2,6.50,.30),  "arr": None}},
+ "TRV026": {"Gq": (18,2,6.70,.30),  "arr": (27.4,.7,7.94,.08)},
+ "TRV023": {"Gq": (25,3,6.50,.30),  "arr": None}},
 "Y292A": {
  "TRV055": {"Gq": (86,3,7.00,.10),  "arr": None},
  "S1I8":   {"Gq": (35,3,8.20,.30),  "arr": None},
- "TRV026": {"Gq": (35,3,6.60,.40),  "arr": (20.3,.8,7.12,.09)},
- "TRV023": {"Gq": (13,3,6.40,.30),  "arr": None}},
+ "TRV026": {"Gq": (13,3,6.60,.40),  "arr": (20.3,.8,7.12,.09)},
+ "TRV023": {"Gq": (32,5,6.40,.30),  "arr": None}},
 }
 
 def pka_from(em, pec):
@@ -90,9 +94,16 @@ def main():
                     em_lo = emG - 2 * seG
                     tau_lo = em_lo / (100 - em_lo)
                     bound = peG - np.log10(1 + tau_lo)
+                    if emA >= 99:
+                        print(f"  {cond:6s} {lig:8s}: Emax {emG:.0f}% (Gq) and {emA:.0f}% (arr)  -  "
+                              f"full agonism in both arms, pKA unresolvable on either side; skipped")
+                        continue
                     d_lo = bound - pka_from(emA, peA)[0]
                     print(f"  {cond:6s} {lig:8s}: Gq full agonism unresolvable; pKA_Gq ≤ {bound:.2f} (Emax−2σ bound),"
                           f"pKA_arr={pka_from(emA,peA)[0]:.2f} → Δ ≤ {d_lo:+.2f} dex (lower-bound fracture ≥{abs(d_lo):.1f})")
+                    continue
+                if emA >= 99:
+                    print(f"  {cond:6s} {lig:8s}: arr full agonism unresolvable; pKA_Gq={pka_from(emG,peG)[0]:.2f}; skipped")
                     continue
                 pG, tG = pka_from(emG, peG); pA, tA = pka_from(emA, peA)
                 sG = sem_pka(emG, seG, spG); sA = sem_pka(emA, seA, spA)

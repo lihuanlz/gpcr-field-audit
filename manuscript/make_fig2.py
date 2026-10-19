@@ -91,23 +91,24 @@ ax.text(88, 0.62, "bias factor bifeprunox vs ropinirole:\n-0.42 dex (2 min) -> +
 
 # ---- d: AT1R cross-arm fracture (code 65) ----
 ax = axs[3]
-rows = [("TRV026 WT", -2.05, 0.41, "5.0s"), ("TRV026 L112A", -1.53, 0.31, "4.9s"),
-        ("TRV026 Y292A", -0.61, 0.41, "1.5s")]
+rows = [("TRV026 WT", -1.52, 0.40, "3.8s"), ("TRV026 L112A", -1.19, 0.31, "3.8s"),
+        ("TRV026 Y292A", -0.48, 0.41, "1.2s")]
 xx = np.arange(3)
 for i, (lab, v, sd, sig) in enumerate(rows):
     ax.errorbar(i, v, yerr=sd, fmt="o", ms=5, color=OI["verm"], elinewidth=0.8, capsize=2)
     ax.text(i + 0.14, v, sig.replace("s", " sigma"), fontsize=5, color=OI["verm"],
             va="center", ha="left")
-# lower bounds
-for i, (lab, v) in enumerate([("TRV055 WT", -1.57), ("AngII WT", -1.00)]):
+# lower bound: TRV055 Gq arm saturates, so only a bound is available
+# (AngII saturates in both arms and is omitted)
+for i, (lab, v) in enumerate([("TRV055 WT", -0.76)]):
     ax.plot(3 + i, v, "v", ms=5, color=OI["orange"])
     ax.text(3 + i, v - 0.32, f"bound >= {abs(v):.1f}", ha="center", fontsize=5, color=OI["orange"])
 ax.axhline(0, color="0.5", lw=0.5)
 ax.axhline(-0.3, color="0.4", ls="--", lw=0.6)
-ax.set_xticks(list(range(5)), ["TRV026\nWT", "TRV026\nL112A", "TRV026\nY292A", "TRV055\nWT", "AngII\nWT"], fontsize=5.5)
+ax.set_xticks(list(range(4)), ["TRV026\nWT", "TRV026\nL112A", "TRV026\nY292A", "TRV055\nWT"], fontsize=5.5)
 ax.set_ylabel(r"pK$_{A,Gq}$ - pK$_{A,arr}$ (dex)")
 ax.set_title("AT1R arm-versus-arm fracture")
-ax.set_ylim(-2.6, 0.5)
+ax.set_ylim(-2.2, 0.5)
 
 # ---- e: muOR identity-1 heatmap (code 66) ----
 ax = axs[4]
@@ -158,7 +159,7 @@ ax.text(0.98, 0.97, "dGIRK = -0.805 +/- 0.049\nGIRK |resid| 0.811 -> 0.107 dex\n
 ax.invert_yaxis()
 
 for i, ax in enumerate(axs):
-    panel_label(ax, "abcdef"[i], x=-0.10, y=1.12)
+    panel_label(ax, "abcdef"[i], x=-0.12, y=1.20)
 
 fig.tight_layout()
 fig.savefig(os.path.join(HERE, "fig2_fracture_maps.png"), bbox_inches="tight", dpi=300)
