@@ -36,10 +36,10 @@ Verdict:
   corresponds to real coupling structure, data-processing shift, or a table-production accident, current data cannot adjudicate.
 
 Outputs:
-- /mnt/agents/output/04_cell_line_4/results/code80_arm_coordinate_residuals.csv
-- /mnt/agents/output/04_cell_line_4/results/code80_arm_coordinate_posterior.csv
-- /mnt/agents/output/04_cell_line_4/results/code80_model_comparison.csv
-- /mnt/agents/output/04_cell_line_4/results/code80_leave_one_out_girk.csv
+- results/code80_arm_coordinate_residuals.csv
+- results/code80_arm_coordinate_posterior.csv
+- results/code80_model_comparison.csv
+- results/code80_leave_one_out_girk.csv
 """
 
 import os
@@ -49,7 +49,7 @@ import pandas as pd
 from scipy.optimize import minimize_scalar
 from scipy.stats import norm
 
-OUTDIR = "/mnt/agents/output/04_cell_line_4/results"
+OUTDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "results")
 LIG6 = ["Morphine", "Oxycodone", "Oliceridine", "PZM21", "SR-17018", "Buprenorphine"]
 LN10 = np.log(10)
 

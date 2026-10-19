@@ -50,8 +50,8 @@ import sys
 import json
 import numpy as np
 
-ROOT = "/mnt/agents/output/01_cell_line_1/public_data/Keshelava2018/SD1/source_data_1"
-OUTDIR = "/mnt/agents/output/01_cell_line_1/results/Keshelava2018_P5"
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "public_data", "Keshelava2018", "SD1", "source_data_1")
+OUTDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "results", "Keshelava2018_P5")
 os.makedirs(OUTDIR, exist_ok=True)
 LOG_PATH = os.path.join(OUTDIR, "code47_judgment_log.txt")
 _log = open(LOG_PATH, "w", encoding="utf-8")

@@ -1,0 +1,5 @@
+model,sigma_delta,log_marginal_likelihood,delta_logml_vs_m0,dataset
+M0_classic,0.0,-121.63793203154908,0.0,primary_exclude_cAMP_logR_duplicate
+M1_arm_coordinate,0.3737800575284884,6.589146630215196,128.22707866176427,primary_exclude_cAMP_logR_duplicate
+M0_classic,0.0,-127.96609564345151,0.0,sensitivity_keep_duplicate
+M1_arm_coordinate,0.32047199618861105,-4.122112836022938,123.84398280742857,sensitivity_keep_duplicate

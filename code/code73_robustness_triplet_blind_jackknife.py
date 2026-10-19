@@ -100,7 +100,7 @@ print("=" * 70)
 print("Module B | Atlas group-level aggregation test + correlation calibration (Strategy 1, revised)")
 print("=" * 70)
 
-E = pd.read_csv('/mnt/agents/output/04_cell_line_4/results/atlas_audit/atlas_audit_entries.csv')
+E = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "results", "atlas_audit", "atlas_audit_entries.csv"))
 E = E.dropna(subset=['dev_entry'])
 # Rebuild the group key with the same definition as code71: doi|receptor|process|level|cell|effector
 E['grp'] = (E['doi'].astype(str) + '|' + E['receptor'].astype(str) + '|' +
@@ -232,7 +232,7 @@ def tier(r):
 B['label'] = B.apply(tier, axis=1)
 B = B.sort_values('confidence', ascending=False)
 
-out = '/mnt/agents/output/04_cell_line_4/results/atlas_audit/atlas_confidence_matrix.csv'
+out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "results", "atlas_audit", "atlas_confidence_matrix.csv")
 B.to_csv(out, index=False)
 print(f"Written: {out}")
 print(f"Label distribution: {B['label'].value_counts().to_dict()}")
