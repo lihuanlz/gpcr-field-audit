@@ -507,7 +507,7 @@ def main():
         "units": rows,
         "verdicts": {"P5-1": v51, "P5-2": v52, "P5-3": v53, "overall": overall},
     }
-    with open(os.path.join(OUTDIR, "code47b_ruling.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(OUTDIR, "code47b_verdict.json"), "w", encoding="utf-8") as f:
         json.dump(verdict, f, ensure_ascii=False, indent=2,
                   default=lambda o: int(o) if isinstance(o, np.integer) else float(o) if isinstance(o, np.floating) else str(o))
     say("main products saved: unit_table.csv / ruling.json / judgment_log.txt")

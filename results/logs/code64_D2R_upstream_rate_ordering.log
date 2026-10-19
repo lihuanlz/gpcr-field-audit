@@ -1,0 +1,56 @@
+$ D:\Users\lihua\anaconda3\python.exe code/code64_D2R_upstream_rate_ordering.py
+# exit 0  0.9s  2026-10-19T05:45:06+00:00
+
+== Apparent t50 (min) and quality control ==
+
+CAMYEL cAMP
+  Dopamine     : t50=   1.4 min, amp= 100.0% DA, monotonicity=0.90, window=[0,90] min
+  Aripiprazole : t50=   1.4 min, amp=  33.7% DA, monotonicity=0.69, window=[0,90] min
+  Bifeprunox   : t50=   1.3 min, amp=  51.0% DA, monotonicity=0.76, window=[0,90] min
+  S-3PPP       : t50=   1.1 min, amp=  22.1% DA, monotonicity=0.73, window=[0,90] min
+
+pERK12
+  Dopamine     : t50=  25.8 min, amp= 100.0% DA, monotonicity=0.29, window=[0,30] min
+  Ropinirole   : t50=   2.6 min, amp= 161.6% DA, monotonicity=0.43, window=[0,30] min
+  Aripiprazole : t50=   3.7 min, amp=  55.7% DA, monotonicity=0.43, window=[0,30] min
+  Cariprazine  : t50=   3.9 min, amp=  62.1% DA, monotonicity=0.57, window=[0,30] min
+  Bifeprunox   : t50=   3.7 min, amp= 571.8% DA, monotonicity=0.43, window=[0,30] min
+  Pardoprunox  : t50=   2.8 min, amp= 145.3% DA, monotonicity=0.43, window=[0,30] min
+  S-3PPP       : t50=   2.9 min, amp= 105.9% DA, monotonicity=0.43, window=[0,30] min
+
+B-arrestin2
+  Dopamine     : t50=   0.5 min, amp= 100.0% DA, monotonicity=0.62, window=[0,27] min
+  Aripiprazole : t50=   6.6 min, amp=  79.2% DA, monotonicity=0.64, window=[0,27] min
+  Bifeprunox   : t50=   1.3 min, amp=  42.2% DA, monotonicity=0.47, window=[0,27] min
+  S-3PPP       : t50=   0.6 min, amp=  10.7% DA, monotonicity=0.47, window=[0,27] min
+
+Gai1
+  Dopamine     : t50=   0.9 min, amp= 100.0% DA, monotonicity=0.48, window=[0,27] min
+  Aripiprazole : t50=   9.0 min, amp= 803.9% DA, monotonicity=0.73, window=[0,27] min
+  Bifeprunox   : t50=  17.9 min, amp= 223.9% DA, monotonicity=0.60, window=[0,27] min
+  S-3PPP       : t50=  20.4 min, amp= 134.1% DA, monotonicity=0.59, window=[0,27] min
+
+Gao
+  Dopamine     : t50=   1.3 min, amp= 100.0% DA, monotonicity=0.58, window=[0,90] min
+  Aripiprazole : t50=   1.4 min, amp=  60.1% DA, monotonicity=0.50, window=[0,90] min
+  Bifeprunox   : t50=   0.9 min, amp=  36.1% DA, monotonicity=0.53, window=[0,90] min
+  S-3PPP       : t50=   4.5 min, amp=  89.5% DA, monotonicity=0.58, window=[0,90] min
+
+== Verdict ==
+Monotonicity 0.3–0.7, physically unreasonable normalized amplitudes (pERK 572%, Gαi1 804%),
+pERK window contains only the decay tail -> apparent t50 ligand differences are not credible.
+This batch of single-concentration time courses is insufficient for a kinetic-ordering test (negative, double-recorded).
+Valid evidence for kinetic breakage remains Code 63 Test 3 (SI T7 pEC50 time course).
+
+
+--- stderr ---
+D:\Users\lihua\anaconda3\Lib\site-packages\openpyxl\worksheet\_read_only.py:85: UserWarning: Unknown extension is not supported and will be removed
+  for idx, row in parser.parse():
+D:\Users\lihua\anaconda3\Lib\site-packages\openpyxl\worksheet\_read_only.py:85: UserWarning: Unknown extension is not supported and will be removed
+  for idx, row in parser.parse():
+D:\Users\lihua\anaconda3\Lib\site-packages\openpyxl\worksheet\_read_only.py:85: UserWarning: Unknown extension is not supported and will be removed
+  for idx, row in parser.parse():
+D:\Users\lihua\anaconda3\Lib\site-packages\openpyxl\worksheet\_read_only.py:85: UserWarning: Unknown extension is not supported and will be removed
+  for idx, row in parser.parse():
+D:\Users\lihua\anaconda3\Lib\site-packages\openpyxl\worksheet\_read_only.py:85: UserWarning: Unknown extension is not supported and will be removed
+  for idx, row in parser.parse():

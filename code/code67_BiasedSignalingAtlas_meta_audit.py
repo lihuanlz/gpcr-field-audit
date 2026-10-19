@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 code67_BiasedSignalingAtlas_meta_audit.py  v1.0.0
 ============================================================
@@ -62,18 +62,32 @@ for k, v in sub.groupby("grp"):
     for i, j in itertools.combinations(d.index, 2):
         dtc = d.loc[i, "tc"] - d.loc[j, "tc"]
         dra = d.loc[i, "logRA"] - d.loc[j, "logRA"]
-        pairs.append((d.loc[i, "Reference DOI or PMID"], abs(dtc - dra)))
-pairs = pd.DataFrame(pairs, columns=["doi", "dev"])
+        pairs.append((d.loc[i, "Reference DOI or PMID"],
+                      d.loc[i, "Receptor UniProt entry name or code"],
+                      k,
+                      d.loc[i, "Ligand tested for bias or func. Sel. Name"],
+                      d.loc[j, "Ligand tested for bias or func. Sel. Name"],
+                      dtc - dra))
+pairs = pd.DataFrame(pairs,
+                     columns=["doi", "receptor", "group", "ligand_i", "ligand_j", "dev_signed"])
+pairs["dev_dex"] = pairs["dev_signed"].abs()
 print("\n=== Test A: |Δlog(τ/KA) − Δlog(Emax/EC50)| (identity should ≈0) ===")
 print(f"pairwise comparisons in multi-ligand groups: {len(pairs)}")
 for q in [50, 75, 90, 95, 99]:
-    print(f"  P{q}: {np.percentile(pairs['dev'], q):.2f} dex")
-print(f"  fraction >0.3 dex: {(pairs['dev']>0.3).mean():.1%}; >1 dex: {(pairs['dev']>1).mean():.1%}; max {pairs['dev'].max():.2f}")
-per = pairs.groupby("doi")["dev"].median()
+    print(f"  P{q}: {np.percentile(pairs['dev_dex'], q):.2f} dex")
+print(f"  fraction >0.3 dex: {(pairs['dev_dex']>0.3).mean():.1%}; >1 dex: {(pairs['dev_dex']>1).mean():.1%}; max {pairs['dev_dex'].max():.2f}")
+per = pairs.groupby("doi")["dev_dex"].median()
 print(f"  publications involved {len(per)}; publications with median deviation >0.3 dex {(per>0.3).sum()} ({(per>0.3).mean():.0%})")
 print("  5 publications with the largest median deviation:")
 for doi, v in per.sort_values(ascending=False).head(5).items():
     print(f"    {doi}: {v:.2f} dex")
+if "--write" in sys.argv:
+    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "results")
+    os.makedirs(out, exist_ok=True)
+    pairs.to_csv(os.path.join(out, "atlas_pair_violations.csv"), index=False)
+    print(f"\n[--write] {len(pairs)} pair rows -> results/atlas_pair_violations.csv")
+    print("          the archived copy is the pandas-1.x run (17,987 rows); "
+          "this export reflects your environment and also carries the signed deviation")
 
 # ---------- Test B ----------
 print("\n=== Test B: Emax QC ===")
@@ -107,5 +121,5 @@ girk = gil[gil["Measured process"] == "Activation"][["Ligand tested for bias or 
 print("  GIRK (Activation) rows  -  note Emax is the β-CNA-treated column (DAMGO=75); the untreated column was not transcribed:")
 print(girk.to_string(index=False))
 gilp = pairs[pairs["doi"] == "10.1126/scisignal.aaz3140"]
-print(f"  Gillis group in test A: {len(gilp)} pairs, median deviation {gilp['dev'].median():.2f} dex, "
-      f" fraction >0.3 {(gilp['dev']>0.3).mean():.0%}, max {gilp['dev'].max():.2f}")
+print(f"  Gillis group in test A: {len(gilp)} pairs, median deviation {gilp['dev_dex'].median():.2f} dex, "
+      f" fraction >0.3 {(gilp['dev_dex']>0.3).mean():.0%}, max {gilp['dev_dex'].max():.2f}")

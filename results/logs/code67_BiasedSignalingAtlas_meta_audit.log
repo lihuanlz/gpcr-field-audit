@@ -1,0 +1,44 @@
+$ D:\Users\lihua\anaconda3\python.exe code/code67_BiasedSignalingAtlas_meta_audit.py
+# exit 0  24.0s  2026-10-19T05:45:33+00:00
+
+total rows 9041; with log(τ/KA) 3293; with Δlog(τ/KA) 2293;with Emax 7682; valid pEC50/EC50 7617
+
+=== Test A: |Δlog(τ/KA) − Δlog(Emax/EC50)| (identity should ≈0) ===
+pairwise comparisons in multi-ligand groups: 10864
+  P50: 0.07 dex
+  P75: 0.22 dex
+  P90: 0.43 dex
+  P95: 0.66 dex
+  P99: 1.36 dex
+  fraction >0.3 dex: 16.9%; >1 dex: 2.3%; max 3.32
+  publications involved 41; publications with median deviation >0.3 dex 11 (27%)
+  5 publications with the largest median deviation:
+    10.1111/bph.13854: 1.12 dex
+    10.1126/scisignal.aar4309: 0.96 dex
+    10.1124/mol.115.101980: 0.72 dex
+    10.1074/jbc.M116.757559: 0.57 dex
+    10.1016/j.bcp.2018.04.021: 0.56 dex
+
+=== Test B: Emax QC ===
+  Emax>110%: 711 rows; >150%: 181 rows; >300%: 30 rows; negative: 8 rows
+  (>100% is legitimate when referenced to a partial agonist  -  flag only, no conviction)
+
+=== Test C: Δlog(τ/KA) cross-pathway triangular closure ===
+  triangles 3167; median 0.0000; fraction >0.01 0.000; max 0.0000
+
+=== Cross-check: transcription of Gillis 2020 (scisignal.aaz3140) in the Atlas ===
+  Atlas contains 52 rows / 9 ligands
+  GIRK (Activation) rows  -  note Emax is the β-CNA-treated column (DAMGO=75); the untreated column was not transcribed:
+Ligand tested for bias or func. Sel. Name  tc   em  pEC50u
+                            Buprenorphine 7.0 19.0    7.93
+                                    DAMGO 7.1 75.0    7.29
+                                 Fentanyl 8.2 74.0    8.34
+                                 Morphine 6.9 56.0    7.16
+                                    PZM21 7.3 40.0    7.78
+                                 SR-17018 5.5 33.0    6.18
+                                   TRV130 7.5 38.0    7.88
+  Gillis group in test A: 100 pairs, median deviation 0.19 dex,  fraction >0.3 27%, max 1.45
+
+--- stderr ---
+D:\Users\lihua\anaconda3\Lib\site-packages\openpyxl\worksheet\_read_only.py:85: UserWarning: Data Validation extension is not supported and will be removed
+  for idx, row in parser.parse():

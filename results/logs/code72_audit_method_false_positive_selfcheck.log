@@ -1,0 +1,52 @@
+$ D:\Users\lihua\anaconda3\python.exe code/code72_audit_method_false_positive_selfcheck.py
+# exit 0  5.0s  2026-10-19T05:46:05+00:00
+
+==========================================================================================
+M1  Gillis structural null simulation (true model self-consistent; SEM at original magnitude: pEC50±0.2, logtau±0.2,
+    Emax±5, log(tau/KA)±0.15)
+==========================================================================================
+identity-1 false-positive rate = 0.0543   identity-2 false-positive rate = 0.0091
+observed for comparison: Gillis GIRK column identity-1 5/5, identity-2 4/5; full-table |dev|>0.3 at 39%/38%
+
+==========================================================================================
+M2  spurious deviation from legitimate nH!=1 variation (Atlas identity-A calibration)
+==========================================================================================
+|delta log(tau/KA) - delta log(RA)| for nH in [0.8,1.25]: median 0.004 dex, >0.3 at 0.0000, >1.0 at 0.00000
+observed Atlas for comparison: >0.3 at 21.5%, >1.0 at 4.2%
+(boundary note: the literature side is back-computed under nH=1; if the original papers fitted nH freely, the spurious deviation would be larger  - 
+ but even relaxing M2 several-fold still falls short of 21.5%; nH dispersion is not the main cause of the Atlas inconsistency)
+
+==========================================================================================
+M3  null-model criterion (pKi-pEC50 > 0.3 dex) false-positive rate
+==========================================================================================
+false-positive rate = 0.00003 (N=200000); comparison: D2R observed 3/7 ligands alarm
+
+==========================================================================================
+M4  detection power (identity-2 structure, injected systematic rupture delta)
+==========================================================================================
+  delta=0.2 dex -> per-cell detection rate 0.04
+  delta=0.3 dex -> per-cell detection rate 0.07
+  delta=0.5 dex -> per-cell detection rate 0.24
+  delta=0.8 dex -> per-cell detection rate 0.65
+  delta=1.0 dex -> per-cell detection rate 0.87
+  delta=1.5 dex -> per-cell detection rate 1.00
+  delta=2.0 dex -> per-cell detection rate 1.00
+(implication: our criterion is conservative  -  small ruptures of 0.3-0.5 dex are likely missed;
+ what is detected are hard failures of >=0.8 dex magnitude, or same-direction joint evidence across multiple cells in one column)
+
+==========================================================================================
+M5  threshold robustness (Atlas observed distribution)
+==========================================================================================
+  threshold 0.2 dex: groups 32.58%, papers 36.59%
+  threshold 0.3 dex: groups 21.21%, papers 26.83%
+  threshold 0.5 dex: groups 12.88%, papers 14.63%
+  threshold 0.8 dex: groups 6.82%, papers 4.88%
+  threshold 1.0 dex: groups 3.79%, papers 2.44%
+(conclusion: 'about 1/5-1/4 of groups/papers are not self-consistent' is qualitatively unchanged across the 0.2-0.5 dex threshold band)
+
+==========================================================================================
+M6  column-level joint evidence + direction symmetry
+==========================================================================================
+Gillis GIRK column: null-hypothesis probability of identity-1 5/5 alarms = 4.71e-07
+identity-2 4/5 alarms ~ 3.40e-08 (binomial approximation)
+alarm direction symmetry (should be ~50/50): 857/899

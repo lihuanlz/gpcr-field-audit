@@ -1,0 +1,55 @@
+$ D:\Users\lihua\anaconda3\python.exe code/code63_GPCR_functional_affinity_fracture.py
+# exit 0  0.1s  2026-10-19T05:45:06+00:00
+
+== Test 2: functional KA inversion, full error propagation ==
+ligand        path  pKA_func    pKi   Δ(dex)   σ(Δ) signif.
+Dopamine      cAMP      6.37   5.05    +1.32   0.45   2.9σ
+Dopamine      GaoB      6.24   5.05    +1.19   0.15   8.1σ
+Ropinirole    cAMP    τ→∞ (full agonism, KA indistinguishable)
+Ropinirole    GaoB    τ→∞ (full agonism, KA indistinguishable)
+Aripiprazole  cAMP      6.86   9.43    -2.57   0.10  26.4σ
+Aripiprazole  GaoB      6.55   9.43    -2.88   0.16  17.6σ
+Cariprazine   cAMP      7.75   8.90    -1.15   0.11  10.6σ
+Cariprazine   GaoB      7.54   8.90    -1.36   0.15   9.0σ
+Bifeprunox    cAMP      6.82  10.36    -3.54   0.16  22.6σ
+Bifeprunox    GaoB      6.90  10.36    -3.46   0.17  20.8σ
+Pardoprunox   cAMP      7.81   7.63    +0.18   0.10   1.9σ
+Pardoprunox   GaoB      7.12   7.63    -0.51   0.16   3.1σ
+S-3PPP        cAMP      6.22   5.84    +0.38   0.10   4.0σ
+S-3PPP        GaoB      6.07   5.84    +0.23   0.14   1.7σ
+
+== Self-audit (1): zero-model criterion pKi−pEC50 (>0.3 = fracture, no fitting assumptions) ==
+  Dopamine      pKi= 5.05 pEC50= 8.07 diff=-3.02  spare-receptor direction (expected for full agonism)
+  Ropinirole    pKi= 5.60 pEC50= 7.65 diff=-2.05  spare-receptor direction (expected for full agonism)
+  Aripiprazole  pKi= 9.43 pEC50= 7.47 diff=+1.96  ⚠fracture
+  Cariprazine   pKi= 8.90 pEC50= 8.38 diff=+0.52  ⚠fracture
+  Bifeprunox    pKi=10.36 pEC50= 7.91 diff=+2.45  ⚠fracture
+  Pardoprunox   pKi= 7.63 pEC50= 8.69 diff=-1.06  spare-receptor direction (expected for full agonism)
+  S-3PPP        pKi= 5.84 pEC50= 6.78 diff=-0.94  spare-receptor direction (expected for full agonism)
+
+== Self-audit (2): second tracer PPHT kinetics pKd replication ==
+  Dopamine      pKd_ppht= 5.18 two-tracer diff=+0.13 pKd−pEC50=-2.89
+  Ropinirole    pKd_ppht= 5.73 two-tracer diff=+0.13 pKd−pEC50=-1.92
+  Aripiprazole  pKd_ppht= 9.66 two-tracer diff=+0.23 pKd−pEC50=+2.19
+  Cariprazine   pKd_ppht= 9.53 two-tracer diff=+0.63 pKd−pEC50=+1.15
+  Bifeprunox    pKd_ppht=10.30 two-tracer diff=-0.06 pKd−pEC50=+2.39
+  Pardoprunox   pKd_ppht= 7.75 two-tracer diff=+0.12 pKd−pEC50=-0.94
+  S-3PPP        pKd_ppht= 6.11 two-tracer diff=+0.27 pKd−pEC50=-0.67
+
+== Self-audit (3): system-maximum perturbation (E_sys=100/105/110, cAMP arm Δ) ==
+  E_sys=100: Dopa=+1.32, Ropi=+0.07, Arip=-2.57, Cari=-1.15, Bife=-3.54, Pard=+0.18, S-3P=+0.38
+  E_sys=105: Dopa=+1.86, Ropi=+0.77, Arip=-2.49, Cari=-1.07, Bife=-3.33, Pard=+0.33, S-3P=+0.45
+  E_sys=110: Dopa=+2.10, Ropi=+1.07, Arip=-2.42, Cari=-1.00, Bife=-3.19, Pard=+0.43, S-3P=+0.51
+
+== Test 3: pEC50 time drift (2'→90') and bias-factor swing ==
+  Dopamine     : 8.40→7.03  Δ=-1.37 dex
+  Ropinirole   : 8.02→6.76  Δ=-1.26 dex
+  Aripiprazole : 7.26→7.53  Δ=+0.27 dex
+  Cariprazine  : 8.30→8.16  Δ=-0.14 dex
+  Bifeprunox   : 7.60→8.69  Δ=+1.09 dex
+  Pardoprunox  : 8.98→7.83  Δ=-1.15 dex
+  S-3PPP       : 7.10→5.82  Δ=-1.28 dex
+  Bifeprunox    vs Ropi: 2'=-0.42 → 90'=+1.93  swing=2.35 dex
+  Aripiprazole  vs Ropi: 2'=-0.76 → 90'=+0.77  swing=1.53 dex
+  Cariprazine   vs Ropi: 2'=+0.28 → 90'=+1.40  swing=1.21 dex
+  S-3PPP        vs Ropi: 2'=-0.92 → 90'=-0.94  swing=0.15 dex

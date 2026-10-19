@@ -1,7 +1,12 @@
 __pycache__/
 *.pyc
 pass*.log
+
+# LaTeX build artefacts (manuscript/ only; results/logs/ must stay tracked)
 *.aux
-*.log
 *.out
 *.toc
+manuscript/*.log
+
+# run_all.py scratch snapshots
+runs/

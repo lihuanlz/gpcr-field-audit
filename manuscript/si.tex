@@ -18,38 +18,44 @@ fails its own algebraic identities}
 \maketitle
 
 \noindent This Supporting Information documents the complete computational
-output of the accompanying repository (\texttt{gpcr-field-audit}, release
-v1.0.1): every analysis script, the adjudication tables, the per-source
-meta-audit table, and the provenance of third-party data. Numbers are
-transcribed verbatim from \texttt{results/}; scripts are plain Python~3
-(numpy/scipy/matplotlib/pandas).
+output of the accompanying repository (\texttt{gpcr-field-audit}): every analysis script,
+the adjudication tables, the per-source meta-audit table, and the provenance of third-party
+data. Numbers are transcribed verbatim from \texttt{results/}; scripts are plain Python~3
+(numpy/scipy/matplotlib/pandas). The fifteen scripts run in manuscript order under
+\texttt{run\_all.py}, which archives each console output to \texttt{results/logs/} and writes a
+manifest recording package versions, exit codes and file hashes; \texttt{PAPER\_MAP.md} maps every
+script to the panel or table it backs.
 
 \tableofcontents
 \newpage
 
 \section{Pipeline map: scripts and outputs}
 
-\begin{longtable}{p{5.2cm} p{7.2cm} p{3.4cm}}
+\begin{longtable}{p{0.9cm} p{3.4cm} p{5.6cm} p{4.0cm}}
 \toprule
-Script & Computes & Archived output \\
+\S & Script & Computes & Archived output \\
 \midrule
 \endhead
-\texttt{code47\_\allowbreak{}P5\_\allowbreak{}blind\_\allowbreak{}adjudication\_\allowbreak{} boundary\_\allowbreak{}predictor} & P5 blind adjudication of the boundary predictor on Keshelava 2018 (208 cells, seed 20260815, 2000 bootstrap) & \texttt{Keshelava2018\_\allowbreak{}P5/} tables + verdict JSON \\
-\texttt{code47b\_\allowbreak{}P5\_\allowbreak{}erratum\_\allowbreak{} readjudication} & erratum re-adjudication after timing exclusions (195 cells, 13 excluded) & \texttt{Keshelava2018\_\allowbreak{}P5\_\allowbreak{}47b\_\allowbreak{}erratum/} tables + verdict JSON; \texttt{P5\_\allowbreak{}verdict\_\allowbreak{}summary.csv} \\
-\texttt{code63\_\allowbreak{}GPCR\_\allowbreak{}functional\_\allowbreak{}affinity\_\allowbreak{} fracture} & functional-affinity fracture across arms & console/tables \\
-\texttt{code64\_\allowbreak{}D2R\_\allowbreak{}upstream\_\allowbreak{}rate\_\allowbreak{}ordering} & D2R upstream rate ordering & console/tables \\
-\texttt{code65\_\allowbreak{}AT1R\_\allowbreak{}cross\_\allowbreak{}arm\_\allowbreak{}affinity\_\allowbreak{} fracture} & AT1R cross-arm affinity fracture & console/tables \\
-\texttt{code66\_\allowbreak{}MOR\_\allowbreak{}Gillis\_\allowbreak{}internal\_\allowbreak{} consistency} & MOR internal consistency on the Gillis ligand series & console/tables \\
-\texttt{code67\_\allowbreak{}BiasedSignalingAtlas\_\allowbreak{} meta\_\allowbreak{}audit} & community-table meta-audit & \texttt{atlas\_\allowbreak{}per\_\allowbreak{}paper\_\allowbreak{}medians.csv}, \texttt{atlas\_\allowbreak{}pair\_\allowbreak{}violations.csv} \\
-\texttt{code68\_\allowbreak{}D2R\_\allowbreak{}kinetic\_\allowbreak{}mechanism\_\allowbreak{}test} & D2R kinetic mechanism test & console/tables \\
-\texttt{code69\_\allowbreak{}D2R\_\allowbreak{}functional\_\allowbreak{}state\_\allowbreak{} cross\_\allowbreak{}arm\_\allowbreak{}map} & D2R functional-state cross-arm map & console/tables \\
-\texttt{code71\_\allowbreak{}Atlas\_\allowbreak{}full\_\allowbreak{}identity\_\allowbreak{}pipeline} & full algebraic-identity pipeline over the Atlas & \texttt{atlas\_\allowbreak{}pair\_\allowbreak{}violations.csv} (2.8 MB) \\
-\texttt{code72\_\allowbreak{}audit\_\allowbreak{}method\_\allowbreak{}false\_\allowbreak{}positive\_\allowbreak{} selfcheck} & false-positive self-check of the audit method & console/tables \\
-\texttt{code73\_\allowbreak{}robustness\_\allowbreak{}triplet\_\allowbreak{}blind\_\allowbreak{} jackknife} & robustness triplet, blind jackknife & console/tables \\
-\texttt{code77\_\allowbreak{}Atlas\_\allowbreak{}constraint\_\allowbreak{}projection\_\allowbreak{} fracture\_\allowbreak{}probability} & constraint projection; fracture probability & console/tables \\
-\texttt{code80\_\allowbreak{}Gillis\_\allowbreak{}arm\_\allowbreak{}coordinate\_\allowbreak{} extended\_\allowbreak{}model} & Gillis arm-coordinate extended model & \texttt{mor\_\allowbreak{}code80\_\allowbreak{}residuals.csv} \\
+\S3.1 & \texttt{code63} & D2R binding-versus-function fracture (Fig.~1a, 2b) & \texttt{results/logs/} \\
+\S3.1 & \texttt{code64} & D2R upstream rate ordering & \texttt{results/logs/} \\
+\S3.1 & \texttt{code68} & D2R kinetic occupancy model (Fig.~2c) & \texttt{results/logs/} \\
+\S3.1 & \texttt{code69} & D2R cross-arm spread versus time (Fig.~2a,c) & \texttt{results/logs/} \\
+\S3.2 & \texttt{code65} & AT1R cross-arm affinity fracture (Fig.~1b, 2d) & \texttt{results/logs/} \\
+\S3.3 & \texttt{code66} & $\mu$OR cell-level identity map (Fig.~1c, 2e) & \texttt{results/logs/} \\
+\S3.3 & \texttt{code80} & $\mu$OR one-coordinate-per-arm model (Fig.~1c, 2f) & \texttt{code80\_*.csv}, five files \\
+\S3.4 & \texttt{code67} & Atlas meta-audit and pair deviations & \texttt{results/logs/}; \texttt{atlas\_pair\_\allowbreak{}violations.csv} under \texttt{--write} \\
+\S3.4 & \texttt{code71} & Atlas identity pipeline; entry, group and paper tables & \texttt{atlas\_audit/*.csv}, \texttt{atlas\_audit\_\allowbreak{}summary.json} \\
+\S3.5 & \texttt{code73} & common-mode error, aggregation, jackknife & \texttt{atlas\_\allowbreak{}confidence\_\allowbreak{}matrix.csv} \\
+\S3.6 & \texttt{code77} & constraint projection, fracture probability & \texttt{atlas\_\allowbreak{}repair\_\allowbreak{}projection.csv}, \texttt{atlas\_\allowbreak{}fracture\_\allowbreak{}probability.csv} \\
+\S4 & \texttt{code72} & false-positive rate, power, controls & \texttt{results/logs/} \\
+\S3.4 & \texttt{code72b} & fixed-cut independent-error null (entry and pair level) & \texttt{results/logs/} \\
+SI \S2 & \texttt{code47} & P5 blind adjudication (208 cells) & \texttt{Keshelava2018\_\allowbreak{}P5/} \\
+SI \S2 & \texttt{code47b} & P5 erratum re-adjudication (195 cells) & \texttt{Keshelava2018\_\allowbreak{}P5\_\allowbreak{}47b\_\allowbreak{}erratum/} \\
 \bottomrule
 \end{longtable}
+
+\noindent Rows are in manuscript order. Full script names, the reproduction command and the
+caveats (pandas grouping; which numbers are console-only) are in \texttt{PAPER\_MAP.md}.
 
 \section{P5 adjudication (Keshelava 2018)}
 
@@ -119,9 +125,13 @@ community tables (Table~\ref{tab:atlas}). The full pair-level violation
 table (all receptor$\times$pathway$\times$ligand comparisons) is archived
 as \texttt{atlas\_pair\_violations.csv} (2.8 MB).
 
-\begin{longtable}{p{5.6cm} r r c c p{4.4cm}}
+\begin{longtable}{p{5.9cm} r r c c p{4.1cm}}
 \caption{Per-source-paper median and maximal identity deviation (dex).}
 \label{tab:atlas}\\
+\toprule
+DOI & $n_{\rm grp}$ & $n_{\rm pairs}$ & median & max & receptors \\
+\midrule
+\endfirsthead
 \toprule
 DOI & $n_{\rm grp}$ & $n_{\rm pairs}$ & median & max & receptors \\
 \midrule

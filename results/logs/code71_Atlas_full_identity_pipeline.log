@@ -1,0 +1,14 @@
+$ D:\Users\lihua\anaconda3\python.exe code/code71_Atlas_full_identity_pipeline.py
+# exit 0  23.7s  2026-10-19T05:45:56+00:00
+
+Entry level: 3096 rows → atlas_audit_entries.csv
+Group level: 132 groups, pairs 10864 → atlas_audit_groups.csv
+Paper level: 41 papers → atlas_audit_papers.csv
+Groups dev median>0.3: 28/132; papers dev median>0.3: 11/41
+Triangle closures: 3167, violations 0
+Emax QC: {'emax_gt110': 711, 'emax_gt150': 181, 'emax_gt300': 30, 'emax_neg': 8}
+→ atlas_audit_summary.json
+
+--- stderr ---
+D:\Users\lihua\anaconda3\Lib\site-packages\openpyxl\worksheet\_read_only.py:85: UserWarning: Data Validation extension is not supported and will be removed
+  for idx, row in parser.parse():

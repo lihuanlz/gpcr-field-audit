@@ -1,0 +1,9 @@
+$ D:\Users\lihua\anaconda3\python.exe code/code80_Gillis_arm_coordinate_extended_model.py
+# exit 0  1.2s  2026-10-19T05:45:09+00:00
+
+code80 Gillis assay-arm coordinate extended model done
+primary N=66, sigma_delta=0.374 dex
+M0 logML=-121.638, M1 logML=6.589, delta=128.227
+GIRK delta=-0.805 ± 0.049 dex, 95%CI=(-0.902,-0.708)
+GIRK |r| median: 0.811 -> 0.107 dex; max=0.249
+sensitivity (duplicates kept): sigma_delta=0.320, delta=123.844

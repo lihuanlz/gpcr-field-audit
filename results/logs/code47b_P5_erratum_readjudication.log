@@ -1,0 +1,117 @@
+$ D:\Users\lihua\anaconda3\python.exe code/code47b_P5_erratum_readjudication.py
+# exit 0  8.8s  2026-10-19T05:46:25+00:00
+
+code 47 v0.2.0 - P5 blind ruling (boundary predictor first test, Keshelava 2018 GPCR->Ca2+; pre-registration v0.3)
+frozen parameters: SEED=20260815 N_BOOT=2000 k=3 sufficiency line=0.6 dead band=[0.4,0.6)
+guardrail 7 AUC engine scipy bit-for-bit unit test passed (no-censoring 5/5 + inf-censoring direction + all-censored tie)
+guardrails 1/2/3 passed: 27 experiments, total trace columns 560
+timing admitted: experiment_01.dot (T_hat=120.0 holes 0 p1=88 p35=4205)
+timingexcluded: experiment_02.dot  -  no valid anchor/chain
+timingexcluded: experiment_03.dot  -  no valid anchor/chain
+timing admitted: experiment_04.dot (T_hat=120.0 holes 0 p1=72 p35=4162)
+timing admitted: experiment_05.dot (T_hat=120.0 holes 0 p1=91 p35=4205)
+timingexcluded: experiment_06.dot  -  no valid anchor/chain
+timingexcluded: experiment_07.dot  -  no valid anchor/chain
+timing admitted: experiment_09.dot (T_hat=120.0 holes 3 p1=72 p35=4145)
+timing admitted: experiment_10.dot (T_hat=120.0 holes 0 p1=72 p35=4155)
+timingexcluded: experiment_11.dot  -  no valid anchor/chain
+timingexcluded: experiment_13.dot  -  no valid anchor/chain
+timingexcluded: experiment_14.dot  -  no valid anchor/chain
+timing admitted: experiment_15.dot (T_hat=120.0 holes 0 p1=72 p35=4155)
+timingexcluded: experiment_16.dot  -  no valid anchor/chain
+timingexcluded: experiment_17.dot  -  no valid anchor/chain
+timingexcluded: experiment_18.dot  -  no valid anchor/chain
+timing admitted: experiment_19.dot (T_hat=120.0 holes 3 p1=52 p35=4130)
+timing admitted: experiment_20.dot (T_hat=120.0 holes 3 p1=117 p35=4262)
+timing admitted: experiment_21.dot (T_hat=120.0 holes 1 p1=106 p35=4150)
+timing admitted: experiment_22.dot (T_hat=120.0 holes 2 p1=192 p35=4287)
+timingexcluded: experiment_23.dot  -  no valid anchor/chain
+timingexcluded: experiment_24.dot  -  no valid anchor/chain
+timing admitted: experiment_25.dot (T_hat=120.0 holes 0 p1=80 p35=4170)
+timingexcluded: experiment_26.dot  -  no valid anchor/chain
+timingexcluded: experiment_27.dot  -  no valid anchor/chain
+timingexcluded: experiment_28.dot  -  no valid anchor/chain
+timing admitted: experiment_29.dot (T_hat=120.0 holes 1 p1=52 p35=4120)
+guardrails 4/5 done: admitted 12/27, timing-excluded 15
+loading done: valid cells 218 (invalid excluded 15; timing-excluded 15 experiments; paper convention 433, discrepancies from the independent validity rules reported as-is)
+
+===== main analysis: 4 ruling units (low zone D1<->D2, D2<->D3; high zone D5<->D6, D6<->D7) =====
+stat    unit           AUC                  CI95     n
+tau event-timeD1↔D2       0.6215   [0.5924,0.6546]   218
+tau event-timeD2↔D3       0.6785   [0.6483,0.7104]   218
+tau event-timeD5↔D6       0.5462   [0.5204,0.5729]   218
+tau event-timeD6↔D7       0.5399   [0.5102,0.5687]   218
+count   D1↔D2       0.6221   [0.5905,0.6523]   218
+count   D2↔D3       0.6859   [0.6558,0.7179]   218
+count   D5↔D6       0.5711   [0.5511,0.5935]   218
+count   D6↔D7       0.4976   [0.4728,0.5222]   218
+peak (paid)D1↔D2       0.7483   [0.7157,0.7833]   218
+peak (paid)D2↔D3       0.7411   [0.7139,0.7709]   218
+peak (paid)D5↔D6       0.5551   [0.5368,0.5753]   218
+peak (paid)D6↔D7       0.5294   [0.5150,0.5452]   218
+
+===== verdicts (frozen table D7 executed verbatim) =====
+P5-1 (R1 dead-zone recheck, tau): falsified (2/4 units outside the [0.40,0.60] band)  unit values ['0.6215', '0.6785', '0.5462', '0.5399']
+P5-2 (R2 live-zone first test, count): intermediate (2/4 units meet threshold)  unit values ['0.6221', '0.6859', '0.5711', '0.4976']
+P5-3 (R3 calibration, paid peak, control arm): dataset-level weak-decoding limitation (only 2/4 units peak-AUC>=0.60)  unit values ['0.7483', '0.7411', '0.5551', '0.5294']
+[overall ruling] P5 falsified (the boundary predictor is dead on this morphology; dying side detailed in the clauses) 
+main products saved: unit_table.csv / ruling.json / judgment_log.txt
+
+===== robust arms =====
+k=2 ta D1↔D2 AUC=0.6215
+k=2 ta D2↔D3 AUC=0.6785
+k=2 ta D5↔D6 AUC=0.5468
+k=2 ta D6↔D7 AUC=0.5394
+k=2 cnt D1↔D2 AUC=0.6221
+k=2 cnt D2↔D3 AUC=0.6859
+k=2 cnt D5↔D6 AUC=0.5711
+k=2 cnt D6↔D7 AUC=0.4976
+k=4 ta D1↔D2 AUC=0.6215
+k=4 ta D2↔D3 AUC=0.6785
+k=4 ta D5↔D6 AUC=0.5474
+k=4 ta D6↔D7 AUC=0.5404
+k=4 cnt D1↔D2 AUC=0.6221
+k=4 cnt D2↔D3 AUC=0.6859
+k=4 cnt D5↔D6 AUC=0.5733
+k=4 cnt D6↔D7 AUC=0.4976
+desensitization-correction arm: recompute after subtracting the population median drift by pulse position j in {1..5}
+desensitization-corrected ta D1↔D2 AUC=0.5843
+desensitization-corrected ta D2↔D3 AUC=0.6990
+desensitization-corrected ta D5↔D6 AUC=0.5492
+desensitization-corrected ta D6↔D7 AUC=0.5397
+desensitization-corrected cnt D1↔D2 AUC=0.5950
+desensitization-corrected cnt D2↔D3 AUC=0.6745
+desensitization-corrected cnt D5↔D6 AUC=0.5736
+desensitization-corrected cnt D6↔D7 AUC=0.4943
+single-experiment purity arm ta D1↔D2 AUC=0.5147
+single-experiment purity arm ta D2↔D3 AUC=0.8209
+single-experiment purity arm ta D5↔D6 AUC=0.5138
+single-experiment purity arm ta D6↔D7 AUC=0.7046
+single-experiment purity arm cnt D1↔D2 AUC=0.5147
+single-experiment purity arm cnt D2↔D3 AUC=0.8313
+single-experiment purity arm cnt D5↔D6 AUC=0.5458
+single-experiment purity arm cnt D6↔D7 AUC=0.6051
+robust arms saved: robust_arm.csv
+
+===== descriptive arm (not adjudicated) =====
+mid-zone pair ta D3↔D4 AUC=0.5979 [0.5648,0.6327]
+mid-zone pair ta D4↔D5 AUC=0.5586 [0.5297,0.5889]
+mid-zone pair cnt D3↔D4 AUC=0.5553 [0.5240,0.5874]
+mid-zone pair cnt D4↔D5 AUC=0.6502 [0.6233,0.6795]
+mid-zone pair pk D3↔D4 AUC=0.5527 [0.5255,0.5814]
+mid-zone pair pk D4↔D5 AUC=0.6309 [0.6091,0.6555]
+D1(100nM) response rate=0.032 mean count=0.04
+D2(250nM) response rate=0.271 mean count=0.82
+D3(500nM) response rate=0.592 mean count=2.37
+D4(750nM) response rate=0.761 mean count=2.79
+D5(1500nM) response rate=0.862 mean count=3.85
+D6(3000nM) response rate=0.940 mean count=4.34
+D7(10000nM) response rate=0.954 mean count=4.53
+descriptive arm saved: descriptive_arm.csv
+
+===== final verdict restatement (frozen table verbatim) =====
+P5-1: falsified (2/4 units outside the [0.40,0.60] band)
+P5-2: intermediate (2/4 units meet threshold)
+P5-3: dataset-level weak-decoding limitation (only 2/4 units peak-AUC>=0.60)
+[overall ruling] P5 falsified (the boundary predictor is dead on this morphology; dying side detailed in the clauses) 
+(recorded either way: this log and ruling.json enter the ledger in sync; the frozen ruling is never moved afterwards)
