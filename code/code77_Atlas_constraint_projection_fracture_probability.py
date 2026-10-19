@@ -34,8 +34,8 @@ Rulings (run of 2026-08-16):
 """
 import numpy as np, pandas as pd
 
-ENT = '/mnt/agents/output/04_cell_line_4/results/atlas_audit/atlas_audit_entries.csv'
-OUT = '/mnt/agents/output/04_cell_line_4/results/atlas_audit'
+ENT = str(__import__('pathlib').Path(__file__).resolve().parent.parent / 'results' / 'atlas_audit' / 'atlas_audit_entries.csv')
+OUT = str(__import__('pathlib').Path(__file__).resolve().parent.parent / 'results' / 'atlas_audit')
 
 def main():
     E = pd.read_csv(ENT).dropna(subset=['dev_entry'])
@@ -81,7 +81,7 @@ def main():
     rho = spearmanr(chk.cost_rms_dex, chk.pmean).statistic
 
     print(f"[B′] groups {len(BJ)}; median repair-cost RMS {BJ['cost_rms_dex'].median():.3f} dex; "
-          f"groups needing >0.3 dex-level repair {(BJ['cost_rms_dex']>0.15).mean():.1%}")
+          f"groups with cost RMS >0.15 dex {(BJ['cost_rms_dex']>0.15).mean():.1%}")
     print(f"[C] EM converged @{it} steps: pi_healthy={pi:.3f}, σ_h={s_h:.4f}, σ_b={s_b:.3f} dex; "
           f"P>0.9 entries {(pb>0.9).mean():.1%} (cf. |dev|>0.3: {(np.abs(x)>0.3).mean():.1%})")
     print(f"[cross] repair cost vs fracture probability Spearman ρ = {rho:.3f}")

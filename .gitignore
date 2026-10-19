@@ -1,3 +1,7 @@
 __pycache__/
 *.pyc
 pass*.log
+*.aux
+*.log
+*.out
+*.toc

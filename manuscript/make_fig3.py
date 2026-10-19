@@ -11,15 +11,15 @@ Run: python make_fig3.py   (writes fig3_atlas_repair.png next to this script)
 import json, sys, os
 import numpy as np
 import pandas as pd
-EDSCRIPTS = r"D:\Kimi_Agent_cell_sim_toolkit_workspace\05_main_program\paper_cell_communication_audit_2026-09-23\figures_svg\ED\scripts"
+EDSCRIPTS = HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, EDSCRIPTS)
 from edstyle import setup, panel_label, OI
 import matplotlib.pyplot as plt
 
 setup()
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = r"D:\Kimi_Agent_cell_sim_toolkit_workspace"
-AT = os.path.join(ROOT, r"04_cell_line_4\_archive\results\atlas_audit")
+ROOT = os.path.dirname(HERE)
+AT = os.path.join(ROOT, "results", "atlas_audit")
 
 entries = pd.read_csv(os.path.join(AT, "atlas_audit_entries.csv"))
 groups = pd.read_csv(os.path.join(AT, "atlas_audit_groups.csv"))

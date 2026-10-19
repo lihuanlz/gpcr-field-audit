@@ -34,8 +34,8 @@ BLUE, VERM, GREEN, ORANGE, GREY, SKY = ("#0072B2", "#D55E00", "#009E73",
                                         "#E69F00", "#7F7F7F", "#56B4E9")
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = r"D:\Kimi_Agent_cell_sim_toolkit_workspace"
-RES = ROOT + r"\04_cell_line_4\_archive\results"
+ROOT = os.path.dirname(HERE)
+RES = os.path.join(ROOT, "results")
 
 # --- load archived data ---
 ent = pd.read_csv(RES + r"\atlas_audit\atlas_audit_entries.csv")
