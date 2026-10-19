@@ -22,6 +22,7 @@ Input: 04_cell_line_4/results/atlas_audit/atlas_audit_entries.csv (code71 produc
 Output: 04_cell_line_4/results/atlas_audit/atlas_confidence_matrix.csv
 """
 import numpy as np, pandas as pd
+import os
 
 rng = np.random.default_rng(20260816)
 LN10 = np.log(10)

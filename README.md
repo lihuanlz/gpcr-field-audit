@@ -9,17 +9,21 @@ Companion code, results and manuscript source for the paper:
 ## Layout
 
 - `manuscript/` — LaTeX source, compiled PDF, figure PNGs, figure-generation scripts.
-- `code/` — analysis scripts (ours): P5 blind adjudication and erratum re-adjudication (code47/47b), functional-affinity fracture (code63), D2R upstream rate ordering (code64), AT1R cross-arm fracture (code65), MOR internal consistency (code66), BiasedSignalingAtlas meta-audit (code67), D2R kinetic mechanism (code68) and functional-state map (code69), Atlas full-identity pipeline (code71), false-positive self-check (code72), robustness triplet (code73), constraint projection (code77), Gillis arm-coordinate extended model (code80).
-- `results/` — derived outputs (ours): P5 adjudication tables and verdict JSONs, Atlas violation tables, MOR residuals.
-- `data_external/keshelava2018/` — Supplementary Data 3 of Keshelava et al. (2018), per-cell Fura-2 peaks; see `data_external/PROVENANCE.md`.
+- `code/` — analysis scripts (ours): P5 blind adjudication and erratum re-adjudication (code47/47b), functional-affinity fracture (code63), D2R upstream rate ordering (code64), AT1R cross-arm fracture (code65), MOR internal consistency (code66), BiasedSignalingAtlas meta-audit (code67), D2R kinetic mechanism (code68) and functional-state map (code69), Atlas full-identity pipeline (code71), false-positive self-check (code72), fixed-cut null (code72b), robustness triplet (code73), constraint projection (code77), Gillis arm-coordinate extended model (code80).
+- `results/` — derived outputs (ours): P5 adjudication tables and verdict JSONs, Atlas violation and audit tables, MOR and arm-coordinate tables.
+- `public_data/` — the three third-party input sets the scripts read: the Biased Signaling Atlas export, the Klein Herenbrink 2016 D2R workbook, and the Keshelava 2018 raw traces. See `data_external/PROVENANCE.md`.
 
 ## Running
 
-Python 3 (numpy/scipy/matplotlib/pandas). Scripts run against `data_external/` and the archived tables in `results/`.
+Python 3 with numpy, scipy, pandas, openpyxl and matplotlib. Every script builds its paths relative to the repository; there are no absolute paths left.
+
+- On Windows, set `PYTHONIOENCODING=utf-8` first: several scripts write Greek letters and mathematical symbols to stdout.
+- `results/atlas_audit/` holds the tables of the pandas-1.x run used in the paper (269 groups, 17,987 pair comparisons, 3,931 triplets). Running `code71` under pandas ≥ 2 regenerates them under a different grouping (132 groups, 10,864 pairs, 3,167 triplets). The paper reports both in Section 5.5 and uses the 1.x numbers throughout; copy the directory before re-running if you want to compare rather than overwrite.
+- All fifteen scripts were re-run from a clean copy on 2026-10-19 and every one exits 0. The code80 model comparison, the P5 adjudications and the MOR residuals reproduce to machine precision; the Atlas tables reproduce up to the documented pandas difference.
 
 ## Ownership
 
-Code, derived results and manuscript: the author's work product (MIT for code, CC BY 4.0 for text). Third-party data are mirrored only where small and license-clear (PROVENANCE.md); large source archives (BiasedSignalingAtlas exports, Gillies 2020 supplements) are referenced, not re-hosted.
+Code, derived results and manuscript: the author's work product (MIT for code, CC BY 4.0 for text). Third-party inputs are re-hosted in `public_data/` where the analysis cannot run without them (Atlas export, D2R workbook, Keshelava traces); the Gillis 2020 supplement is transcribed inside the scripts and is not re-hosted. See `data_external/PROVENANCE.md`.
 
 ## Companion papers
 

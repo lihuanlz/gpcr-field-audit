@@ -33,6 +33,7 @@ Dependencies: numpy, pandas, openpyxl
 
 import numpy as np
 import pandas as pd
+import os
 
 XLSX = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "public_data", "D2R_KleinHerenbrink2016", "SupplementaryData1.xlsx")
 
