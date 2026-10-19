@@ -41,7 +41,7 @@ for lig, v in spread.items():
                    "Cariprazine": OI["sky"]}.get(lig, "0.65"),
             label=lig if hl else None)
 ax.set_xlabel("readout time (min)"); ax.set_ylabel(r"cross-arm pK$_A$ spread (dex)")
-ax.set_title("D2R cross-arm pK$_A$ spread over readout time (code 69)")
+ax.set_title("D2R cross-arm pK$_A$ spread over readout time")
 ax.legend(fontsize=5.5)
 
 # ---- b: D2R binding-vs-function fracture (code 63) ----
@@ -65,7 +65,7 @@ ax.plot([], [], "o", color=OI["blue"], label="cAMP arm")
 ax.plot([], [], "s", color=OI["verm"], label="GaoB arm")
 ax.set_xticks(xx, ligs, rotation=30, ha="right", fontsize=5.5)
 ax.set_ylabel(r"pK$_{A,func}$ - pK$_i$ (dex)")
-ax.set_title("D2R binding-vs-function fracture (code 63)")
+ax.set_title("D2R binding-versus-function fracture")
 ax.legend(fontsize=5.2, loc="lower left")
 ax.set_ylim(-4.2, 2.0)
 
@@ -84,7 +84,7 @@ for lig, v in cicamp.items():
     ax.plot(tmin, v, "o-", ms=2.5, lw=1.2 if lig == "Bifeprunox" else 0.6,
             color=cols[lig], label=lig if lig != "Pardoprunox" else None)
 ax.set_xlabel("readout time (min)"); ax.set_ylabel(r"pK$_{A,CI}$ - pK$_{A,cAMP}$ (dex)")
-ax.set_title("D2R: CI - cAMP grows with time (code 69)")
+ax.set_title("D2R: CI - cAMP grows with time")
 ax.legend(fontsize=5.2, loc="upper left")
 ax.text(88, 0.62, "bias factor bifeprunox vs ropinirole:\n-0.42 dex (2 min) -> +1.93 dex (90 min);\nbifeprunox 0.91 dex off at best; S-3PPP +1.49 reverse",
         fontsize=5, color="0.35", ha="right", va="bottom")
@@ -96,16 +96,17 @@ rows = [("TRV026 WT", -2.05, 0.41, "5.0s"), ("TRV026 L112A", -1.53, 0.31, "4.9s"
 xx = np.arange(3)
 for i, (lab, v, sd, sig) in enumerate(rows):
     ax.errorbar(i, v, yerr=sd, fmt="o", ms=5, color=OI["verm"], elinewidth=0.8, capsize=2)
-    ax.text(i + 0.08, v + 0.15, sig.replace("s", " sigma"), fontsize=5, color=OI["verm"])
+    ax.text(i + 0.14, v, sig.replace("s", " sigma"), fontsize=5, color=OI["verm"],
+            va="center", ha="left")
 # lower bounds
 for i, (lab, v) in enumerate([("TRV055 WT", -1.57), ("AngII WT", -1.00)]):
     ax.plot(3 + i, v, "v", ms=5, color=OI["orange"])
-    ax.text(3 + i, v - 0.18, f"bound >= {abs(v):.1f}", ha="center", fontsize=5, color=OI["orange"])
+    ax.text(3 + i, v - 0.32, f"bound >= {abs(v):.1f}", ha="center", fontsize=5, color=OI["orange"])
 ax.axhline(0, color="0.5", lw=0.5)
 ax.axhline(-0.3, color="0.4", ls="--", lw=0.6)
 ax.set_xticks(list(range(5)), ["TRV026\nWT", "TRV026\nL112A", "TRV026\nY292A", "TRV055\nWT", "AngII\nWT"], fontsize=5.5)
 ax.set_ylabel(r"pK$_{A,Gq}$ - pK$_{A,arr}$ (dex)")
-ax.set_title("AT1R arm-vs-arm fracture (code 65)")
+ax.set_title("AT1R arm-versus-arm fracture")
 ax.set_ylim(-2.6, 0.5)
 
 # ---- e: muOR identity-1 heatmap (code 66) ----
@@ -137,8 +138,7 @@ ax.add_patch(Rectangle((3.5, -0.5), 1, 6, fill=False, ec=OI["verm"], lw=1.2))
 cb = fig.colorbar(im, ax=ax, fraction=0.046, pad=0.03)
 cb.set_label(r"identity-1 $\Delta$ (dex)", fontsize=5.5); cb.ax.tick_params(labelsize=5)
 cb.outline.set_linewidth(0.6)
-ax.set_title("muOR identity 1: GIRK 5/5 fractured (3.9-8.4 sigma)")
-
+ax.set_title(r"$\mu$OR: GIRK fractured for all five ligands")
 # ---- f: code 80 arm-coordinate repair ----
 ax = axs[5]
 d80 = pd.read_csv(os.path.join(ROOT, "results", "code80_arm_coordinate_posterior.csv"))
@@ -152,14 +152,15 @@ for i, (_, r) in enumerate(d80.iterrows()):
 ax.axvline(0, color="0.5", lw=0.5)
 ax.set_yticks(yy, d80["arm"], fontsize=6)
 ax.set_xlabel(r"arm coordinate $\delta_{arm}$ (dex)")
-ax.set_title("code 80 repair: dlogML = +128.2")
-ax.text(0.04, 0.42, "dGIRK = -0.805 +/- 0.049\nGIRK |resid| median 0.811 -> 0.107 dex\nLOO stable in [-0.843, -0.732]",
-        transform=ax.transAxes, fontsize=5, va="center", ha="left", color="0.35")
+ax.set_title(r"arm-coordinate repair: $\Delta$logML = +128.2")
+ax.text(0.98, 0.97, "dGIRK = -0.805 +/- 0.049\nGIRK |resid| 0.811 -> 0.107 dex\nLOO stable in [-0.843, -0.732]",
+        transform=ax.transAxes, fontsize=4.6, va="top", ha="right", color="0.35", linespacing=1.3)
 ax.invert_yaxis()
 
 for i, ax in enumerate(axs):
-    panel_label(ax, "abcdef"[i], x=-0.10)
+    panel_label(ax, "abcdef"[i], x=-0.10, y=1.12)
 
 fig.tight_layout()
-fig.savefig(os.path.join(HERE, "fig2_fracture_maps.png"), bbox_inches="tight", dpi=200)
-print("saved fig2_fracture_maps.png")
+fig.savefig(os.path.join(HERE, "fig2_fracture_maps.png"), bbox_inches="tight", dpi=300)
+fig.savefig(os.path.join(HERE, "fig2_fracture_maps.pdf"), bbox_inches="tight")
+print("saved fig2_fracture_maps.png / .pdf")

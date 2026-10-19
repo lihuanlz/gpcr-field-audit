@@ -58,7 +58,7 @@ r80 = pd.read_csv(RES + r"\code80_arm_coordinate_residuals.csv")
 
 fig = plt.figure(figsize=(7.2, 5.6))
 gs = gridspec.GridSpec(2, 2, height_ratios=[1.0, 1.12], hspace=0.62, wspace=0.32,
-                       left=0.075, right=0.975, top=0.94, bottom=0.10)
+                       left=0.105, right=0.975, top=0.94, bottom=0.10)
 
 def panel_label(ax, s, dx=-0.18, dy=1.06):
     ax.text(dx, dy, s, transform=ax.transAxes, fontsize=9, fontweight="bold",
@@ -97,7 +97,8 @@ axa.annotate("bifeprunox:\n-3.5 dex, 21-23 sigma", (4.02, -3.45),
              xytext=(0.55, -1.55), fontsize=6, color=VERM, va="top",
              arrowprops=dict(arrowstyle="-", lw=0.5, color=VERM))
 axa.text(3.0, 1.55, "load-bearing for the study's\nsignificant-bias claims",
-         fontsize=5.6, color=ORANGE, ha="center")
+         fontsize=6.0, color=ORANGE, ha="center",
+         bbox=dict(facecolor="white", edgecolor="none", pad=1.2, alpha=0.92), zorder=5)
 for i, lig in enumerate(ligs):
     if lig in load_bearing:
         axa.plot(i, 1.28, marker="v", ms=3.5, color=ORANGE, clip_on=False)
@@ -170,14 +171,12 @@ names = [g[0] for g in girk]; vals = [g[1] for g in girk]; sigs = [g[2] for g in
 ypos = np.arange(len(girk))[::-1]
 axc1.barh(ypos, vals, height=0.62, color=VERM, alpha=0.85, zorder=2)
 for y, v, s, nm in zip(ypos, vals, sigs, names):
-    axc1.text(0.02, y + 0.44, nm, fontsize=5.2, va="bottom", ha="left",
-              color="0.15", zorder=4)
     axc1.text(v + 0.03, y, f"{v:.2f} ({s}σ)", fontsize=5.4, va="center",
               color="0.25")
 axc1.axvline(0.3, color="black", lw=0.7, ls="--")
 axc1.text(0.31, 5.0, "0.3 dex", fontsize=5.2, ha="left", va="bottom")
-axc1.set_yticks(ypos); axc1.set_yticklabels([])
-axc1.set_xlim(0, 1.35); axc1.set_ylim(-0.6, 5.5)
+axc1.set_yticks(ypos); axc1.set_yticklabels(names, fontsize=5.4)
+axc1.set_xlim(0, 1.62); axc1.set_ylim(-0.6, 5.5)
 axc1.set_xlabel("|Δ| identity 1 (dex)", fontsize=6)
 axc1.set_title("GIRK column fracture, per ligand\n(cross-assay map up to 12.4σ)",
                fontsize=6, pad=3)
@@ -200,7 +199,7 @@ axc2.set_xticks([0, 1]); axc2.set_xticklabels(["before (M0)", "after (M1)"],
                                               fontsize=6)
 axc2.set_xlim(-0.5, 1.5); axc2.set_ylim(-0.05, 1.75)
 axc2.set_ylabel("|residual| (dex)", fontsize=6)
-axc2.set_title("code-80 repair: one coordinate per arm", fontsize=6, pad=3)
+axc2.set_title("arm-coordinate repair: one coordinate per arm", fontsize=6, pad=3)
 axc2.text(0.5, 0.965, "GIRK median 0.811 -> 0.107 dex\n"
           "whole table 0.140 -> 0.065 dex\nΔlogML = +128.2 (66 residuals)",
           fontsize=5.2, ha="center", va="top", color="0.25",
@@ -242,9 +241,9 @@ axd2.set_xlim(0, 2.4); axd2.set_ylim(-2, 68)
 axd2.set_xlabel("per-paper median |Δ| (dex)", fontsize=6)
 axd2.set_ylabel("papers (ranked)", fontsize=6)
 axd2.set_title("per-paper medians\n15 of 66 papers > 0.3 dex", fontsize=6, pad=3)
-axd2.text(0.97, 0.03, "pipeline closure:\n3,931/3,931 exact;\nfractured GIRK column\n"
-          "silently absent\nfrom the Atlas", fontsize=5.0, color="0.25",
-          va="bottom", ha="right", transform=axd2.transAxes)
+axd2.text(0.97, 0.03, "the unprocessed GIRK\ncolumn is absent\nfrom the Atlas",
+          fontsize=5.0, color="0.25", va="bottom", ha="right", transform=axd2.transAxes)
 
-fig.savefig(os.path.join(HERE, "fig1_anchor_cases.png"), dpi=200)
-print("saved fig1_anchor_cases.png")
+fig.savefig(os.path.join(HERE, "fig1_anchor_cases.png"), dpi=300)
+fig.savefig(os.path.join(HERE, "fig1_anchor_cases.pdf"))
+print("saved fig1_anchor_cases.png / .pdf")
