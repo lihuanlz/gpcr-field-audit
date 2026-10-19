@@ -18,8 +18,8 @@ Companion code, results and manuscript source for the paper:
 Python 3 with numpy, scipy, pandas, openpyxl and matplotlib; the exact versions used to produce the archived results are pinned in `requirements.txt`. Every script builds its paths relative to the repository; there are no absolute paths left.
 
 - On Windows, set `PYTHONIOENCODING=utf-8` first: several scripts write Greek letters and mathematical symbols to stdout.
-- `results/atlas_audit/` holds the tables of the pandas-1.x run used in the paper (269 groups, 17,987 pair comparisons, 3,931 triplets). Running `code71` under pandas ≥ 2 regenerates them under a different grouping (132 groups, 10,864 pairs, 3,167 triplets). The paper reports both in Section 5.5 and uses the 1.x numbers throughout; `run_all.py` restores the archive after a run, and `run_all.py --check` reports the difference file by file.
-- All fifteen scripts were re-run from a clean copy on 2026-10-19 and every one exits 0. The code80 model comparison, the P5 adjudications and the MOR residuals reproduce to machine precision; the Atlas tables reproduce up to the documented pandas difference.
+- `results/atlas_audit/` holds the Atlas tables quoted in the paper: 269 assay groups, 17,987 pair comparisons, 3,931 triplets. They now re-derive exactly under the pinned versions. The composite group key is built with an explicit missing-value rule because pandas 1.x and pandas 2+ disagree about whether a missing component stringifies or propagates; without that rule the same input collapses to 132 groups and 10,864 pairs.
+- All fifteen scripts were re-run from a clean copy on 2026-10-19 and every one exits 0. `python run_all.py --check` compares each regenerated table with its archived copy: 11 identical, 10 known P5 differences, 0 unexpected. The code80 model comparison, the P5 adjudications and the MOR residuals reproduce to machine precision; P5 cell counts follow the numeric build, but its verdicts do not.
 
 ## Ownership
 

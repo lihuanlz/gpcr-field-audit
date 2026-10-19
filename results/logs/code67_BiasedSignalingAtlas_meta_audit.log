@@ -1,23 +1,23 @@
 $ D:\Users\lihua\anaconda3\python.exe code/code67_BiasedSignalingAtlas_meta_audit.py
-# exit 0  32.2s  2026-10-19T06:03:48+00:00
+# exit 0  24.3s  2026-10-19T06:19:58+00:00
 
 total rows 9041; with log(τ/KA) 3293; with Δlog(τ/KA) 2293;with Emax 7682; valid pEC50/EC50 7617
 
 === Test A: |Δlog(τ/KA) − Δlog(Emax/EC50)| (identity should ≈0) ===
-pairwise comparisons in multi-ligand groups: 10864
-  P50: 0.07 dex
-  P75: 0.22 dex
-  P90: 0.43 dex
-  P95: 0.66 dex
-  P99: 1.36 dex
-  fraction >0.3 dex: 16.9%; >1 dex: 2.3%; max 3.32
-  publications involved 41; publications with median deviation >0.3 dex 11 (27%)
+pairwise comparisons in multi-ligand groups: 17987
+  P50: 0.10 dex
+  P75: 0.26 dex
+  P90: 0.55 dex
+  P95: 0.87 dex
+  P99: 1.95 dex
+  fraction >0.3 dex: 21.5%; >1 dex: 4.2%; max 4.99
+  publications involved 66; publications with median deviation >0.3 dex 14 (21%)
   5 publications with the largest median deviation:
-    10.1111/bph.13854: 1.12 dex
-    10.1126/scisignal.aar4309: 0.96 dex
-    10.1124/mol.115.101980: 0.72 dex
-    10.1074/jbc.M116.757559: 0.57 dex
-    10.1016/j.bcp.2018.04.021: 0.56 dex
+    10.1111/bph.13854: 1.32 dex
+    10.1124/mol.115.101980: 0.96 dex
+    10.1124/jpet.116.232561: 0.96 dex
+    10.1124/mol.113.088880: 0.95 dex
+    10.1073/pnas.1312515110: 0.68 dex
 
 === Test B: Emax QC ===
   Emax>110%: 711 rows; >150%: 181 rows; >300%: 30 rows; negative: 8 rows
@@ -37,7 +37,7 @@ Ligand tested for bias or func. Sel. Name  tc   em  pEC50u
                                     PZM21 7.3 40.0    7.78
                                  SR-17018 5.5 33.0    6.18
                                    TRV130 7.5 38.0    7.88
-  Gillis group in test A: 100 pairs, median deviation 0.19 dex,  fraction >0.3 27%, max 1.45
+  Gillis group in test A: 157 pairs, median deviation 0.19 dex,  fraction >0.3 31%, max 1.45
 
 --- stderr ---
 D:\Users\lihua\anaconda3\Lib\site-packages\openpyxl\worksheet\_read_only.py:85: UserWarning: Data Validation extension is not supported and will be removed

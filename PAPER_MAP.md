@@ -44,11 +44,13 @@ python run_all.py --only 63,80      # a subset
 
 ## Things worth knowing before you run anything
 
-**pandas version changes the Atlas grouping.** The archived tables are the pandas-1.x run:
-269 assay groups, 17,987 pair comparisons, 3,931 triplets. Under pandas ≥ 2 the same code
-gives 132 groups, 10,864 pairs, 3,167 triplets, and the pair-level rates move from 21.5% to
-16.9% above 0.3 dex. Section 5.5 of the paper reports both and uses the 1.x numbers
-throughout. This is why `run_all.py` restores the archive by default.
+**The Atlas grouping was a code defect, now fixed.** The assay-group key is a string
+concatenation; under pandas 1.x a missing component became the text `nan`, while pandas 2+
+propagate the missing value so the whole key turns missing and `groupby` drops the row. That
+silently halved the corpus (269 groups and 17,987 pairs became 132 and 10,864). `code67/71/73/77`
+now pin the 1.x rule explicitly, and the archived tables re-derive exactly under the pinned
+versions. If you write your own grouping over the Atlas, do the same or your numbers will
+differ for reasons that have nothing to do with the data.
 
 **Most numbers live in console output, not in files.** Only `code47/47b`, `code71`, `code77`
 and `code80` write tables. The rest print. That is why the logs are archived by `run_all.py`.

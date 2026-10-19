@@ -9,14 +9,13 @@ openpyxl==3.1.5
 
 # Note on pandas
 # -------------
-# The tables archived under results/atlas_audit/ and results/atlas_pair_violations.csv
-# were produced under pandas 1.x: 269 same-cell assay groups, 17,987 pair comparisons,
-# 3,931 triplets. Re-running code71 under pandas >= 2 gives 132 groups, 10,864 pairs and
-# 3,167 triplets from the same input, and the pair-level violation rate moves from 21.5%
-# to 16.9% above 0.3 dex. Section 5.5 of the manuscript reports both and uses the 1.x
-# numbers throughout. `run_all.py` snapshots results/ and restores those tables after a
-# run, so a re-run cannot silently replace them; `run_all.py --check` reports the
-# difference file by file.
+# The Atlas pipeline builds its assay-group key by string concatenation. Under pandas 1.x a
+# missing component stringified as "nan"; pandas 2+ propagate the missing value, the key
+# itself becomes missing, groupby drops the row and the same input collapses from 269 groups
+# and 17,987 pairs to 132 groups and 10,864 pairs. code67/71/73/77 now pin the 1.x behaviour
+# with an explicit helper, so the archived tables re-derive exactly under the versions below.
+# `run_all.py --check` enforces this: the Atlas tables are checked strictly, and only the P5
+# admission step is treated as a known environment difference.
 #
 # Note on P5 (Keshelava 2018, SI section 2)
 # -----------------------------------------

@@ -44,16 +44,27 @@ df["doi"] = df["Reference DOI or PMID"].astype(str)
 df["receptor"] = df["Receptor UniProt entry name or code"].astype(str)
 df["ligand"] = df["Ligand tested for bias or func. Sel. Name"].astype(str)
 
+def _key(col):
+    """String key component that behaves the same under pandas 1.x and 3.x.
+
+    pandas >= 3 uses a nullable string dtype: NaN propagates through `+`, so a key
+    containing one missing component becomes missing, groupby silently drops the row and
+    the grouping collapses (269 groups -> 132). pandas 1.x stringified it as "nan". Pin
+    the 1.x behaviour explicitly so the grouping does not depend on the pandas version.
+    """
+    return col.astype("object").where(col.notna(), "nan").astype(str)
+
+
 # ---------- Entry level ----------
 mask = tc.notna() & em.notna() & np.isfinite(pEC) & (em > 0)
 ent = df[mask].copy()
 ent["logRA"] = np.log10(ent["em"]) + ent["pEC50u"]
-ent["grp"] = (ent["doi"] + "|" + ent["receptor"] + "|" + ent["Measured process"].astype(str)
-              + "|" + ent["Pathway level"].astype(str) + "|" + ent["Cell line"].astype(str)
-              + "|" + ent["Primary effector subtype"].astype(str))
+ent["grp"] = (_key(ent["doi"]) + "|" + _key(ent["receptor"]) + "|" + _key(ent["Measured process"])
+              + "|" + _key(ent["Pathway level"]) + "|" + _key(ent["Cell line"])
+              + "|" + _key(ent["Primary effector subtype"]))
 # Within-group reference: group median of logRA − tc as the group constant (≈ realized value of −log E_sys)
-gmed = ent.groupby("grp").apply(lambda x: (x["logRA"]-x["tc"]).median(), include_groups=False)
-ent["dev_entry"] = (ent["logRA"] - ent["tc"]) - ent["grp"].map(gmed)
+ent["_dev"] = ent["logRA"] - ent["tc"]
+ent["dev_entry"] = ent["_dev"] - ent.groupby("grp")["_dev"].transform("median")
 ent["doi_"] = ent["doi"]; ent["receptor_"] = ent["receptor"]
 ent_out = ent[["doi_","receptor_","ligand","Measured process","Pathway level","Cell line",
                "Primary effector subtype","em","pEC50u","tc","logRA","dev_entry"]].rename(
@@ -91,9 +102,9 @@ qc = {"emax_gt110": int((df["em"]>110).sum()), "emax_gt150": int((df["em"]>150).
 
 # ---------- Triangle closure ----------
 sub2 = df[rtc.notna()].copy()
-sub2["pwy"] = (sub2["Pathway level"].astype(str)+"|"+sub2["Measured process"].astype(str)
-               +"|"+sub2["Primary effector subtype"].astype(str))
-sub2["grp2"] = sub2["doi"]+"|"+sub2["receptor"]+"|"+sub2["ligand"]+"|"+sub2["Cell line"].astype(str)
+sub2["pwy"] = (_key(sub2["Pathway level"])+"|"+_key(sub2["Measured process"])
+               +"|"+_key(sub2["Primary effector subtype"]))
+sub2["grp2"] = _key(sub2["doi"])+"|"+_key(sub2["receptor"])+"|"+_key(sub2["ligand"])+"|"+_key(sub2["Cell line"])
 viol=[]
 for k,v in sub2.groupby("grp2"):
     d=v.drop_duplicates("pwy")
@@ -120,7 +131,7 @@ summary = {
   "worst_groups": grp_df.head(20).to_dict("records"),
   "worst_papers": pap.head(20).to_dict("records"),
 }
-with open(os.path.join(OUTDIR,"atlas_audit_summary.json"),"w") as f:
+with open(os.path.join(OUTDIR,"atlas_audit_summary.json"),"w",encoding="utf-8") as f:
     json.dump(summary, f, ensure_ascii=False, indent=1)
 
 print(f"Entry level: {len(ent_out)} rows → atlas_audit_entries.csv")

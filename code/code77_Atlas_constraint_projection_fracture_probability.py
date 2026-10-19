@@ -39,9 +39,14 @@ OUT = str(__import__('pathlib').Path(__file__).resolve().parent.parent / 'result
 
 def main():
     E = pd.read_csv(ENT).dropna(subset=['dev_entry'])
-    E['grp'] = (E['doi'].astype(str)+'|'+E['receptor'].astype(str)+'|'+
-                E['Measured process'].astype(str)+'|'+E['Pathway level'].astype(str)+'|'+
-                E['Cell line'].astype(str)+'|'+E['Primary effector subtype'].astype(str))
+    # Same key definition as code71, with the pandas-1.x missing-value behaviour pinned so the
+    # grouping does not collapse under pandas >= 3 (NaN propagates through `+` there).
+    def _key(col):
+        return col.astype("object").where(col.notna(), "nan").astype(str)
+
+    E['grp'] = (_key(E['doi'])+'|'+_key(E['receptor'])+'|'+
+                _key(E['Measured process'])+'|'+_key(E['Pathway level'])+'|'+
+                _key(E['Cell line'])+'|'+_key(E['Primary effector subtype']))
     E['q'] = E['logRA'] - E['tc']
 
     # ---- B′ constraint projection ----

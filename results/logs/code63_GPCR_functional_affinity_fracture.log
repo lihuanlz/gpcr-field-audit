@@ -1,5 +1,5 @@
 $ D:\Users\lihua\anaconda3\python.exe code/code63_GPCR_functional_affinity_fracture.py
-# exit 0  0.2s  2026-10-19T06:03:11+00:00
+# exit 0  0.2s  2026-10-19T06:19:30+00:00
 
 == Test 2: functional KA inversion, full error propagation ==
 ligand        path  pKA_func    pKi   Δ(dex)   σ(Δ) signif.

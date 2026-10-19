@@ -1,5 +1,5 @@
 $ D:\Users\lihua\anaconda3\python.exe code/code47_P5_blind_adjudication_boundary_predictor.py
-# exit 0  11.0s  2026-10-19T06:04:46+00:00
+# exit 0  9.5s  2026-10-19T06:20:42+00:00
 
 code47 v0.2.0 -- P5 blind ruling (boundary predictor first test, Keshelava 2018 GPCR->Ca2+; pre-registration v0.3)
 frozen parameters: SEED=20260815 N_BOOT=2000 k=3 sufficiency line=0.6 dead band=[0.4,0.6)

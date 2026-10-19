@@ -1,13 +1,13 @@
 $ D:\Users\lihua\anaconda3\python.exe code/code77_Atlas_constraint_projection_fracture_probability.py
-# exit 0  1.5s  2026-10-19T06:04:27+00:00
+# exit 0  1.3s  2026-10-19T06:20:27+00:00
 
-[B′] groups 132; median repair-cost RMS 0.068 dex; groups with cost RMS >0.15 dex 21.2%
-[C] EM converged @234 steps: pi_healthy=0.223, σ_h=0.0009, σ_b=0.283 dex; P>0.9 entries 76.7% (cf. |dev|>0.3: 10.4%)
-[cross] repair cost vs fracture probability Spearman ρ = 0.334
+[B′] groups 269; median repair-cost RMS 0.072 dex; groups with cost RMS >0.15 dex 24.2%
+[C] EM converged @174 steps: pi_healthy=0.745, σ_h=0.0885, σ_b=0.683 dex; P>0.9 entries 15.0% (cf. |dev|>0.3: 14.5%)
+[cross] repair cost vs fracture probability Spearman ρ = 0.962
 [B′ top-5 costliest groups]
-                                                                                               grp  n  cost_rms_dex      worst_ligand  worst_move_dex
-  10.1038/s41467-019-11875-6|ADRB2_HUMAN|Recruitment |Transducer|HEK-293|Arrestin-3 (β-arrestin-2)  4      0.654983       Salmeterol         2.202354
-                           10.1074/jbc.M116.757559|CCR2_HUMAN|Dissociation|Transducer|HEK-293T|Gi2  2      0.491420              CCL2       -0.982840
-               10.1111/bph.13854|OPRK_HUMAN|Recruitment |Transducer|U2OS|Arrestin-3 (β-arrestin-2)  3      0.450827           U69,593       -1.107975
-                         10.1016/j.bcp.2018.04.021|AGTR1_HUMAN|Dissociation|Transducer|HEK-293|Gi2  4      0.365884 [Sar1Cys3,5]AngII        1.028044
-10.1124/mol.115.101980|CNR1_HUMAN|Recruitment |Transducer|STHdhQ111/Q111|Arrestin-2 (β-arrestin-1)  5      0.334902               THC        1.192045
+                                                                                             grp  n  cost_rms_dex   worst_ligand  worst_move_dex
+                 10.1124/mol.115.101980|CNR1_HUMAN|Phosphorylation|Downstream|STHdhQ111/Q111|nan 18      0.777076    WIN55,212-2        3.779210
+                          10.1124/mol.113.088880|ADRB2_HUMAN|Internalization |Transducer|HEK|nan  2      0.716842 Isoproterenol         1.433683
+10.1038/s41467-019-11875-6|ADRB2_HUMAN|Recruitment |Transducer|HEK-293|Arrestin-3 (β-arrestin-2)  4      0.654983    Salmeterol         2.202354
+                           10.1124/jpet.116.232561|CNR2_MOUSE|Recruitment |Transducer|CHO-K1|nan 11      0.638018          UR144       -2.635475
+                           10.1124/mol.113.088880|ADRB2_HUMAN|Phosphorylation|Downstream|HEK|nan  8      0.555164      Xamoterol       -2.211060

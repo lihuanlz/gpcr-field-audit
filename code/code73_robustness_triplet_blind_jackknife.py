@@ -103,10 +103,15 @@ print("=" * 70)
 
 E = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "results", "atlas_audit", "atlas_audit_entries.csv"))
 E = E.dropna(subset=['dev_entry'])
-# Rebuild the group key with the same definition as code71: doi|receptor|process|level|cell|effector
-E['grp'] = (E['doi'].astype(str) + '|' + E['receptor'].astype(str) + '|' +
-            E['Measured process'].astype(str) + '|' + E['Pathway level'].astype(str) + '|' +
-            E['Cell line'].astype(str) + '|' + E['Primary effector subtype'].astype(str))
+# Rebuild the group key with the same definition as code71: doi|receptor|process|level|cell|effector.
+# Missing components must stringify the way they did under pandas 1.x: pandas >= 3 propagates
+# NaN through `+`, the key turns missing and groupby drops the row (269 groups -> 132).
+def _key(col):
+    return col.astype("object").where(col.notna(), "nan").astype(str)
+
+E['grp'] = (_key(E['doi']) + '|' + _key(E['receptor']) + '|' +
+            _key(E['Measured process']) + '|' + _key(E['Pathway level']) + '|' +
+            _key(E['Cell line']) + '|' + _key(E['Primary effector subtype']))
 groups = {k: v['dev_entry'].to_numpy() for k, v in E.groupby('grp') if len(v) >= 3}
 print(f"Number of groups (n≥3): {len(groups)}")
 

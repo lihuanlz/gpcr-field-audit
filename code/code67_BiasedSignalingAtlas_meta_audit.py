@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 code67_BiasedSignalingAtlas_meta_audit.py  v1.0.0
 ============================================================
@@ -49,12 +49,22 @@ print(f"total rows {len(df)}; with log(τ/KA) {tc.notna().sum()}; with Δlog(τ/
       f"with Emax {em.notna().sum()}; valid pEC50/EC50 {np.isfinite(pEC).sum()}")
 
 # ---------- Test A ----------
+def _key(col):
+    """String key component that behaves the same under pandas 1.x and 3.x.
+
+    pandas >= 3 lets NaN propagate through string concatenation, so a key with one missing
+    component becomes missing and groupby drops the row (269 groups -> 132). pandas 1.x
+    stringified it as "nan". Pin the 1.x behaviour so the grouping is version-independent.
+    """
+    return col.astype("object").where(col.notna(), "nan").astype(str)
+
+
 sub = df[tc.notna() & em.notna() & np.isfinite(pEC) & (em > 0)].copy()
 sub["logRA"] = np.log10(sub["em"]) + sub["pEC50u"]
-sub["grp"] = (sub["Reference DOI or PMID"].astype(str) + "|" +
-              sub["Receptor UniProt entry name or code"].astype(str) + "|" +
-              sub["Measured process"].astype(str) + "|" + sub["Pathway level"].astype(str) + "|" +
-              sub["Cell line"].astype(str) + "|" + sub["Primary effector subtype"].astype(str))
+sub["grp"] = (_key(sub["Reference DOI or PMID"]) + "|" +
+              _key(sub["Receptor UniProt entry name or code"]) + "|" +
+              _key(sub["Measured process"]) + "|" + _key(sub["Pathway level"]) + "|" +
+              _key(sub["Cell line"]) + "|" + _key(sub["Primary effector subtype"]))
 pairs = []
 for k, v in sub.groupby("grp"):
     d = v.drop_duplicates("Ligand tested for bias or func. Sel. Name")

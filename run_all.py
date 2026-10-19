@@ -90,9 +90,10 @@ STEPS = [
 SKIP = {".git", "__pycache__", "runs"}
 
 # Files whose archived values are known to depend on the numerical stack rather than on the
-# code: the Atlas grouping follows pandas, and P5 experiment admission follows the numeric
-# build. `--check` reports them separately so a real regression still fails the run.
-KNOWN_ENV_DIFF = ("atlas_audit/", "atlas_", "Keshelava2018_P5")
+# code: P5 experiment admission follows the numeric build (the verdicts are stable). The Atlas
+# grouping used to sit here too; the composite key now pins the pandas-1.x missing-value
+# behaviour, so those tables reproduce exactly and are checked strictly.
+KNOWN_ENV_DIFF = ("Keshelava2018_P5",)
 
 
 def sha256(path: str) -> str:
@@ -134,13 +135,28 @@ def compare_file(archived: str, regenerated: str) -> tuple[bool, str]:
         if list(a.columns) != list(b.columns):
             return False, "column names differ"
         maxd, textdiff = 0.0, 0
+        _MISSING = {"", "nan", "none", "null", "<na>", "<missing>"}
+
+        def _norm(s):
+            """Compare text cells with a single spelling for missing values."""
+            out = []
+            for v in s.astype("object"):
+                if v is None or v is pd.NA:
+                    out.append("<missing>")
+                elif isinstance(v, float) and v != v:
+                    out.append("<missing>")
+                else:
+                    t = str(v).strip()
+                    out.append("<missing>" if t.lower() in _MISSING else t)
+            return pd.Series(out, index=s.index, dtype="object")
+
         for col in a.columns:
             if pd.api.types.is_numeric_dtype(a[col]) and pd.api.types.is_numeric_dtype(b[col]):
                 d = (a[col] - b[col]).abs().max()
                 if d == d and d > maxd:
                     maxd = float(d)
             else:
-                textdiff += int((a[col].astype(str) != b[col].astype(str)).sum())
+                textdiff += int((_norm(a[col]) != _norm(b[col])).sum())
         same = maxd < 1e-9 and textdiff == 0
         return same, f"max |delta| {maxd:.1e}, {textdiff} text cells differ"
     if ext == ".json":
@@ -316,9 +332,8 @@ def main() -> int:
         print(f"   -> {same_n} identical, {known_n} known environment differences, "
               f"{bad_n} unexpected")
         if known_n:
-            print("      known: Atlas grouping follows the pandas version and P5 admission "
-                  "follows the numeric stack")
-            print("             (see requirements.txt and PAPER_MAP.md)")
+            print("      known: P5 experiment admission follows the numeric build; its verdicts "
+                  "are stable (see requirements.txt and PAPER_MAP.md)")
     print(f"manifest   : results/run_manifest.json")
     print("=" * 88)
     rc = 1 if failed else 0

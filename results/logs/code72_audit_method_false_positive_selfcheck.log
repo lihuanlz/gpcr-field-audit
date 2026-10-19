@@ -1,5 +1,5 @@
 $ D:\Users\lihua\anaconda3\python.exe code/code72_audit_method_false_positive_selfcheck.py
-# exit 0  6.9s  2026-10-19T06:04:34+00:00
+# exit 0  4.7s  2026-10-19T06:20:32+00:00
 
 ==========================================================================================
 M1  Gillis structural null simulation (true model self-consistent; SEM at original magnitude: pEC50±0.2, logtau±0.2,
@@ -37,11 +37,11 @@ M4  detection power (identity-2 structure, injected systematic rupture delta)
 ==========================================================================================
 M5  threshold robustness (Atlas observed distribution)
 ==========================================================================================
-  threshold 0.2 dex: groups 32.58%, papers 36.59%
-  threshold 0.3 dex: groups 21.21%, papers 26.83%
-  threshold 0.5 dex: groups 12.88%, papers 14.63%
-  threshold 0.8 dex: groups 6.82%, papers 4.88%
-  threshold 1.0 dex: groups 3.79%, papers 2.44%
+  threshold 0.2 dex: groups 39.03%, papers 37.88%
+  threshold 0.3 dex: groups 26.02%, papers 22.73%
+  threshold 0.5 dex: groups 14.87%, papers 13.64%
+  threshold 0.8 dex: groups 7.81%, papers 6.06%
+  threshold 1.0 dex: groups 5.20%, papers 3.03%
 (conclusion: 'about 1/5-1/4 of groups/papers are not self-consistent' is qualitatively unchanged across the 0.2-0.5 dex threshold band)
 
 ==========================================================================================

@@ -1,5 +1,5 @@
 $ D:\Users\lihua\anaconda3\python.exe code/code73_robustness_triplet_blind_jackknife.py
-# exit 0  2.2s  2026-10-19T06:04:26+00:00
+# exit 0  2.8s  2026-10-19T06:20:26+00:00
 
 ======================================================================
 Module A | Hemoglobin external blind negative control (Strategy 4 / B1)
@@ -15,41 +15,41 @@ Module A | Hemoglobin external blind negative control (Strategy 4 / B1)
 ======================================================================
 Module B | Atlas group-level aggregation test + correlation calibration (Strategy 1, revised)
 ======================================================================
-Number of groups (n≥3): 119
-High-confidence breaks (p<0.001 under both rho=0 and 0.5): 60/119 groups (50.4%)
+Number of groups (n≥3): 241
+High-confidence breaks (p<0.001 under both rho=0 and 0.5): 134/241 groups (55.6%)
 Candidate breaks (p<0.01 only under rho=0): 0 groups
-Not detected: 59 groups (49.6%)
-Sensitivity analysis (SIG=0.10 dex, rho=0.5 most conservative scale): high-confidence breaks 27/119 (22.7%)  -  the criterion for whether the main conclusion is robust to the legitimate-spread-scale assumption
+Not detected: 107 groups (44.4%)
+Sensitivity analysis (SIG=0.10 dex, rho=0.5 most conservative scale): high-confidence breaks 68/241 (28.2%)  -  the criterion for whether the main conclusion is robust to the legitimate-spread-scale assumption
 
 ======================================================================
 Module C | Jackknife leave-one-out consistency (Strategy 3)
 ======================================================================
-Atlas: among the 60 groups containing above-threshold entries, the verdict is unchanged after leave-one-out in 58.3%
-Jackknife score distribution: 1.0 → 94 groups, 0.5–1 → 25 groups, <0.5 → 0 groups
+Atlas: among the 134 groups containing above-threshold entries, the verdict is unchanged after leave-one-out in 65.7%
+Jackknife score distribution: 1.0 → 195 groups, 0.5–1 → 46 groups, <0.5 → 0 groups
 Gillis GIRK column (n=5, note): after leave-one-out still 4/4 all exceed 0.3 dex → jackknife = 1.0 (the break is not driven by a single point)
 
 ======================================================================
 Module D | break-confidence matrix
 ======================================================================
 Written: D:\Kimi_Agent_细胞仿真工具包扩展以及具身智能20260911\_github\gpcr-field-audit\code\..\results\atlas_audit\atlas_confidence_matrix.csv
-Label distribution: {'high_confidence_fracture': 60, 'not detected': 59}
+Label distribution: {'high_confidence_fracture': 134, 'not detected': 107}
 
 Top 10 groups by confidence:
-                                                                                               grp  n  dev_max  frac_gt03  p_rho5  jackknife  confidence                    label
-                         10.1016/j.bcp.2018.04.021|AGTR1_HUMAN|Dissociation|Transducer|HEK-293|Gi2  4 1.134453   1.000000     0.0        1.0       100.0 high_confidence_fracture
-   10.1038/s41467-018-03941-2|GLP1R_HUMAN|Recruitment |Transducer|CHO-K1|Arrestin-3 (β-arrestin-2) 12 1.313090   0.250000     0.0        1.0       100.0 high_confidence_fracture
-                           10.1038/s41467-019-11875-6|OPRM_RAT|Dissociation|Transducer|HEK-293|Gi1 25 1.182706   0.160000     0.0        1.0       100.0 high_confidence_fracture
-                         10.1038/s41467-019-11875-6|OPRD_HUMAN|Dissociation|Transducer|HEK-293|Gi1 19 1.660640   0.263158     0.0        1.0       100.0 high_confidence_fracture
-   10.1038/s41467-019-11875-6|OPRD_HUMAN|Recruitment |Transducer|HEK-293|Arrestin-3 (β-arrestin-2) 46 2.008598   0.108696     0.0        1.0       100.0 high_confidence_fracture
-  10.1038/s41467-019-11875-6|ADRB2_HUMAN|Recruitment |Transducer|HEK-293|Arrestin-3 (β-arrestin-2)  4 2.742360   0.500000     0.0        1.0       100.0 high_confidence_fracture
-                           10.1038/s41467-019-11875-6|OPRM_RAT|Dissociation|Transducer|HEK-293|Gi2 25 1.493209   0.200000     0.0        1.0       100.0 high_confidence_fracture
-               10.1111/bph.13854|OPRK_HUMAN|Recruitment |Transducer|U2OS|Arrestin-3 (β-arrestin-2)  3 1.115370   0.666667     0.0        1.0       100.0 high_confidence_fracture
-10.1124/mol.115.101980|CNR1_HUMAN|Recruitment |Transducer|STHdhQ111/Q111|Arrestin-2 (β-arrestin-1)  5 1.533957   0.400000     0.0        1.0       100.0 high_confidence_fracture
-         10.1073/pnas.2000712117|OPRD_HUMAN|Recruitment |Transducer|U2OS|Arrestin-3 (β-arrestin-2) 21 1.166730   0.333333     0.0        1.0       100.0 high_confidence_fracture
+                                                                                             grp  n  dev_max  frac_gt03  p_rho5  jackknife  confidence                    label
+                            10.1016/j.bcp.2015.11.013|AA1R_HUMAN|Accumulation|Downstream|CHO|nan 12 1.195265   0.250000     0.0        1.0       100.0 high_confidence_fracture
+                       10.1016/j.bcp.2018.04.021|AGTR1_HUMAN|Dissociation|Transducer|HEK-293|Gi2  4 1.134453   1.000000     0.0        1.0       100.0 high_confidence_fracture
+                                  10.1038/ncomms13958|CNR2_HUMAN|Activation|Downstream|AtT20|nan 12 1.579233   0.500000     0.0        1.0       100.0 high_confidence_fracture
+                               10.1038/ncomms13958|CNR2_HUMAN|Recruitment |Transducer|CHO-K1|nan 11 3.515113   0.272727     0.0        1.0       100.0 high_confidence_fracture
+                                 10.1038/ncomms13958|CNR2_HUMAN|Activation|Transducer|CHO-K1|nan 11 1.406889   0.545455     0.0        1.0       100.0 high_confidence_fracture
+10.1038/s41467-019-11875-6|ADRB2_HUMAN|Recruitment |Transducer|HEK-293|Arrestin-3 (β-arrestin-2)  4 2.742360   0.500000     0.0        1.0       100.0 high_confidence_fracture
+                       10.1038/s41467-019-11875-6|OPRD_HUMAN|Dissociation|Transducer|HEK-293|Gi1 19 1.660640   0.263158     0.0        1.0       100.0 high_confidence_fracture
+ 10.1038/s41467-019-11875-6|OPRD_HUMAN|Recruitment |Transducer|HEK-293|Arrestin-3 (β-arrestin-2) 46 2.008598   0.108696     0.0        1.0       100.0 high_confidence_fracture
+ 10.1038/s41467-018-03941-2|GLP1R_HUMAN|Recruitment |Transducer|CHO-K1|Arrestin-3 (β-arrestin-2) 12 1.313090   0.250000     0.0        1.0       100.0 high_confidence_fracture
+                               10.1073/pnas.2000712117|OPRD_HUMAN|Activation|Transducer|U2OS|nan 21 1.951993   0.714286     0.0        1.0       100.0 high_confidence_fracture
 
 ======================================================================
 Summary verdict
 ======================================================================
 A blind test: Hb system identity max|Δ| = 0.003 dex → silent; positive control max|Δ| = 0.615 dex → alarm. Both specificity and sensitivity pass.
-B aggregation: Atlas group-level high-confidence breaks 60/119 (50.4%, definition = group contains ≥1 unrepairable entry, broader than code71's 26% definition); SIG=0.10 most conservative scale 27/119 (22.7%).
-C Jackknife: leave-one-out stability of above-threshold groups 58.3%; Gillis GIRK not driven by a single point.
+B aggregation: Atlas group-level high-confidence breaks 134/241 (55.6%, definition = group contains ≥1 unrepairable entry, broader than code71's 26% definition); SIG=0.10 most conservative scale 68/241 (28.2%).
+C Jackknife: leave-one-out stability of above-threshold groups 65.7%; Gillis GIRK not driven by a single point.

@@ -1,5 +1,5 @@
 $ D:\Users\lihua\anaconda3\python.exe code/code65_AT1R_cross_arm_affinity_fracture.py
-# exit 0  0.2s  2026-10-19T06:03:14+00:00
+# exit 0  0.2s  2026-10-19T06:19:33+00:00
 
 == Test A: cross-arm functional affinity fracture (ΔpKA = pKA_Gq − pKA_arr) ==
   WT     AngII   : Gq full agonism unresolvable; pKA_Gq ≤ 6.92 (Emax−2σ bound),pKA_arr=7.92 → Δ ≤ -1.00 dex (lower-bound fracture ≥1.0)
